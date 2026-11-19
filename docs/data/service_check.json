@@ -1,0 +1,92 @@
+{
+ "landing_title": "Open geodata catalogue: OGC API Features",
+ "conformance_classes": 18,
+ "conformance": [
+  "http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2",
+  "http://www.opengis.net/spec/cql2/1.0/conf/cql2-text",
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/html",
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/json",
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/landing-page",
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/oas30",
+  "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
+  "http://www.opengis.net/spec/ogcapi-common-3/1.0/conf/advanced-property-roles",
+  "http://www.opengis.net/spec/ogcapi-common-3/1.0/conf/schemas",
+  "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core",
+  "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson",
+  "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/html",
+  "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30",
+  "http://www.opengis.net/spec/ogcapi-features-2/1.0/conf/crs",
+  "http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/queryables",
+  "http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/queryables-query-parameters",
+  "http://www.opengis.net/spec/ogcapi-features-4/1.0/conf/create-replace-delete"
+ ],
+ "n_collections": 10,
+ "collections": [
+  {
+   "collection": "observational_hydrology_extremes_study_areas",
+   "title": "Study areas",
+   "features": 2,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "observational_hydrology_extremes_chirps_rx1day_return_levels",
+   "title": "CHIRPS design rainfall per 0.25-degree cell, 1985\u20132014",
+   "features": 272,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "ogun_catchment_coast_observatory_sub_basins",
+   "title": "Sub-basin units with summary indicators",
+   "features": 5,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "oueme_ogun_groundwater_recharge_basins",
+   "title": "Basin outlines",
+   "features": 2,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "groundwater_storage_gravimetry_study_areas",
+   "title": "Study areas",
+   "features": 2,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "groundwater_storage_gravimetry_storage_trend_cells",
+   "title": "Total water storage trend per 1-degree cell",
+   "features": 375,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "lagos_urban_heat_analytics_lga_attributes",
+   "title": "LGA boundaries with heat and vegetation attributes",
+   "features": 20,
+   "bbox_test_matched": 2
+  },
+  {
+   "collection": "mozambique_health_access_district_access_public_list",
+   "title": "District travel time to public-sector facilities, 2020",
+   "features": 159,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "mozambique_health_access_facilities_public_and_herams",
+   "title": "Health facilities, public-sector list and WHO HeRAMS",
+   "features": 2116,
+   "bbox_test_matched": 1
+  },
+  {
+   "collection": "mozambique_health_access_facilities_openstreetmap",
+   "title": "Health facilities from OpenStreetMap",
+   "features": 1209,
+   "bbox_test_matched": 1
+  }
+ ],
+ "n_features": 4162,
+ "postgis_version": "3.4.2",
+ "postgresql_version": "16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)",
+ "checked": "2026-11-19",
+ "pygeoapi_version": "0.24.0"
+}
