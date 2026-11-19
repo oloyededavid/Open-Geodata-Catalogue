@@ -40,7 +40,8 @@ def values():
         "n_collections_word": WORDS[S["n_collections"]].capitalize(), "n_converted": WORDS[S["n_converted"]].capitalize(),
         "n_collections": S["n_collections"], "n_items": S["n_items"], "n_vector_items": S["n_vector_items"],
         "n_raster_items": S["n_raster_items"], "n_features": f"{S['n_features']:,}", "n_data_files": S["n_data_files"],
-        "mb_data": mb(S["bytes_data_files"]), "n_sources_configured": S["n_sources_configured"], "skipped_sentence": ("none was skipped" if pending == 0 else f"{pending} {'was' if pending == 1 else 'were'} skipped") + " at the last build",
+        "mb_data": mb(S["bytes_data_files"]), "n_sources_configured": S["n_sources_configured"], "skipped_sentence": ("none was skipped" if pending == 0 else f"{WORDS[pending]} {'was' if pending == 1 else 'were'} skipped ("
+                             + ", ".join(f"{p['repo']}: {p['reason']}" for p in S["pending"]) + ")") + " at the last build",
         "files_geoparquet": ff["geoparquet"], "mb_geoparquet": mb(bf["geoparquet"]),
         "files_geojson": ff["geojson"], "mb_geojson": mb(bf["geojson"]),
         "files_cog": ff["cog"], "mb_cog": mb(bf["cog"]), "files_preview": ff["preview"], "mb_preview": mb(bf["preview"]),
@@ -49,13 +50,14 @@ def values():
                             f"{len(linked)} files reached that limit and are linked, not copied."),
         "n_ccby": sum(c["licence_data"] == "CC-BY-4.0" for c in S["collections"]),
         "n_various": len(various),
-        "licence_notes_sentence": "Licence notes recorded with a collection: " + " ".join(
-            f"{c['repo']}: {c['licence_note']}" for c in noted) if noted else "",
+        "licence_notes_sentence": " ".join(
+            f"In {c['repo']}, " + (c["licence_note"][0].lower() + c["licence_note"][1:]
+                                   if c["licence_note"][1:2].islower() else c["licence_note"]) for c in noted),
         "licence_other_sentence": " ".join(
             f"The {c['repo']} repository states an MIT licence and no separate licence for its derived data, so its "
             f"collection is marked “other” until the author states one." for c in other),
         "item_licence_sentence": " ".join(
-            f"The {c['repo']} collection is marked “various”: each of its {len(c['items_own_licence'])} items states its own "
+            f"The {c['repo']} collection is marked “various”: each of its {WORDS[len(c['items_own_licence'])]} items states its own "
             f"licence ({', '.join(sorted({x['licence'] for x in c['items_own_licence']}))}), because the layer derived from "
             f"OpenStreetMap is under the ODbL, as the study states."
             for c in various),

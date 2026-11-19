@@ -16,9 +16,13 @@ Two standard ways of publishing such data were used. STAC describes files and th
 
 # 2. Design
 
+Figure 1 shows the path of a layer: from a study repository, through one build script, into the static catalogue and from there into the database behind the service.
+
+![**Figure 1.** From the study repositories to the static catalogue and the service. The website and the catalogue share one folder; the service is run locally or with Docker Compose.](../docs/assets/figures/fig1_flow.webp)
+
 ## 2.1 One configuration file
 
-`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. {{n_sources_configured}} studies are configured; {{skipped_sentence}}.
+`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. In all, {{n_sources_configured}} studies are configured; {{skipped_sentence}}.
 
 ## 2.2 Formats, checksums and size limits
 
@@ -40,13 +44,19 @@ One detail mattered. When the storage coordinate system was declared as EPSG:432
 
 # 3. Checks
 
-The tests (`tests/`) do four things. They validate every catalogue file against the STAC 1.1.0 schema and the schemas of the extensions it uses, check that every link and asset resolves, that sizes and checksums match the files, that every GeoTIFF is a valid Cloud-Optimised GeoTIFF and that GeoParquet and GeoJSON agree. They start a temporary PostgreSQL database with PostGIS, load the layers, start pygeoapi through its Flask test client and query it. They check that every number on the website matches the generated files. A separate browser check opens every page at phone and desktop width.
+The tests (`tests/`) do three things. They validate every catalogue file against the STAC 1.1.0 schema and the schemas of the extensions it uses, check that every link and asset resolves, that sizes and checksums match the files, that every GeoTIFF is a valid Cloud-Optimised GeoTIFF and that GeoParquet and GeoJSON agree. They start a temporary PostgreSQL database with PostGIS, load the layers, start pygeoapi through its Flask test client and query it. They check that every number on the website matches the generated files. A separate browser check opens every page at phone and desktop width.
 
 At the last service check ({{svc_checked}}), pygeoapi {{svc_pygeoapi}} served {{svc_collections}} collections with {{svc_features}} features from PostGIS {{svc_postgis}} on PostgreSQL {{svc_postgresql}}. For every collection the check read one page of one feature, all features page by page, single features by identifier, a small bounding box around a known feature (the returned set had to equal the features that intersect it) and a bounding box in the South Pacific (none returned). pygeoapi declares {{svc_conformance}} conformance classes; the tests exercise the core, GeoJSON and OpenAPI 3.0 classes of OGC API Features Part 1 through these queries only. No formal OGC conformance test suite was run.
 
 # 4. What the catalogue holds
 
 {{collections_table}}
+
+Four of the studies lie in southwest Nigeria and Benin; the others cover two Nigerian river basins, the Lake Chad basin and Mozambique (Figure 2). Most items come from one study, the rainfall, evapotranspiration and water-surplus grids of the Ouémé and Ogun recharge study, while most of the data volume is in the two rasters of the Lekki–Epe sealing study (Figure 3).
+
+![**Figure 2.** Where the items lie. Each item is drawn with the geometry recorded in its STAC item; for rasters, this is the extent of the grid.](../docs/assets/figures/fig2_footprints.webp)
+
+![**Figure 3.** Items and data volume per collection. The volume counts the GeoParquet, GeoJSON, GeoTIFF and quick-look files, not the STAC JSON.](../docs/assets/figures/fig3_contents.webp)
 
 The periods are those of the layers, not of the studies: for example the Lagos layer holds the attributes of an earlier Earth Engine export, and its own period field is used.
 

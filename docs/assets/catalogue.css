@@ -67,3 +67,6 @@ pre.cat-code code { font-size: inherit; overflow-wrap: normal; }
 header.title .subtitle { max-width: 640px; color: var(--ink-2); font-size: 18px; margin: 16px auto 0; }
 .cat-table td:last-child { white-space: nowrap; }
 .leaflet-image-layer { image-rendering: pixelated; }
+
+/* figures in the design note */
+.article figure picture img { width: 100%; height: auto; margin: 0 auto; border-radius: 6px; }

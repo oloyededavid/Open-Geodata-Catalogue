@@ -38,6 +38,7 @@ scripts/converters.py           page JSON/CSV -> vector layers (grid cells, faci
 scripts/build_service_config.py docs/stac -> service/pygeoapi-config.yml
 scripts/load_postgis.py         GeoParquet assets -> PostGIS tables (SRID 4326, GiST index)
 scripts/service_check.py        temporary PostGIS + pygeoapi test client -> docs/data/service_check.json
+scripts/build_figures.py        figures of the design note, from the JSON and GeoJSON files in docs/data
 scripts/build_paper.py          paper/template.md -> paper/paper.md (numbers from the JSON files)
 scripts/build_site.py           docs/index.html, collections/*.html, items/*/*.html
 scripts/build_page.py           paper/paper.md -> docs/about.html (pandoc)

@@ -32,6 +32,17 @@ def main():
                   lambda k: k.group(1) + '<ol class="refs" role="list">\n' + "\n".join(
                       "<li>" + re.sub(r'(?<!")(https?://[^\s<]+?)([.,;]?)(?=\s|$|<)', r'<a href="\1">\1</a>\2', p) + "</li>"
                       for p in re.findall(r"<p>(.*?)</p>", k.group(2), flags=re.S)) + "\n</ol>\n", body, flags=re.S)
+    # figures: the paper links ../docs/assets/figures/*.webp; on the page they sit next to about.html, with a phone version
+    def picture(k):
+        src, alt = k.group(1).replace("../docs/", ""), k.group(2)
+        phone = src.replace(".webp", "_phone.webp")
+        from PIL import Image
+        from build_figures import DPI
+        w, h = Image.open(DOCS / src).size
+        cap = round(w * 96 / DPI)
+        return (f'<picture><source media="(max-width: 640px)" srcset="{phone}">'
+                f'<img src="{src}" alt="{alt}" width="{w}" height="{h}" style="max-width: {cap}px" loading="lazy" decoding="async"></picture>')
+    body = re.sub(r'<img src="([^"]+)" alt="([^"]*)" />', picture, body)
     body = re.sub(r"<table>", '<div class="cat-table"><table>', body).replace("</table>", "</table></div>")
     head = (f'<header class="title">\n    <p class="cat-crumbs"><a href="index.html">Catalogue</a> / Design</p>\n'
             f'    <h1>{meta["title"]}</h1>\n    <p class="sig"><span>{meta["author"]}</span><span>{meta["date"]}</span></p>\n</header>\n')

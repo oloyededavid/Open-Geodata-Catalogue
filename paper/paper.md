@@ -16,9 +16,13 @@ Two standard ways of publishing such data were used. STAC describes files and th
 
 # 2. Design
 
+Figure 1 shows the path of a layer: from a study repository, through one build script, into the static catalogue and from there into the database behind the service.
+
+![**Figure 1.** From the study repositories to the static catalogue and the service. The website and the catalogue share one folder; the service is run locally or with Docker Compose.](../docs/assets/figures/fig1_flow.webp)
+
 ## 2.1 One configuration file
 
-`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. 8 studies are configured; 1 was skipped at the last build.
+`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. In all, 8 studies are configured; one was skipped (Mau-Forest-Land-Cover: no GeoJSON or GeoTIFF outputs found) at the last build.
 
 ## 2.2 Formats, checksums and size limits
 
@@ -26,7 +30,7 @@ Vector layers are written as GeoParquet 1.1 (GeoParquet, n.d.) and GeoJSON, in l
 
 Every file carries its size and SHA-256 checksum (STAC file extension), raster items carry their grid (projection extension) and vector items their columns and feature count (table extension). A converted file larger than 20 MB would not be copied: its asset would point to the source file in the study repository instead. No file reached that limit, so every file is in the catalogue itself. The build also stops if the website folder would exceed 150 MB.
 
-Each collection records the study page, the repository, the data licence (CC BY 4.0 for 5 of the 7 studies, with exceptions noted below) and the commit of the study repository the files were taken from. The Coastal-Hydrogeology-Modeling repository states an MIT licence and no separate licence for its derived data, so its collection is marked “other” until the author states one. The Mozambique-Health-Access collection is marked “various”: each of its 3 items states its own licence (CC-BY-4.0, ODbL-1.0), because the layer derived from OpenStreetMap is under the ODbL, as the study states. Licence notes recorded with a collection: Ogun-Catchment-Coast-Observatory: The SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study). Lagos-Urban-Heat-Analytics: LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study.
+Each collection records the study page, the repository, the data licence (CC BY 4.0 for 5 of the 7 studies, with exceptions noted below) and the commit of the study repository the files were taken from. The Coastal-Hydrogeology-Modeling repository states an MIT licence and no separate licence for its derived data, so its collection is marked “other” until the author states one. The Mozambique-Health-Access collection is marked “various”: each of its three items states its own licence (CC-BY-4.0, ODbL-1.0), because the layer derived from OpenStreetMap is under the ODbL, as the study states. In Ogun-Catchment-Coast-Observatory, the SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study). In Lagos-Urban-Heat-Analytics, LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study.
 
 ## 2.3 A static catalogue on GitHub Pages
 
@@ -40,7 +44,7 @@ One detail mattered. When the storage coordinate system was declared as EPSG:432
 
 # 3. Checks
 
-The tests (`tests/`) do four things. They validate every catalogue file against the STAC 1.1.0 schema and the schemas of the extensions it uses, check that every link and asset resolves, that sizes and checksums match the files, that every GeoTIFF is a valid Cloud-Optimised GeoTIFF and that GeoParquet and GeoJSON agree. They start a temporary PostgreSQL database with PostGIS, load the layers, start pygeoapi through its Flask test client and query it. They check that every number on the website matches the generated files. A separate browser check opens every page at phone and desktop width.
+The tests (`tests/`) do three things. They validate every catalogue file against the STAC 1.1.0 schema and the schemas of the extensions it uses, check that every link and asset resolves, that sizes and checksums match the files, that every GeoTIFF is a valid Cloud-Optimised GeoTIFF and that GeoParquet and GeoJSON agree. They start a temporary PostgreSQL database with PostGIS, load the layers, start pygeoapi through its Flask test client and query it. They check that every number on the website matches the generated files. A separate browser check opens every page at phone and desktop width.
 
 At the last service check (2026-11-19), pygeoapi 0.24.0 served 10 collections with 4,162 features from PostGIS 3.4.2 on PostgreSQL 16.15. For every collection the check read one page of one feature, all features page by page, single features by identifier, a small bounding box around a known feature (the returned set had to equal the features that intersect it) and a bounding box in the South Pacific (none returned). pygeoapi declares 18 conformance classes; the tests exercise the core, GeoJSON and OpenAPI 3.0 classes of OGC API Features Part 1 through these queries only. No formal OGC conformance test suite was run.
 
@@ -55,6 +59,12 @@ At the last service check (2026-11-19), pygeoapi 0.24.0 served 10 collections wi
 | [Surface urban heat island and distance to vegetation in Lagos State](https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/) | 1 | 20 | 2 | 0.2 | 2022–2024 | CC BY 4.0 |
 | [Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos](https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/) | 2 | 0 | 4 | 7.2 | 1986–2024 | not stated |
 | [Travel time to health facilities in Mozambique](https://oloyededavid.github.io/Mozambique-Health-Access/) | 3 | 3,484 | 6 | 2.2 | 2019–2024 | various |
+
+Four of the studies lie in southwest Nigeria and Benin; the others cover two Nigerian river basins, the Lake Chad basin and Mozambique (Figure 2). Most items come from one study, the rainfall, evapotranspiration and water-surplus grids of the Ouémé and Ogun recharge study, while most of the data volume is in the two rasters of the Lekki–Epe sealing study (Figure 3).
+
+![**Figure 2.** Where the items lie. Each item is drawn with the geometry recorded in its STAC item; for rasters, this is the extent of the grid.](../docs/assets/figures/fig2_footprints.webp)
+
+![**Figure 3.** Items and data volume per collection. The volume counts the GeoParquet, GeoJSON, GeoTIFF and quick-look files, not the STAC JSON.](../docs/assets/figures/fig3_contents.webp)
 
 The periods are those of the layers, not of the studies: for example the Lagos layer holds the attributes of an earlier Earth Engine export, and its own period field is used.
 

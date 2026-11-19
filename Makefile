@@ -17,6 +17,7 @@ service-check:   ## temporary PostGIS (or DATABASE_URL), load, query; writes doc
 	$(PY) scripts/service_check.py
 
 paper:
+	$(PY) scripts/build_figures.py
 	$(PY) scripts/build_paper.py
 
 site:
