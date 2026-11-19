@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light">
+    <title>Design of the catalogue – Open geodata catalogue</title>
+    <link rel="canonical" href="https://oloyededavid.github.io/Open-Geodata-Catalogue/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Design of the catalogue – Open geodata catalogue">
+    <meta property="og:description" content="How the open geodata catalogue is built: STAC, GeoParquet, Cloud-Optimised GeoTIFF, PostGIS, pygeoapi and tests.">
+    <meta property="og:url" content="https://oloyededavid.github.io/Open-Geodata-Catalogue/about.html">
+    <meta name="description" content="How the open geodata catalogue is built: STAC, GeoParquet, Cloud-Optimised GeoTIFF, PostGIS, pygeoapi and tests.">
+    <meta name="author" content="David Oloyede">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%231f5fae'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&amp;display=swap">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@500,700&amp;display=swap">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/catalogue.css">
+</head>
+<body data-base="">
+<!-- study-bar:start --><style>
+.sn-bar{font:400 14px/1.4 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;border-bottom:1px solid #e5e5e1;color:#141412;position:relative;z-index:1000}
+.sn-bar .sn-in{max-width:1240px;margin:0 auto;padding:4px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sn-bar a{color:#141412;text-decoration:none;display:inline-flex;align-items:center;min-height:32px}.sn-bar a:hover{text-decoration:underline;text-underline-offset:4px}
+.sn-home{font-weight:700}.sn-pos{color:#6a6963;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:.04em}
+.sn-pn{display:flex;gap:18px}.sn-pn a{color:#55544e}
+.sn-next{font:400 16px/1.5 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;color:#141412;background:#fff;border-top:1px solid #ececea;margin-top:64px}
+.sn-next .sn-in{max-width:1080px;margin:0 auto;padding:40px 24px 48px}
+.sn-k{font-size:15px;color:#6a6963;margin:0 0 14px}
+.sn-card{display:flex;align-items:center;gap:20px;text-decoration:none;color:inherit;background:#fafafa;border:1px solid #ececea;border-radius:22px;padding:14px 18px 14px 14px;transition:border-color .25s,background .25s}
+.sn-card:hover{border-color:#d5d5d1;background:#f6f6f5}
+.sn-media{flex:none;width:112px;height:84px;border-radius:14px;overflow:hidden;background:#eee}
+.sn-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-media img{transform:scale(1.05)}
+.sn-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sn-t b{font-weight:500;font-size:clamp(17px,1.8vw,21px);line-height:1.25;letter-spacing:-.005em}
+.sn-t span{font-size:15px;color:#62625d}
+.sn-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid #e4e4e0;background:#fff;display:grid;place-items:center;font-size:20px;color:#3a3a37;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-arrow{transform:translateX(3px)}
+.sn-back{display:flex;justify-content:center;gap:10px;margin-top:28px;font-size:15px;color:#62625d;text-decoration:none}
+.sn-back:hover{color:#141412}
+@media (max-width:620px){.sn-media{width:72px;height:72px}.sn-t span{display:none}.sn-pos{display:none}}
+@media (prefers-reduced-motion:reduce){.sn-media img,.sn-arrow{transition:none}}
+</style><nav class="sn-bar" aria-label="Portfolio"><div class="sn-in"><a class="sn-home" href="https://oloyededavid.github.io/geospatial-rs-portfolio/">← David Oloyede</a><span class="sn-pos">Data catalogue</span><span class="sn-pn"><a href="https://oloyededavid.github.io/geospatial-rs-portfolio/#studies">All studies</a><a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/" title="Hydrological extremes where the gauges are missing: floods, droughts and design rainfall in Nigeria, 1950–2070">First study →</a></span></div></nav><!-- study-bar:end -->
+<nav class="skipnav" aria-label="Skip link"><a class="skip" href="#main">Skip to the content</a></nav>
+<header class="site-header">
+    <div class="site-inner">
+        <a class="site-id" href="index.html">Open geodata catalogue</a>
+        <nav class="toc" aria-label="Sections">
+            <a href="index.html#collections">Catalogue</a>
+            <a href="#abstract">Abstract</a>
+            <a href="#design">Design</a>
+            <a href="#checks">Checks</a>
+            <a href="#limits">Limits</a>
+            <a href="#references">References</a>
+        </nav>
+    </div>
+    <nav class="toc-phone" aria-label="Sections on phone">
+        <a href="index.html#collections">Catalogue</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#design">Design</a>
+        <a href="#checks">Checks</a>
+        <a href="#limits">Limits</a>
+        <a href="#references">References</a>
+    </nav>
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<main class="article" id="main">
+<header class="title">
+    <p class="cat-crumbs"><a href="index.html">Catalogue</a> / Design</p>
+    <h1>Serving open geospatial research outputs as a static STAC catalogue and through OGC API Features (PostGIS, pygeoapi), with automated tests</h1>
+    <p class="sig"><span>David Oloyede</span><span>November 2026</span></p>
+</header>
+<h2 id="abstract">Abstract</h2>
+<p>Seven open studies on hydrology, groundwater, urban heat, coastal sealing and access to health care in Africa each publish their results on a web page and in a GitHub repository. Their spatial outputs sit in different folders and formats, some only as JSON written for a chart. This note describes a catalogue that gathers them. A build script reads one configuration file, converts each listed layer to an open format and writes a static SpatioTemporal Asset Catalog (STAC) with 7 collections and 32 items: 10 vector layers with 4,162 features and 22 rasters, in 64 files of 10.8 MB with checksums. The catalogue is a set of JSON files with relative links, served by GitHub Pages next to a browsable website. The vector layers are also loaded into PostGIS and served as OGC API Features collections by pygeoapi; that service runs locally or with Docker Compose, not on the static site. Automated tests validate the catalogue against the STAC schemas and query the service. The catalogue adds no new analysis: each layer keeps the meaning and the limits given by its study.</p>
+<h2 id="why-a-catalogue">1. Why a catalogue</h2>
+<p>Each study page shows maps, but a reader who wants the layers behind them has to find the right file in the right repository, and some of those files are not GIS formats: the per-cell rainfall return levels of the Nigerian extremes study and the per-cell storage trends of the Lake Chad study are stored as JSON for the page’s own map, and the Mozambique facility lists as a CSV table. A catalogue gives each layer a stable address, a description, a time range, an extent, a licence and a checksum, and offers it in formats that GIS software and code read directly.</p>
+<p>Two standard ways of publishing such data were used. STAC describes files and their metadata as linked JSON documents and needs no server (STAC, 2024). OGC API Features is a web service standard for querying vector features, for example by bounding box, page by page (OGC, 2022). The first suits a static website; the second needs a database and a running server.</p>
+<h2 id="design">2. Design</h2>
+<h3 id="one-configuration-file">2.1 One configuration file</h3>
+<p><code>catalogue/sources.yaml</code> lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study’s <code>docs/data</code> and <code>outputs</code> folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. 8 studies are configured; 1 were skipped at the last build.</p>
+<h3 id="formats-checksums-and-size-limits">2.2 Formats, checksums and size limits</h3>
+<p>Vector layers are written as GeoParquet 1.1 (GeoParquet, n.d.) and GeoJSON, in longitude–latitude (EPSG:4326). Five layers were converted from files written for the study pages (JSON or CSV): grid cells to polygons, facility tables to points, and a district table joined to its outlines. Rasters are written as Cloud-Optimised GeoTIFFs (OGC, 2023) with rio-cogeo, in their original grid and projection, together with a small PNG quick-look in EPSG:4326 for the website. The catalogue holds 10 GeoParquet files (0.6 MB), 10 GeoJSON files (2.2 MB), 22 GeoTIFFs (7.2 MB) and 22 quick-looks (0.7 MB). The largest file is 3.3 MB.</p>
+<p>Every file carries its size and SHA-256 checksum (STAC file extension), raster items carry their grid (projection extension) and vector items their columns and feature count (table extension). A converted file larger than 20 MB would not be copied: its asset would point to the source file in the study repository instead. No file reached that limit, so every file is in the catalogue itself. The build also stops if the website folder would exceed 150 MB.</p>
+<p>Each collection records the study page, the repository, the data licence (CC BY 4.0 for 6 of the 7 studies) and the commit of the study repository the files were taken from. The Coastal-Hydrogeology-Modeling repository states an MIT licence and no separate licence for its derived data, so its collection is marked “other” until the author states one. In the Mozambique-Health-Access collection, 1 item derived from OpenStreetMap carries its own licence (ODbL-1.0), as the study states.</p>
+<h3 id="a-static-catalogue-on-github-pages">2.3 A static catalogue on GitHub Pages</h3>
+<p>The catalogue is saved as a self-contained STAC catalogue: links between the root catalogue, collections and items are relative, and there are no <code>self</code> links, so the folder works wherever it is copied. The website is built from the same files. The index page lists the collections with small extent maps drawn with a copy of Leaflet on country outlines from Natural Earth, without a tile server, and a search box filters the items in the browser. Each collection and item has its own page with a map, the metadata and the files.</p>
+<h3 id="ogc-api-features-with-postgis-and-pygeoapi">2.4 OGC API Features with PostGIS and pygeoapi</h3>
+<p><code>scripts/load_postgis.py</code> reads the GeoParquet file of each vector item and creates one PostGIS table per item with an integer key, the layer’s attributes and a geometry column in SRID 4326 with a spatial index. <code>scripts/build_service_config.py</code> writes a pygeoapi configuration with one collection per table, its extent and time range, and links back to the STAC item and the study page (pygeoapi, n.d.; PostGIS, n.d.). Connection settings come from environment variables, so the same file works locally, in Docker Compose and in the test workflow.</p>
+<p>One detail mattered. When the storage coordinate system was declared as EPSG:4326, pygeoapi returned every coordinate with latitude and longitude swapped, because EPSG:4326 formally lists latitude first; the data are stored longitude first. The configuration therefore declares the storage system as CRS84, and a test checks that each returned feature lies inside the extent of its collection.</p>
+<h2 id="checks">3. Checks</h2>
+<p>The tests (<code>tests/</code>) do four things. They validate every catalogue file against the STAC 1.1.0 schema and the schemas of the extensions it uses, check that every link and asset resolves, that sizes and checksums match the files, that every GeoTIFF is a valid Cloud-Optimised GeoTIFF and that GeoParquet and GeoJSON agree. They start a temporary PostgreSQL database with PostGIS, load the layers, start pygeoapi through its Flask test client and query it. They check that every number on the website matches the generated files. A separate browser check opens every page at phone and desktop width.</p>
+<p>At the last service check (2026-11-19), pygeoapi 0.24.0 served 10 collections with 4,162 features from PostGIS 3.4.2 on PostgreSQL 16.15. For every collection the check read one page of one feature, all features page by page, single features by identifier, a small bounding box around a known feature (the returned set had to equal the features that intersect it) and a bounding box in the South Pacific (none returned). pygeoapi declares 18 conformance classes; the tests exercise the core, GeoJSON and OpenAPI 3.0 classes of OGC API Features Part 1 through these queries only. No formal OGC conformance test suite was run.</p>
+<h2 id="what-the-catalogue-holds">4. What the catalogue holds</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Study</th>
+<th style="text-align: right;">Items</th>
+<th style="text-align: right;">Vector features</th>
+<th style="text-align: right;">Files</th>
+<th style="text-align: right;">MB</th>
+<th style="text-align: left;">Period</th>
+<th style="text-align: left;">Data licence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/">Floods, droughts and design rainfall in two data-sparse Nigerian basins</a></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">274</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: left;">1981–2070</td>
+<td style="text-align: left;">CC BY 4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Ogun River catchment-to-coast environmental observatory</a></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: left;">2019–2024</td>
+<td style="text-align: left;">CC BY 4.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/">Testing a satellite water balance for groundwater recharge: Upper Ouémé and Upper Ogun</a></td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: left;">2018–2024</td>
+<td style="text-align: left;">CC BY 4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Water storage in the Lake Chad basin from GRACE and GRACE-FO</a></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">377</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">2002–2026</td>
+<td style="text-align: left;">CC BY 4.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Surface urban heat island and distance to vegetation in Lagos State</a></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">2022–2024</td>
+<td style="text-align: left;">CC BY 4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos</a></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6.8</td>
+<td style="text-align: left;">1986–2024</td>
+<td style="text-align: left;">not stated</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://oloyededavid.github.io/Mozambique-Health-Access/">Travel time to health facilities in Mozambique</a></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3,484</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2.1</td>
+<td style="text-align: left;">2019–2026</td>
+<td style="text-align: left;">CC BY 4.0</td>
+</tr>
+</tbody>
+</table></div>
+<p>The periods are those of the layers, not of the studies: for example the Lagos layer holds the attributes of an earlier Earth Engine export, and its own period field is used.</p>
+<h2 id="limits">5. Limits</h2>
+<p>The catalogue copies the studies’ outputs at one commit each. If a study changes, the catalogue is out of date until it is rebuilt, and the build needs the study repositories on the same machine; the test workflow checks the committed catalogue but cannot rebuild it. Most layers are satellite or model estimates, not measurements, and their uncertainty is described in the studies, not here. Only outputs already stored in the repositories are included; large intermediate rasters that the studies rebuild from public archives are not. The service is a demonstration that the layers can be served through a standard interface; it has not been deployed, load-tested or secured for public use.</p>
+<h2 id="data-and-code">Data and code</h2>
+<p>The catalogue, the scripts that build it and the tests are in the repository (https://github.com/oloyededavid/Open-Geodata-Catalogue). Every number in this note is read from <code>docs/data/catalogue_stats.json</code> and <code>docs/data/service_check.json</code>, which the build and check scripts write.</p>
+<h2 id="references">References</h2>
+<ol class="refs" role="list">
+<li>GeoParquet (n.d.). GeoParquet specification, version 1.1.0. Accessed November 2026. <a href="https://geoparquet.org/releases/v1.1.0/">https://geoparquet.org/releases/v1.1.0/</a></li>
+<li>OGC (2022). OGC API – Features – Part 1: Core, corrigendum. Open Geospatial Consortium, document 17-069r4. <a href="https://docs.ogc.org/is/17-069r4/17-069r4.html">https://docs.ogc.org/is/17-069r4/17-069r4.html</a></li>
+<li>OGC (2023). OGC Cloud Optimized GeoTIFF Standard. Open Geospatial Consortium, document 21-026. <a href="https://docs.ogc.org/is/21-026/21-026.html">https://docs.ogc.org/is/21-026/21-026.html</a></li>
+<li>PostGIS (n.d.). PostGIS spatial database extension for PostgreSQL. Accessed November 2026. <a href="https://postgis.net">https://postgis.net</a></li>
+<li>pygeoapi (n.d.). pygeoapi: a Python server implementation of the OGC API suite of standards. Accessed November 2026. <a href="https://pygeoapi.io">https://pygeoapi.io</a></li>
+<li>STAC (2024). SpatioTemporal Asset Catalog specification, version 1.1.0, released 10 September 2024. <a href="https://stacspec.org">https://stacspec.org</a></li>
+</ol>
+
+</main>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<!-- study-nav:start --><section class="sn-next" aria-label="First study"><div class="sn-in"><p class="sn-k">Start with the first study</p><a class="sn-card" href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/"><span class="sn-media"><img src="assets/next-study.webp" width="720" height="540" loading="lazy" decoding="async" alt=""></span><span class="sn-t"><b>Hydrological extremes where the gauges are missing</b><span>Floods, drought and future extreme rainfall in two Nigerian basins with few rain gauges.</span></span><span class="sn-arrow" aria-hidden="true">→</span></a><a class="sn-back" href="https://oloyededavid.github.io/geospatial-rs-portfolio/#studies"><span aria-hidden="true">←</span> Back to all studies</a></div></section><!-- study-nav:end -->
+<footer>
+    <div class="inner">
+        <p class="sig"><span>David Oloyede</span><span><a href="https://github.com/oloyededavid">github.com/oloyededavid</a></span><span><a href="https://github.com/oloyededavid/Open-Geodata-Catalogue">Repository</a></span></p>
+        <p>Catalogue code MIT. Each collection keeps the data licence its study states (mostly CC BY 4.0); the source datasets behind the studies keep their own terms. Map outlines: Natural Earth (public domain).</p>
+        <!-- study-others:start --><p class="others">Studies in this catalogue: <a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/">Nigeria floods, drought and design rainfall</a> · <a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Ogun surface water</a> · <a href="https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/">Ouémé–Ogun recharge</a> · <a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Lake Chad water storage</a> · <a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Lagos urban heat</a> · <a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Lekki–Epe groundwater</a> · <a href="https://oloyededavid.github.io/Mozambique-Health-Access/">Mozambique health access</a></p><!-- study-others:end -->
+    </div>
+</footer>
+<script src="assets/study.js"></script>
+</body>
+</html>
