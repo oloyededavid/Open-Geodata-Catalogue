@@ -1,0 +1,16 @@
+# Build the catalogue and the site, load PostGIS, run the service
+pystac==1.16.0
+rio-cogeo==7.0.4
+rasterio==1.5.2
+geopandas==1.2.0
+pyarrow==26.0.1
+shapely==2.2.0
+numpy==2.5.5
+matplotlib==3.11.2
+pillow==12.3.0
+PyYAML==6.0.3
+psycopg2-binary==2.9.13
+pygeoapi==0.24.0
+GeoAlchemy2==0.21.0
+SQLAlchemy==2.1.9
+flask-cors==6.0.5

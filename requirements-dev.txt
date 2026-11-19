@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest==9.2.0
+jsonschema==4.26.0
+# browser check only (scripts/browser_check.py); also run: playwright install chromium
+playwright==1.65.0

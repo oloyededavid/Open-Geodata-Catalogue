@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this catalogue, please cite it as below, and cite the study each layer comes from."
+title: "Open geodata catalogue: research outputs as a static STAC catalogue and through OGC API Features"
+type: software
+license:
+  - MIT
+  - CC-BY-4.0
+authors:
+  - given-names: David
+    family-names: Oloyede
+    alias: oloyededavid
+repository-code: "https://github.com/oloyededavid/Open-Geodata-Catalogue"
+url: "https://oloyededavid.github.io/Open-Geodata-Catalogue/"
+keywords:
+  - STAC
+  - OGC API Features
+  - PostGIS
+  - pygeoapi
+  - GeoParquet
+  - Cloud-Optimised GeoTIFF
