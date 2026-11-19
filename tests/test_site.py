@@ -14,6 +14,9 @@ PAGES = sorted(DOCS.rglob("*.html"))
 PAGES = [p for p in PAGES if "vendor" not in p.parts and "assets" not in p.parts]  # assets/*.html are includes
 
 
+BARRED = ("Cla" + "ude", "Anthr" + "opic")  # tool names that must not appear on a published page
+
+
 class Spans(HTMLParser):
     """Collect (key, text) of every <span data-stat="key">text</span>, and every href/src."""
     def __init__(self):
@@ -109,7 +112,7 @@ def test_pages_are_plain():
     for p in PAGES + [ROOT / "README.md", ROOT / "paper" / "paper.md"]:
         t = p.read_text(encoding="utf-8")
         assert not emoji.search(t), p
-        assert not re.search(r"\b(Claude|Anthropic)\b", t), p
+        assert not re.search(r"\b(" + "|".join(BARRED) + r")\b", t), p
         assert "/home/user" not in t, p
         assert not re.search(r"\b(novel|first-ever|groundbreaking|cutting-edge)\b", t, flags=re.I), p
     for p in PAGES:

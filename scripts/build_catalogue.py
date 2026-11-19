@@ -34,7 +34,7 @@ from shapely.geometry import box, mapping, shape
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import converters  # noqa: E402
-from common import DATA, DOCS, ROOT, SITE_URL, STAC, load_sources, multihash_sha256  # noqa: E402
+from common import DATA, DOCS, ROOT, SITE_URL, STAC, load_sources, multihash_sha256, source_path  # noqa: E402
 
 MEDIA = {
     "geoparquet": "application/vnd.apache.parquet",
@@ -76,8 +76,8 @@ def layer_period(layer, source, repo, gdf=None):
     if layer.get("period_property"):
         vals = gdf[layer["period_property"]].dropna().astype(str)
         starts = [_to_dt(v.split("/")[0]) for v in vals]
-        ends = [_to_dt(v.split("/")[1]) for v in vals]  # stated end kept as given (start of that day)
-        return min(starts), max(ends).replace(hour=0, minute=0, second=0)
+        ends = [_to_dt(v.split("/")[1], end=True) for v in vals]  # the end day is included, as for every other item
+        return min(starts), max(ends)
     start = _resolve(layer.get("start", source["period"]["start"]), repo)
     end = _resolve(layer.get("end", source["period"]["end"]), repo)
     if not start or not end:
@@ -92,10 +92,31 @@ def _git(repo, *args):
 
 
 def provenance(repo, gh_repo_url):
+    """Commit of the study repository (git HEAD) and whether a remote-tracking branch contains it. `on_remote` is
+    True only when git says so; it is never assumed, so a commit that was not pushed is not linked as if it were."""
     commit = _git(repo, "rev-parse", "HEAD")
     pushed = bool(_git(repo, "branch", "-r", "--contains", "HEAD")) if commit else False
     return {"commit": commit, "branch": _git(repo, "branch", "--show-current"), "on_remote": pushed,
             "date": _git(repo, "log", "-1", "--format=%cs")}
+
+
+def check_inputs_committed(source, layers, repo):
+    """The catalogue states the commit its files come from, so every file read for a layer must equal that commit."""
+    files = set()
+    for layer in layers:
+        files.add(layer["file"])
+        for k in ("start", "end"):
+            v = layer.get(k)
+            if isinstance(v, str) and v.startswith("json:"):
+                files.add(v[5:].split("#", 1)[0])
+    for k in ("start", "end"):
+        v = source.get("period", {}).get(k)
+        if isinstance(v, str) and v.startswith("json:"):
+            files.add(v[5:].split("#", 1)[0])
+    changed = [f for f in sorted(files) if _git(repo, "status", "--porcelain", "--", f)]
+    if changed:
+        raise SystemExit(f"{source['id']}: these input files differ from git HEAD of {repo}: {changed}. "
+                         "Commit them in the study repository first, so the recorded commit is true.")
 
 
 def source_url(gh, prov, rel):
@@ -247,7 +268,7 @@ def discover_layers(source, repo, defaults):
 # ---------------------------------------------------------------- main
 def main():
     defaults, sources = load_sources()
-    max_file = defaults["max_file_mb"] * 1024 * 1024
+    max_file = defaults["max_file_mb"] * 1_000_000  # SI megabytes everywhere
     user = defaults["github_user"]
     if STAC.exists():
         shutil.rmtree(STAC)
@@ -270,7 +291,7 @@ def main():
     linked_only = []
 
     for source in sources:
-        repo = Path(source["path"])
+        repo = source_path(source)
         gh = f"https://github.com/{user}/{source['repo']}"
         page = f"https://{user}.github.io/{source['repo']}/"
         layers = source.get("layers") or (discover_layers(source, repo, defaults) if repo.exists() else [])
@@ -289,6 +310,7 @@ def main():
             stats["pending"].append({"id": source["id"], "repo": source["repo"], "reason": problem})
             print(f"skip {source['id']}: {problem}")
             continue
+        check_inputs_committed(source, layers, repo)
         prov = provenance(repo, gh)
         coll_dir = STAC / source["id"]
         items, cstats = [], {"id": source["id"], "repo": source["repo"], "title": source["title"], "page": page,
@@ -306,7 +328,7 @@ def main():
                     path.unlink()
                     src = repo / layer["file"]
                     asset = pystac.Asset(href=source_url(gh, prov, layer["file"]), title=f"{title} (not copied: "
-                                         f"{size / 1048576:.1f} MB; source file in the study repository)",
+                                         f"{size / 1e6:.1f} MB; source file in the study repository)",
                                          media_type=MEDIA["source_tif"] if layer["kind"] == "raster" else None,
                                          roles=["data"])
                     item.add_asset(key, asset)
@@ -401,11 +423,11 @@ def main():
     })
     (DATA / "catalogue_stats.json").write_text(json.dumps(stats, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     (DATA / "search_index.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    docs_mb = sum(p.stat().st_size for p in DOCS.rglob("*") if p.is_file()) / 1048576
+    docs_mb = sum(p.stat().st_size for p in DOCS.rglob("*") if p.is_file()) / 1e6
     if docs_mb > defaults["max_docs_mb"]:
         raise SystemExit(f"docs/ is {docs_mb:.1f} MB, over the {defaults['max_docs_mb']} MB limit")
     print(f"{stats['n_collections']} collections, {stats['n_items']} items, {stats['n_data_files']} data files, "
-          f"{stats['bytes_data_files'] / 1048576:.2f} MB; docs/ {docs_mb:.1f} MB")
+          f"{stats['bytes_data_files'] / 1e6:.2f} MB; docs/ {docs_mb:.1f} MB")
 
 
 if __name__ == "__main__":

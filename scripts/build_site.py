@@ -33,11 +33,11 @@ def n(x):
 
 
 def mb(b):
-    return f"{b / 1048576:.1f}"
+    return f"{b / 1e6:.1f}"
 
 
 def size(b):
-    return f"{b / 1048576:.1f} MB" if b >= 1048576 else f"{b / 1024:.0f} KB" if b >= 1024 else f"{b} bytes"
+    return f"{b / 1e6:.1f} MB" if b >= 1_000_000 else f"{b / 1e3:.0f} KB" if b >= 1000 else f"{b} bytes"
 
 
 def years(start, end):
@@ -50,7 +50,7 @@ def stat(key, text):
 
 
 def licence_text(lic):
-    return {"CC-BY-4.0": "CC BY 4.0", "MIT": "MIT", "ODbL-1.0": "ODbL 1.0", "other": "not stated separately"}.get(lic, lic)
+    return {"CC-BY-4.0": "CC BY 4.0", "MIT": "MIT", "ODbL-1.0": "ODbL 1.0", "other": "not stated separately", "various": "various, see note"}.get(lic, lic)
 
 
 # ---------------------------------------------------------------- page shell
@@ -192,7 +192,7 @@ def index_page(cat, S, svc):
         <div><dt>Collections</dt><dd>{stat('n_collections', S['n_collections'])}</dd></div>
         <div><dt>Items</dt><dd>{stat('n_items', S['n_items'])}</dd></div>
         <div><dt>Data files</dt><dd>{stat('n_data_files', S['n_data_files'])}</dd></div>
-        <div><dt>Size</dt><dd>{stat('mb_data_files', mb(S['bytes_data_files']))}<small>MB</small></dd></div>
+        <div><dt>Size</dt><dd>{stat('mb_data_files', mb(S['bytes_data_files']))}&nbsp;<small>MB</small></dd></div>
         <div><dt>Vector features</dt><dd>{stat('n_features', n(S['n_features']))}</dd></div>
     </dl>
 </section>

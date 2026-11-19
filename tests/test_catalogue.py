@@ -10,12 +10,12 @@ import rasterio
 from rio_cogeo.cogeo import cog_validate
 from shapely.geometry import box, shape
 
-from common import load_sources, multihash_sha256
+from common import load_sources, multihash_sha256, source_path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 STAC = DOCS / "stac"
-MB = 1024 * 1024
+MB = 1_000_000  # SI megabytes, as in the build scripts and the pages
 
 
 def items(catalog):
@@ -48,7 +48,7 @@ def test_stac_version_and_self_contained(catalog):
 
 def test_collections_have_licence_providers_links_and_extent(catalog):
     for c in catalog.get_collections():
-        assert c.license in ("CC-BY-4.0", "other")
+        assert c.license in ("CC-BY-4.0", "other", "various")
         assert any(lk.rel == "license" for lk in c.links)
         rels = {lk.rel for lk in c.links}
         assert {"about", "via"} <= rels
@@ -156,3 +156,29 @@ def test_stats_match_catalogue(catalog, stats):
     index = json.loads((DOCS / "data" / "search_index.json").read_text())
     assert len(index) == len(its)
     assert all((DOCS / e["page"]).exists() for e in index), "item page missing; run scripts/build_site.py"
+
+
+def test_licence_notes_and_mixed_licence_collection(catalog):
+    cols = {c.id: c for c in catalog.get_collections()}
+    assert "non-commercial" in cols["lagos-urban-heat-analytics"].extra_fields["geocat:licence_note"]
+    assert "MERIT Hydro" in cols["ogun-catchment-coast-observatory"].extra_fields["geocat:licence_note"]
+    moz = cols["mozambique-health-access"]
+    assert moz.license == "various" and moz.extra_fields["geocat:licence_note"]
+    licences = {i.id: i.properties.get("license") for i in moz.get_items()}
+    assert licences["facilities-openstreetmap"] == "ODbL-1.0"
+    assert all(licences.values()), "every item of a mixed-licence collection states its own licence"
+    # the download date of the OSM export is in the description; it must not stretch the study period
+    assert moz.extent.temporal.intervals[0][1].year == 2024
+
+
+def test_item_end_datetimes_cover_the_whole_day(catalog):
+    for _, i in items(catalog):
+        assert i.properties["end_datetime"].endswith("T23:59:59Z"), i.id
+
+
+def test_source_path_can_be_overridden(monkeypatch, tmp_path):
+    src = {"path": "/home/someone/some-study"}
+    monkeypatch.delenv("OGC_SOURCES_ROOT", raising=False)
+    assert str(source_path(src)) == "/home/someone/some-study"
+    monkeypatch.setenv("OGC_SOURCES_ROOT", str(tmp_path))
+    assert source_path(src) == tmp_path / "some-study"

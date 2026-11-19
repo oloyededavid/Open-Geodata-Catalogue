@@ -1,6 +1,7 @@
 """Paths and small helpers shared by the build, load and check scripts."""
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 
@@ -20,6 +21,15 @@ def load_sources(path=SOURCES):
     cfg = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     defaults = cfg.get("defaults", {})
     return defaults, cfg["sources"]
+
+
+def source_path(source):
+    """Local checkout of a study repository. `path` in sources.yaml may use ~ and ${VAR}; when the environment
+    variable OGC_SOURCES_ROOT is set, the checkout is looked up there instead, under the folder name given by `path`."""
+    root = os.environ.get("OGC_SOURCES_ROOT")
+    if root:
+        return Path(root).expanduser() / Path(source["path"]).name
+    return Path(os.path.expandvars(source["path"])).expanduser()
 
 
 def sha256(path):
