@@ -1,0 +1,283 @@
+# Ingestion config for the catalogue. One entry per study.
+#
+# scripts/build_catalogue.py reads this file, copies or converts each listed layer into docs/stac/, and writes
+# the STAC catalogue plus docs/data/catalogue_stats.json. The source repositories are only read, never changed.
+#
+# Adding a study
+# --------------
+# One entry is enough. If `layers` is left out, every *.geojson and *.tif under the `discover` folders
+# (default: docs/data and outputs) is taken, and the study `period` is used as the time range of each item.
+# If `path` does not exist yet, the entry is skipped and listed as pending on the site.
+#
+# Fields
+#   id           collection id (lower case, hyphens)
+#   repo         GitHub repository name under github.com/oloyededavid (also gives the study page URL)
+#   path         local checkout of the repository
+#   title, description, keywords
+#   period       start and end (YYYY-MM-DD) of the study period, used for the collection extent
+#   licence      code and data licences as the study states them, and the file that states them
+#   layers       list of layers (optional, see above):
+#       id, title, description
+#       file       path inside the repository
+#       kind       vector | raster
+#       converter  optional: name of a function in scripts/converters.py that turns a non-GIS file into a layer
+#       start/end  time range of the layer (YYYY-MM-DD), or
+#       period_property  a feature property holding "start/end"
+#       start/end may also read a value from a JSON file in the repository: "json:<file>#<key.key>"
+#
+# Limits applied to every file (see defaults below): a converted file larger than max_file_mb is not copied;
+# its asset links to the file in the source repository instead.
+
+defaults:
+  author: David Oloyede
+  github_user: oloyededavid
+  max_file_mb: 20
+  max_docs_mb: 150
+  discover: [docs/data, outputs]
+
+sources:
+  - id: observational-hydrology-extremes
+    repo: Observational-Hydrology-Extremes
+    path: /home/user/observational-hydrology-extremes
+    title: "Floods, droughts and design rainfall in two data-sparse Nigerian basins"
+    description: >-
+      Study areas and per-cell design rainfall from a study of floods, drought and extreme rainfall in the
+      Lower Niger-Benue reach and the Sokoto-Rima basin, Nigeria, using satellite and reanalysis data where
+      gauges are missing.
+    keywords: [Nigeria, Niger, Benue, Sokoto-Rima, CHIRPS, design rainfall, return level, HydroBASINS]
+    period: {start: "1950-01-01", end: "2070-12-31"}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: README.md}
+    layers:
+      - id: study-areas
+        title: Study areas
+        description: >-
+          Outline of the Sokoto-Rima basin (HydroBASINS, simplified to about 1 km) and the Lower Niger-Benue
+          analysis box.
+        file: docs/data/domains.geojson
+        kind: vector
+        start: "1981-01-01"
+        end: "2070-12-31"
+      - id: chirps-rx1day-return-levels
+        title: CHIRPS design rainfall per 0.25-degree cell, 1985–2014
+        description: >-
+          Return levels of annual maximum daily rainfall (Rx1day, mm) for 2, 10, 25, 50 and 100 years, from a
+          GEV fit by L-moments to CHIRPS 1985–2014, for each 0.25-degree cell of the two study areas. Satellite
+          rainfall estimates, not gauge measurements.
+        file: docs/data/cells.json
+        kind: vector
+        converter: hydro_return_levels
+        start: "1985-01-01"
+        end: "2014-12-31"
+
+  - id: ogun-catchment-coast-observatory
+    repo: Ogun-Catchment-Coast-Observatory
+    path: /home/user/ogun-catchment-coast-observatory
+    title: "Ogun River catchment-to-coast environmental observatory"
+    description: >-
+      Sub-basin units of the Ogun River catchment and Lagos Lagoon with summary indicators (rainfall, NDVI,
+      turbidity index, Sentinel-1 inundation, soil moisture) from Earth observation, 2019–2024.
+    keywords: [Ogun River, Lagos Lagoon, Sentinel-1, Sentinel-2, CHIRPS, ERA5-Land, sub-basins]
+    period: {start: "2019-01-01", end: "2024-12-31"}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md}
+    layers:
+      - id: sub-basins
+        title: Sub-basin units with summary indicators
+        description: >-
+          Five analysis units (four HydroBASINS-based sub-basins and the coastal lagoon unit) with area,
+          rainfall, NDVI, turbidity index, inundation and soil-moisture summaries as exported by the study.
+        file: docs/data/ogun_subbasins.geojson
+        kind: vector
+        start: "2019-01-01"
+        end: "2024-12-31"
+
+  - id: oueme-ogun-groundwater-recharge
+    repo: Oueme-Ogun-Groundwater-Recharge
+    path: /home/user/oueme-ogun-groundwater-recharge
+    title: "Testing a satellite water balance for groundwater recharge: Upper Ouémé and Upper Ogun"
+    description: >-
+      Basin outlines and gridded water-balance maps (CHIRPS rainfall, WaPOR evapotranspiration and their
+      difference) for the Upper Ouémé (Benin) and Upper Ogun (Nigeria), 2018–2024. The surplus is rainfall
+      minus evapotranspiration from satellite products; it is not measured recharge.
+    keywords: [Ouémé, Ogun, Benin, Nigeria, groundwater recharge, WaPOR, CHIRPS, water balance]
+    period: {start: "2018-01-01", end: "2024-12-31"}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md}
+    layers:
+      - {id: basins, title: Basin outlines, kind: vector, file: data/processed/basins.geojson, start: "2018-01-01", end: "2024-12-31",
+         description: "Upper Ouémé at Bétérou and Upper Ogun, traced from HydroBASINS level 9 units, with published and geodesic areas."}
+      - {id: upper-oueme-p-chirps2-mean, title: "Upper Ouémé rainfall, CHIRPS v2.0 mean 2018–2024", kind: raster, file: outputs/maps/upper_oueme_p_chirps2_mean_0p05.tif, start: "2018-01-01", end: "2024-12-31",
+         description: "Mean annual rainfall (mm/year) from CHIRPS v2.0, 0.05 degree."}
+      - {id: upper-ogun-p-chirps2-mean, title: "Upper Ogun rainfall, CHIRPS v2.0 mean 2018–2024", kind: raster, file: outputs/maps/upper_ogun_p_chirps2_mean_0p05.tif, start: "2018-01-01", end: "2024-12-31",
+         description: "Mean annual rainfall (mm/year) from CHIRPS v2.0, 0.05 degree."}
+      - {id: upper-oueme-et-mean, title: "Upper Ouémé evapotranspiration, WaPOR v3 mean 2018–2024", kind: raster, file: outputs/maps/upper_oueme_et_mean_300m.tif, start: "2018-01-01", end: "2024-12-31",
+         description: "Mean annual actual evapotranspiration and interception (AETI, mm/year) from FAO WaPOR v3, about 300 m."}
+      - {id: upper-ogun-et-mean, title: "Upper Ogun evapotranspiration, WaPOR v3 mean 2018–2024", kind: raster, file: outputs/maps/upper_ogun_et_mean_300m.tif, start: "2018-01-01", end: "2024-12-31",
+         description: "Mean annual actual evapotranspiration and interception (AETI, mm/year) from FAO WaPOR v3, about 300 m."}
+      - {id: upper-oueme-surplus-mean, title: "Upper Ouémé water surplus, mean 2018–2024", kind: raster, file: outputs/maps/upper_oueme_surplus_mean_0p05.tif, start: "2018-01-01", end: "2024-12-31",
+         description: "CHIRPS v2.0 rainfall minus WaPOR evapotranspiration (mm/year), 0.05 degree. Not measured recharge."}
+      - {id: upper-ogun-surplus-mean, title: "Upper Ogun water surplus, mean 2018–2024", kind: raster, file: outputs/maps/upper_ogun_surplus_mean_0p05.tif, start: "2018-01-01", end: "2024-12-31",
+         description: "CHIRPS v2.0 rainfall minus WaPOR evapotranspiration (mm/year), 0.05 degree. Not measured recharge."}
+      - {id: upper-oueme-surplus-2018, title: "Upper Ouémé water surplus, 2018", kind: raster, file: outputs/maps/upper_oueme_surplus_2018.tif, start: "2018-01-01", end: "2018-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-oueme-surplus-2019, title: "Upper Ouémé water surplus, 2019", kind: raster, file: outputs/maps/upper_oueme_surplus_2019.tif, start: "2019-01-01", end: "2019-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-oueme-surplus-2020, title: "Upper Ouémé water surplus, 2020", kind: raster, file: outputs/maps/upper_oueme_surplus_2020.tif, start: "2020-01-01", end: "2020-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-oueme-surplus-2021, title: "Upper Ouémé water surplus, 2021", kind: raster, file: outputs/maps/upper_oueme_surplus_2021.tif, start: "2021-01-01", end: "2021-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-oueme-surplus-2022, title: "Upper Ouémé water surplus, 2022", kind: raster, file: outputs/maps/upper_oueme_surplus_2022.tif, start: "2022-01-01", end: "2022-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-oueme-surplus-2023, title: "Upper Ouémé water surplus, 2023", kind: raster, file: outputs/maps/upper_oueme_surplus_2023.tif, start: "2023-01-01", end: "2023-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-oueme-surplus-2024, title: "Upper Ouémé water surplus, 2024", kind: raster, file: outputs/maps/upper_oueme_surplus_2024.tif, start: "2024-01-01", end: "2024-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2018, title: "Upper Ogun water surplus, 2018", kind: raster, file: outputs/maps/upper_ogun_surplus_2018.tif, start: "2018-01-01", end: "2018-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2019, title: "Upper Ogun water surplus, 2019", kind: raster, file: outputs/maps/upper_ogun_surplus_2019.tif, start: "2019-01-01", end: "2019-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2020, title: "Upper Ogun water surplus, 2020", kind: raster, file: outputs/maps/upper_ogun_surplus_2020.tif, start: "2020-01-01", end: "2020-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2021, title: "Upper Ogun water surplus, 2021", kind: raster, file: outputs/maps/upper_ogun_surplus_2021.tif, start: "2021-01-01", end: "2021-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2022, title: "Upper Ogun water surplus, 2022", kind: raster, file: outputs/maps/upper_ogun_surplus_2022.tif, start: "2022-01-01", end: "2022-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2023, title: "Upper Ogun water surplus, 2023", kind: raster, file: outputs/maps/upper_ogun_surplus_2023.tif, start: "2023-01-01", end: "2023-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+      - {id: upper-ogun-surplus-2024, title: "Upper Ogun water surplus, 2024", kind: raster, file: outputs/maps/upper_ogun_surplus_2024.tif, start: "2024-01-01", end: "2024-12-31", description: "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree."}
+
+  - id: groundwater-storage-gravimetry
+    repo: Groundwater-Storage-Gravimetry
+    path: /home/user/groundwater-storage-gravimetry
+    title: "Water storage in the Lake Chad basin from GRACE and GRACE-FO"
+    description: >-
+      Study areas and the per-cell trend in total water storage from the GRACE and GRACE-FO gravity missions
+      over the Lake Chad basin. The gravity record measures all stored water; groundwater is not separated
+      from surface water, and there is no well-based validation.
+    keywords: [Lake Chad, GRACE, GRACE-FO, total water storage, groundwater, HydroBASINS]
+    period: {start: "json:docs/data/results.json#grace.first", end: "json:docs/data/results.json#grace.last"}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: README.md}
+    layers:
+      - id: study-areas
+        title: Study areas
+        description: >-
+          The HydroBASINS level-3 unit that contains Lake Chad (main study area) and a level-4 unit west of
+          the lake (sensitivity test).
+        file: data/processed/domains.geojson
+        kind: vector
+        start: "json:docs/data/results.json#grace.first"
+        end: "json:docs/data/results.json#grace.last"
+      - id: storage-trend-cells
+        title: Total water storage trend per 1-degree cell
+        description: >-
+          Straight-line trend of total water storage (mm per year) in each 1-degree GRACE/GRACE-FO cell
+          (COST-G solution). A trend over the whole record; the study reports that the record changes little
+          until about 2018 and then rises, so one straight line is a simplification.
+        file: docs/data/grace_cells.json
+        kind: vector
+        converter: grace_trend_cells
+        start: "json:docs/data/results.json#grace.first"
+        end: "json:docs/data/results.json#grace.last"
+
+  - id: lagos-urban-heat-analytics
+    repo: Lagos-Urban-Heat-Analytics
+    path: /home/user/lagos-urban-heat-analytics
+    title: "Surface urban heat island and distance to vegetation in Lagos State"
+    description: >-
+      Local government area (LGA) boundaries of Lagos State with land surface temperature, vegetation,
+      population and hot-spot attributes from the study's earlier Earth Engine export. The current paper's
+      heat-gap results are computed on 60 m rasters that are not stored in the repository.
+    keywords: [Lagos, urban heat island, land surface temperature, Landsat, MODIS, LGA, Getis-Ord]
+    period: {start: "2020-01-01", end: "2024-12-31"}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md}
+    layers:
+      - id: lga-attributes
+        title: LGA boundaries with heat and vegetation attributes
+        description: >-
+          The 20 LGAs of Lagos State with area, modelled population, mean Landsat and MODIS land surface
+          temperature, NDVI, NDBI, terrain and Getis-Ord hot-spot statistics, from the export recorded in the
+          layer's own `period` field. Population is a WorldPop model estimate, not a census count.
+        file: docs/data/lagos_uhi_processed.geojson
+        kind: vector
+        period_property: period
+
+  - id: coastal-hydrogeology-modeling
+    repo: Coastal-Hydrogeology-Modeling
+    path: /home/user/coastal-hydrogeology-modeling
+    title: "Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos"
+    description: >-
+      Recharge-potential index maps of the Lekki–Epe barrier for a 1986–1996 baseline (Landsat 5) and for
+      2023–2024 (Sentinel-2), from the study's re-analysis. The index is a relative score, not recharge, and
+      the study reports that the size of its decline is not robust.
+    keywords: [Lagos, Lekki, barrier island, urban sealing, recharge potential index, Landsat, Sentinel-2]
+    period: {start: "1986-01-01", end: "2024-03-31"}
+    licence: {code: MIT, data: other, stated_in: README.md,
+              note: "The repository states an MIT licence and does not state a separate licence for derived data."}
+    layers:
+      - id: arpi-1990
+        title: Recharge-potential index, 1986–1996 imagery
+        description: >-
+          Recharge-potential index on a 30 m grid (UTM 31N) from Landsat 5 TM November–March composites of
+          1986–1996, with the study's sensor and rainfall corrections. A relative score between 0 and 1.
+        file: outputs/arpi_1990.tif
+        kind: raster
+        start: "1986-01-01"
+        end: "1996-12-31"
+      - id: arpi-2024
+        title: Recharge-potential index, 2023–2024 imagery
+        description: >-
+          Recharge-potential index on a 30 m grid (UTM 31N) from Sentinel-2 L2A, 1 November 2023 to
+          31 March 2024. A relative score between 0 and 1.
+        file: outputs/arpi_2024.tif
+        kind: raster
+        start: "2023-11-01"
+        end: "2024-03-31"
+
+  # A study being built. It is skipped (and listed as pending) until its repository has GeoJSON or GeoTIFF outputs,
+  # a study period and a licence statement. No `layers` list: files under docs/data and outputs are found automatically.
+  - id: mau-forest-land-cover
+    repo: Mau-Forest-Land-Cover
+    path: /home/user/mau-forest-land-cover
+    title: "Land cover change in the Mau Forest, Kenya"
+    description: Spatial outputs of the Mau Forest land-cover study.
+    keywords: [Kenya, Mau Forest, land cover]
+    period: {start: null, end: null}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md}
+
+  - id: mozambique-health-access
+    repo: Mozambique-Health-Access
+    path: /home/user/mozambique-health-access
+    title: "Travel time to health facilities in Mozambique"
+    description: >-
+      District outlines of Mozambique with modelled travel time to the nearest public-sector health facility, and
+      the facility lists used. Travel times are model estimates from friction surfaces and modelled population,
+      not observed journeys; the study shows how much they change with the facility list, mode of travel and
+      population layer.
+    keywords: [Mozambique, health facilities, travel time, accessibility, friction surface, WorldPop, districts]
+    period: {start: "2019-01-01", end: "2024-12-31"}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md,
+              note: "Facility data derived from OpenStreetMap are under the ODbL 1.0; that layer carries its own licence."}
+    layers:
+      - id: district-access-public-list
+        title: District travel time to public-sector facilities, 2020
+        description: >-
+          The 159 districts with WorldPop 2020 population and, for the public-sector facility list of Maina et al.
+          (2019) (list A), the share of residents over 60 and 120 minutes from a facility and the median travel time
+          in minutes, by motorized and walking travel (Malaria Atlas Project friction surfaces, 2020). `compared`
+          marks the districts used in the study's comparisons. Outlines simplified by the study.
+        file: docs/data/districts.geojson
+        kind: vector
+        converter: moz_district_access
+        start: "2020-01-01"
+        end: "2020-12-31"
+      - id: facilities-public-and-herams
+        title: Health facilities, public-sector list and WHO HeRAMS
+        description: >-
+          Facility points of list A (public-sector facilities, Maina et al., 2019) and list H (WHO HeRAMS
+          2022–2024 for Cabo Delgado, Nampula and Zambézia, with reported functioning and quarter), with the
+          study's flags for position checks and use.
+        file: docs/data/facilities.csv
+        kind: vector
+        converter: moz_facilities
+        converter_args: {lists: [A, H]}
+        start: "2019-01-01"
+        end: "2024-12-31"
+      - id: facilities-openstreetmap
+        title: Health facilities from OpenStreetMap
+        description: >-
+          Facility points of list B, from the HOT OpenStreetMap export of Mozambique's health facilities accessed by
+          the study on 19 November 2026, with the study's flags. Licensed under the ODbL 1.0,
+          © OpenStreetMap contributors.
+        file: docs/data/facilities.csv
+        kind: vector
+        converter: moz_facilities
+        converter_args: {lists: [B]}
+        start: "json:docs/data/sources.json#osm/health_facilities.parquet.accessed"
+        end: "json:docs/data/sources.json#osm/health_facilities.parquet.accessed"
+        licence: ODbL-1.0
+        licence_url: https://opendatacommons.org/licenses/odbl/1-0/
