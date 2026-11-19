@@ -47,6 +47,7 @@
     }
   ],
   "geocat:code_licence": "MIT",
+  "geocat:licence_note": "The SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study).",
   "geocat:source_commit": "1a70f99fb169456a1160e7f217a9c152a84cf3a5",
   "geocat:source_branch": "text-fixes",
   "geocat:source_commit_date": "2026-11-18",

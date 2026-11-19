@@ -1635,7 +1635,7 @@
   ],
   "properties": {
     "title": "Study areas",
-    "description": "Outline of the Sokoto-Rima basin (HydroBASINS, simplified to about 1 km) and the Lower Niger-Benue analysis box.",
+    "description": "Outline of the Sokoto-Rima basin (HydroBASINS, simplified to about 1 km) and the Lower Niger-Benue analysis box. The time range of this item is the union of the study's data years and projection years; an outline has no date of its own.",
     "start_datetime": "1981-01-01T00:00:00Z",
     "end_datetime": "2070-12-31T23:59:59Z",
     "table:row_count": 2,

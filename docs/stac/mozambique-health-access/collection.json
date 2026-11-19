@@ -29,12 +29,6 @@
       "title": "Licence statement (LICENSE-DATA.md)"
     },
     {
-      "rel": "license",
-      "href": "https://creativecommons.org/licenses/by/4.0/",
-      "type": "text/html",
-      "title": "CC-BY-4.0"
-    },
-    {
       "rel": "item",
       "href": "./district-access-public-list/district-access-public-list.json",
       "type": "application/geo+json"
@@ -57,11 +51,11 @@
     }
   ],
   "geocat:code_licence": "MIT",
-  "geocat:licence_note": "Facility data derived from OpenStreetMap are under the ODbL 1.0; that layer carries its own licence.",
-  "geocat:source_commit": "8257e5d91c657a18234a8fc8241084f2272141ce",
+  "geocat:licence_note": "Most layers are CC BY 4.0; the facility layer derived from OpenStreetMap is under the ODbL 1.0. Every item states its own licence.",
+  "geocat:source_commit": "e238b22270f2a293cf5f341938cc65167b91167f",
   "geocat:source_branch": "main",
   "geocat:source_commit_date": "2026-11-19",
-  "geocat:source_commit_on_remote": false,
+  "geocat:source_commit_on_remote": true,
   "title": "Travel time to health facilities in Mozambique",
   "extent": {
     "spatial": {
@@ -78,12 +72,12 @@
       "interval": [
         [
           "2019-01-01T00:00:00Z",
-          "2026-11-19T23:59:59Z"
+          "2024-12-31T23:59:59Z"
         ]
       ]
     }
   },
-  "license": "CC-BY-4.0",
+  "license": "various",
   "keywords": [
     "Mozambique",
     "health facilities",

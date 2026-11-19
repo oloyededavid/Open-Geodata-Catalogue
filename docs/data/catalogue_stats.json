@@ -59,7 +59,7 @@
    ],
    "start": "2019-01-01",
    "end": "2024-12-31",
-   "licence_note": ""
+   "licence_note": "The SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study)."
   },
   {
    "id": "oueme-ogun-groundwater-recharge",
@@ -149,7 +149,7 @@
    ],
    "start": "2022-12-01",
    "end": "2024-04-01",
-   "licence_note": ""
+   "licence_note": "LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study."
   },
   {
    "id": "coastal-hydrogeology-modeling",
@@ -194,12 +194,20 @@
    "files": 6,
    "bytes": 2237139,
    "linked_only": 0,
-   "commit": "8257e5d",
+   "commit": "e238b22",
    "commit_date": "2026-11-19",
    "branch": "main",
-   "licence_data": "CC-BY-4.0",
+   "licence_data": "various",
    "licence_code": "MIT",
    "items_own_licence": [
+    {
+     "item": "district-access-public-list",
+     "licence": "CC-BY-4.0"
+    },
+    {
+     "item": "facilities-public-and-herams",
+     "licence": "CC-BY-4.0"
+    },
     {
      "item": "facilities-openstreetmap",
      "licence": "ODbL-1.0"
@@ -213,8 +221,8 @@
     -10.4737
    ],
    "start": "2019-01-01",
-   "end": "2026-11-19",
-   "licence_note": "Facility data derived from OpenStreetMap are under the ODbL 1.0; that layer carries its own licence."
+   "end": "2024-12-31",
+   "licence_note": "Most layers are CC BY 4.0; the facility layer derived from OpenStreetMap is under the ODbL 1.0. Every item states its own licence."
   }
  ],
  "pending": [
@@ -250,7 +258,7 @@
  "n_sources_configured": 8,
  "n_converted": 5,
  "largest_file_bytes": 3466997,
- "bytes_stac_dir": 11863593,
+ "bytes_stac_dir": 11864498,
  "n_stac_json": 40,
  "start": "1981-01-01",
  "end": "2070-12-31",

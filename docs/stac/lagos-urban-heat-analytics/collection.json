@@ -47,6 +47,7 @@
     }
   ],
   "geocat:code_licence": "MIT",
+  "geocat:licence_note": "LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study.",
   "geocat:source_commit": "995598e9fdbae251d82ceebaddc58bb6fcb26150",
   "geocat:source_branch": "text-fixes",
   "geocat:source_commit_date": "2026-11-18",
@@ -67,7 +68,7 @@
       "interval": [
         [
           "2022-12-01T00:00:00Z",
-          "2024-04-01T00:00:00Z"
+          "2024-04-01T23:59:59Z"
         ]
       ]
     }

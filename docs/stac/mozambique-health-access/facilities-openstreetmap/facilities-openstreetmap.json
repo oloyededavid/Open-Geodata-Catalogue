@@ -86,8 +86,8 @@
   "properties": {
     "title": "Health facilities from OpenStreetMap",
     "description": "Facility points of list B, from the HOT OpenStreetMap export of Mozambique's health facilities accessed by the study on 19 November 2026, with the study's flags. Licensed under the ODbL 1.0, \u00a9 OpenStreetMap contributors.",
-    "start_datetime": "2026-11-19T00:00:00Z",
-    "end_datetime": "2026-11-19T23:59:59Z",
+    "start_datetime": "2019-01-01T00:00:00Z",
+    "end_datetime": "2024-12-31T23:59:59Z",
     "table:row_count": 1209,
     "table:columns": [
       {
@@ -155,15 +155,15 @@
     "geocat:invalid_geometries_repaired": 0,
     "license": "ODbL-1.0",
     "geocat:source_file": "docs/data/facilities.csv",
-    "geocat:source_commit": "8257e5d91c657a18234a8fc8241084f2272141ce",
+    "geocat:source_commit": "e238b22270f2a293cf5f341938cc65167b91167f",
     "datetime": null
   },
   "links": [
     {
       "rel": "via",
-      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/main/docs/data/facilities.csv",
+      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/e238b22270f2a293cf5f341938cc65167b91167f/docs/data/facilities.csv",
       "type": "text/html",
-      "title": "Source file in Mozambique-Health-Access at commit 8257e5d"
+      "title": "Source file in Mozambique-Health-Access at commit e238b22"
     },
     {
       "rel": "about",

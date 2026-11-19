@@ -153,22 +153,29 @@
     ],
     "geocat:kind": "vector",
     "geocat:invalid_geometries_repaired": 0,
+    "license": "CC-BY-4.0",
     "geocat:source_file": "docs/data/facilities.csv",
-    "geocat:source_commit": "8257e5d91c657a18234a8fc8241084f2272141ce",
+    "geocat:source_commit": "e238b22270f2a293cf5f341938cc65167b91167f",
     "datetime": null
   },
   "links": [
     {
       "rel": "via",
-      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/main/docs/data/facilities.csv",
+      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/e238b22270f2a293cf5f341938cc65167b91167f/docs/data/facilities.csv",
       "type": "text/html",
-      "title": "Source file in Mozambique-Health-Access at commit 8257e5d"
+      "title": "Source file in Mozambique-Health-Access at commit e238b22"
     },
     {
       "rel": "about",
       "href": "https://oloyededavid.github.io/Mozambique-Health-Access/",
       "type": "text/html",
       "title": "Study page"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC-BY-4.0"
     },
     {
       "rel": "root",

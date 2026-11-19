@@ -2847,7 +2847,7 @@
     "title": "LGA boundaries with heat and vegetation attributes",
     "description": "The 20 LGAs of Lagos State with area, modelled population, mean Landsat and MODIS land surface temperature, NDVI, NDBI, terrain and Getis-Ord hot-spot statistics, from the export recorded in the layer's own `period` field. Population is a WorldPop model estimate, not a census count.",
     "start_datetime": "2022-12-01T00:00:00Z",
-    "end_datetime": "2024-04-01T00:00:00Z",
+    "end_datetime": "2024-04-01T23:59:59Z",
     "table:row_count": 20,
     "table:columns": [
       {
