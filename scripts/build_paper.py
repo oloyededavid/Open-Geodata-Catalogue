@@ -40,8 +40,8 @@ def values():
         "n_collections_word": WORDS[S["n_collections"]].capitalize(), "n_converted": WORDS[S["n_converted"]].capitalize(),
         "n_collections": S["n_collections"], "n_items": S["n_items"], "n_vector_items": S["n_vector_items"],
         "n_raster_items": S["n_raster_items"], "n_features": f"{S['n_features']:,}", "n_data_files": S["n_data_files"],
-        "mb_data": mb(S["bytes_data_files"]), "n_sources_configured": S["n_sources_configured"], "skipped_sentence": ("none was skipped" if pending == 0 else f"{WORDS[pending]} {'was' if pending == 1 else 'were'} skipped ("
-                             + ", ".join(f"{p['repo']}: {p['reason']}" for p in S["pending"]) + ")") + " at the last build",
+        "mb_data": mb(S["bytes_data_files"]), "n_sources_configured": S["n_sources_configured"], "skipped_sentence": "at the last build " + ("none was skipped" if pending == 0 else f"{WORDS[pending]} {'was' if pending == 1 else 'were'} skipped ("
+                             + ", ".join(f"{p['repo']}: {p['reason']}" for p in S["pending"]) + ")"),
         "files_geoparquet": ff["geoparquet"], "mb_geoparquet": mb(bf["geoparquet"]),
         "files_geojson": ff["geojson"], "mb_geojson": mb(bf["geojson"]),
         "files_cog": ff["cog"], "mb_cog": mb(bf["cog"]), "files_preview": ff["preview"], "mb_preview": mb(bf["preview"]),
@@ -58,7 +58,7 @@ def values():
             f"collection is marked “other” until the author states one." for c in other),
         "item_licence_sentence": " ".join(
             f"The {c['repo']} collection is marked “various”: each of its {WORDS[len(c['items_own_licence'])]} items states its own "
-            f"licence ({', '.join(sorted({x['licence'] for x in c['items_own_licence']}))}), because the layer derived from "
+            f"licence ({', '.join(sorted({x['licence'].replace('-', ' ') for x in c['items_own_licence']}))}), because the layer derived from "
             f"OpenStreetMap is under the ODbL, as the study states."
             for c in various),
         "svc_checked": V["checked"], "svc_pygeoapi": V["pygeoapi_version"], "svc_collections": V["n_collections"],

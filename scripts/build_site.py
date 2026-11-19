@@ -164,9 +164,11 @@ def index_page(cat, S, svc):
     pending = ""
     if S["pending"]:
         rows = "; ".join(f'<a href="https://github.com/oloyededavid/{E(p["repo"])}">{E(p["repo"])}</a> ({E(p["reason"])})' for p in S["pending"])
-        pending = (f'<p class="cat-pending">{stat("n_pending", S["n_pending"])} more studies are listed in '
-                   f'<code>catalogue/sources.yaml</code> but were not added at the last build: {rows}. Each is added by '
-                   f'rebuilding once its repository has outputs, a study period and a licence statement.</p>')
+        one = S["n_pending"] == 1
+        pending = (f'<p class="cat-pending">Listed in <code>catalogue/sources.yaml</code> but not added at the last build '
+                   f'({stat("n_pending", S["n_pending"])} {"study" if one else "studies"}): {rows}. '
+                   f'{"It is" if one else "Each is"} added by rebuilding once its repository has outputs, a study period '
+                   f'and a licence statement.</p>')
     options = "\n".join(f'<option value="{c["id"]}">{E(c["title"])}</option>' for c in S["collections"])
     svc_html = ""
     if svc:
@@ -223,7 +225,7 @@ def index_page(cat, S, svc):
 <section id="use" aria-labelledby="h-use">
     <h2 class="cat-h" id="h-use">Use the data</h2>
     <p>The catalogue root is <a href="stac/catalog.json"><code>stac/catalog.json</code></a>. All links inside it are relative, so it can be copied or mirrored as a folder. Vector layers come as GeoParquet and GeoJSON in longitude–latitude (EPSG:4326); rasters as Cloud-Optimised GeoTIFFs in their original grid, with a PNG quick-look. Each file has its size and SHA-256 checksum in the STAC item (<code>file:size</code>, <code>file:checksum</code>).</p>
-    <pre class="cat-code"><code>import pystac, geopandas as gpd
+    <pre class="cat-code" tabindex="0"><code>import pystac, geopandas as gpd
 cat = pystac.Catalog.from_file("{SITE_URL}stac/catalog.json")
 item = cat.get_child("{first}").get_item("study-areas")
 gdf = gpd.read_parquet(item.assets["geoparquet"].get_absolute_href())</code></pre>
@@ -233,7 +235,7 @@ gdf = gpd.read_parquet(item.assets["geoparquet"].get_absolute_href())</code></pr
 <section id="api" aria-labelledby="h-api">
     <h2 class="cat-h" id="h-api">OGC API Features</h2>
     <p>The {stat('n_vector_items', S['n_vector_items'])} vector layers can also be served as OGC API Features collections from PostGIS with pygeoapi, so that GIS clients can query them by bounding box and page through features. This website is static and cannot run that service. To run it, clone the repository and start it with Docker Compose, or locally with PostgreSQL, PostGIS and pygeoapi installed (see the README):</p>
-    <pre class="cat-code"><code>docker compose up
+    <pre class="cat-code" tabindex="0"><code>docker compose up
 curl "http://localhost:5000/collections"
 curl "http://localhost:5000/collections/{table_name(first, 'study-areas')}/items?limit=5&amp;bbox=3,5,10,17"</code></pre>
     {svc_html}

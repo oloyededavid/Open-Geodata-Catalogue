@@ -16,13 +16,13 @@ Two standard ways of publishing such data were used. STAC describes files and th
 
 # 2. Design
 
-Figure 1 shows the path of a layer: from a study repository, through one build script, into the static catalogue and from there into the database behind the service.
+Figure 1 shows the path of a layer: from a study repository, through the build script, into the static catalogue; from there the website is written, and the vector layers are loaded into the database behind the service.
 
 ![**Figure 1.** From the study repositories to the static catalogue and the service. The website and the catalogue share one folder; the service is run locally or with Docker Compose.](../docs/assets/figures/fig1_flow.webp)
 
 ## 2.1 One configuration file
 
-`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. In all, 8 studies are configured; one was skipped (Mau-Forest-Land-Cover: no GeoJSON or GeoTIFF outputs found) at the last build.
+`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. In all, 8 studies are configured; at the last build one was skipped (Mau-Forest-Land-Cover: no GeoJSON or GeoTIFF outputs found).
 
 ## 2.2 Formats, checksums and size limits
 
@@ -30,7 +30,7 @@ Vector layers are written as GeoParquet 1.1 (GeoParquet, n.d.) and GeoJSON, in l
 
 Every file carries its size and SHA-256 checksum (STAC file extension), raster items carry their grid (projection extension) and vector items their columns and feature count (table extension). A converted file larger than 20 MB would not be copied: its asset would point to the source file in the study repository instead. No file reached that limit, so every file is in the catalogue itself. The build also stops if the website folder would exceed 150 MB.
 
-Each collection records the study page, the repository, the data licence (CC BY 4.0 for 5 of the 7 studies, with exceptions noted below) and the commit of the study repository the files were taken from. The Coastal-Hydrogeology-Modeling repository states an MIT licence and no separate licence for its derived data, so its collection is marked “other” until the author states one. The Mozambique-Health-Access collection is marked “various”: each of its three items states its own licence (CC-BY-4.0, ODbL-1.0), because the layer derived from OpenStreetMap is under the ODbL, as the study states. In Ogun-Catchment-Coast-Observatory, the SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study). In Lagos-Urban-Heat-Analytics, LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study.
+Each collection records the study page, the repository, the data licence (CC BY 4.0 for 5 of the 7 studies, with exceptions noted below) and the commit of the study repository the files were taken from. The Coastal-Hydrogeology-Modeling repository states an MIT licence and no separate licence for its derived data, so its collection is marked “other” until the author states one. The Mozambique-Health-Access collection is marked “various”: each of its three items states its own licence (CC BY 4.0, ODbL 1.0), because the layer derived from OpenStreetMap is under the ODbL, as the study states. In Ogun-Catchment-Coast-Observatory, the SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study). In Lagos-Urban-Heat-Analytics, LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study.
 
 ## 2.3 A static catalogue on GitHub Pages
 
@@ -60,7 +60,7 @@ At the last service check (2026-11-19), pygeoapi 0.24.0 served 10 collections wi
 | [Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos](https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/) | 2 | 0 | 4 | 7.2 | 1986–2024 | not stated |
 | [Travel time to health facilities in Mozambique](https://oloyededavid.github.io/Mozambique-Health-Access/) | 3 | 3,484 | 6 | 2.2 | 2019–2024 | various |
 
-Four of the studies lie in southwest Nigeria and Benin; the others cover two Nigerian river basins, the Lake Chad basin and Mozambique (Figure 2). Most items come from one study, the rainfall, evapotranspiration and water-surplus grids of the Ouémé and Ogun recharge study, while most of the data volume is in the two rasters of the Lekki–Epe sealing study (Figure 3).
+Most of the studies lie in southwest Nigeria and Benin; the others cover two Nigerian river basins, the Lake Chad basin and Mozambique (Figure 2). Most items come from one study, the rainfall, evapotranspiration and water-surplus grids of the Ouémé and Ogun recharge study, while most of the data volume is in the rasters of the Lekki–Epe sealing study (Figure 3).
 
 ![**Figure 2.** Where the items lie. Each item is drawn with the geometry recorded in its STAC item; for rasters, this is the extent of the grid.](../docs/assets/figures/fig2_footprints.webp)
 

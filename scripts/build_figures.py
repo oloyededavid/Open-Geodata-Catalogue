@@ -73,29 +73,29 @@ def arrow(ax, a, b, label=None, off=(0, 0.12)):
 def fig1_flow(phone):
     S = stats()
     n_rep = S["n_collections"]
-    src = ("Study repositories", [f"{n_rep} studies", "docs/data, outputs", "GeoJSON, GeoTIFF,", "JSON, CSV"])
+    src = ("Study repositories", [f"{n_rep} studies included", "docs/data, outputs:", "GeoJSON, GeoTIFF,", "JSON, CSV"])
     cfg = ("sources.yaml", ["one entry per study:", "layers, periods,", "licences"])
     bld = ("build_catalogue.py", ["converts, checksums,", "writes STAC 1.1.0"])
     stac = ("Static catalogue", ["GeoParquet, GeoJSON,", "Cloud-Optimised GeoTIFF,", "STAC JSON with", "relative links"])
     site = ("GitHub Pages", ["browsable website,", "search, maps"])
     pg = ("PostGIS", ["one table per", "vector item"])
-    api = ("pygeoapi", ["OGC API Features,", "local or Docker"])
+    api = ("pygeoapi", ["OGC API Features,", "local or Docker;", "configured by", "build_service_config.py"])
     # one stacked layout for both sizes: a wide one shrinks below reading size in the text column
-    fig, ax = plt.subplots(figsize=(5.6, 8.6))
-    ax.set_xlim(0, 7.2); ax.set_ylim(1.4, 15.6)
-    w, h = 3.4, 2.3
-    P = {"src": (0.0, 13.2), "cfg": (3.8, 13.2), "bld": (1.9, 10.1), "stac": (0.0, 6.7), "site": (0.0, 3.3),
-         "pg": (3.8, 6.7), "api": (3.8, 3.3)}
+    fig, ax = plt.subplots(figsize=(5.6, 10.6))
+    ax.set_xlim(0, 7.2); ax.set_ylim(0.3, 14.2)
+    w, h = 3.4, 2.1
+    P = {"src": (0.0, 12.0), "cfg": (3.8, 12.0), "bld": (1.9, 9.2), "stac": (1.9, 6.4), "site": (0.0, 3.4),
+         "pg": (3.8, 3.4), "api": (3.8, 0.4)}
     for k, (t, l) in zip(P, (src, cfg, bld, stac, site, pg, api)):
         box(ax, *P[k], w, h, t, l, fill="#f6f6f3" if k == "bld" else "white", small=True)
-    arrow(ax, (1.7, 13.2), (2.8, 12.4)); arrow(ax, (5.5, 13.2), (4.4, 12.4))
-    arrow(ax, (2.8, 10.1), (1.7, 9.0), "files", off=(-0.55, 0))
-    arrow(ax, (1.7, 6.7), (1.7, 5.6), "as is", off=(0.45, -0.1))
-    arrow(ax, (3.4, 7.3), (3.8, 7.3))
-    arrow(ax, (5.5, 6.7), (5.5, 5.6), "SQL", off=(0.4, -0.1))
-    ax.text(0.0, 2.9, textwrap.fill("The tests check the catalogue files, the service and the pages. The website "
-                                     "and the catalogue are the same folder, docs/. The short arrow is "
-                                     "load_postgis.py, which loads the vector items.", 62), fontsize=7.8, color=INK2, va="top")
+    arrow(ax, (1.7, 12.0), (2.8, 11.3)); arrow(ax, (5.5, 12.0), (4.4, 11.3))
+    arrow(ax, (3.6, 9.2), (3.6, 8.5), "files", off=(0.4, -0.15))
+    arrow(ax, (2.6, 6.4), (1.7, 5.5), "build_site.py", off=(-0.95, -0.1))
+    arrow(ax, (4.6, 6.4), (5.5, 5.5), "load_postgis.py", off=(1.1, -0.1))
+    arrow(ax, (5.5, 3.4), (5.5, 2.5), "SQL", off=(0.4, -0.15))
+    ax.text(0.0, 2.45, textwrap.fill("The tests check the catalogue files, the service and the numbers on the "
+                                     "pages. The website and the catalogue share one folder, docs/.", 30),
+            fontsize=7.6, color=INK2, va="top")
     ax.axis("off")
     ax.set_aspect("equal")
     save(fig, "fig1_flow", phone)
@@ -109,8 +109,8 @@ def fig2_footprints(phone):
     base = gpd.read_file(DOCS / "assets" / "basemap.geojson")
     zoom = (1.0, 5.6, 4.6, 11.0)  # lon_min, lat_min, lon_max, lat_max: southwest Nigeria and Benin
     if phone:
-        fig = plt.figure(figsize=(5.6, 10.6))
-        a0 = fig.add_axes([0.0, 0.47, 1.0, 0.5]); a1 = fig.add_axes([0.08, 0.1, 0.84, 0.34])
+        fig = plt.figure(figsize=(3.8, 7.6))
+        a0 = fig.add_axes([0.0, 0.5, 1.0, 0.47]); a1 = fig.add_axes([0.06, 0.16, 0.88, 0.3])
     else:
         fig = plt.figure(figsize=(7.6, 5.6))
         a0 = fig.add_axes([0.0, 0.2, 0.52, 0.76]); a1 = fig.add_axes([0.56, 0.2, 0.42, 0.72])
@@ -119,7 +119,7 @@ def fig2_footprints(phone):
         base.plot(ax=ax, facecolor=LAND, edgecolor="white", linewidth=0.6)
         for cid in order:
             g = f[f["collection"] == cid]
-            g.plot(ax=ax, facecolor=col[cid], alpha=0.16, edgecolor="none")
+            gpd.GeoSeries([g.union_all()], crs=g.crs).plot(ax=ax, facecolor=col[cid], alpha=0.16, edgecolor="none")
             g.boundary.plot(ax=ax, color=col[cid], linewidth=0.9 if ax is a1 else 0.6)
         ax.set_xlim(ext[0], ext[2]); ax.set_ylim(ext[1], ext[3])
         ax.set_xticks([]); ax.set_yticks([]); ax.set_xlabel(""); ax.set_ylabel("")
@@ -135,11 +135,7 @@ def fig2_footprints(phone):
     handles = [Rectangle((0, 0), 1, 1, facecolor=col[c], alpha=0.5, edgecolor=col[c]) for c in order]
     labels = [f"{SHORT.get(c, c)} ({counts[c]} item{'s' if counts[c] != 1 else ''})" for c in order]
     fig.legend(handles, labels, loc="lower left", bbox_to_anchor=(0.0, -0.02 if phone else 0.0),
-               ncol=1 if phone else 2, frameon=False, fontsize=8)
-    fig.text(0.0, -0.05 if phone else -0.04,
-             "Each item drawn with the geometry recorded in its STAC item; for rasters, the extent of the grid. "
-             "Country outlines: Natural Earth." if not phone else "Each item drawn with the geometry recorded in its STAC\n"
-             "item; for rasters, the extent of the grid. Country outlines:\nNatural Earth.", fontsize=7.6, color=INK2)
+               ncol=1 if phone else 2, frameon=False, fontsize=7.4 if phone else 8)
     save(fig, "fig2_footprints", phone)
 
 
@@ -147,7 +143,7 @@ def fig3_contents(phone):
     S = stats()
     C = S["collections"]
     names = [SHORT.get(c["id"], c["id"]) for c in C]
-    fig, (a0, a1) = plt.subplots(1, 2, figsize=(5.6, 5.4) if phone else (7.6, 3.9), sharey=True,
+    fig, (a0, a1) = plt.subplots(1, 2, figsize=(3.8, 4.8) if phone else (7.6, 3.9), sharey=True,
                                  gridspec_kw={"width_ratios": (1, 1), "wspace": 0.08 if not phone else 0.12})
     y = range(len(C))
     vec = [c["vector"] for c in C]; ras = [c["raster"] for c in C]
@@ -159,7 +155,7 @@ def fig3_contents(phone):
     a1.barh(y, mbv, color="#9a9992", height=0.62)
     for yi, v in zip(y, mbv):
         a1.text(v + 0.08, yi, f"{v:.1f}", va="center", fontsize=8, color=INK2)
-    a0.set_yticks(list(y), [textwrap.fill(n, 18 if phone else 24) for n in names], fontsize=8 if phone else 9)
+    a0.set_yticks(list(y), [textwrap.fill(n, 16 if phone else 24) for n in names], fontsize=8 if phone else 9)
     a0.invert_yaxis()
     a0.set_xlabel("Items"); a1.set_xlabel("Data files (MB)")
     a0.set_xlim(0, max(c["items"] for c in C) * 1.15); a1.set_xlim(0, max(mbv) * 1.18)
@@ -169,10 +165,6 @@ def fig3_contents(phone):
         ax.tick_params(length=0)
     a1.spines["left"].set_visible(False)
     a0.legend(loc="lower right", frameon=False, fontsize=8)
-    fig.text(0.0, -0.04 if not phone else -0.02,
-             textwrap.fill(f"{S['n_items']} items in {S['n_collections']} collections. Sizes include GeoParquet, GeoJSON, "
-                           "GeoTIFF and quick-look files, not the STAC JSON.", 70 if phone else 100),
-             fontsize=7.6, color=INK2, va="top")
     save(fig, "fig3_contents", phone)
 
 

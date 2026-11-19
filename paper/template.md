@@ -16,7 +16,7 @@ Two standard ways of publishing such data were used. STAC describes files and th
 
 # 2. Design
 
-Figure 1 shows the path of a layer: from a study repository, through one build script, into the static catalogue and from there into the database behind the service.
+Figure 1 shows the path of a layer: from a study repository, through the build script, into the static catalogue; from there the website is written, and the vector layers are loaded into the database behind the service.
 
 ![**Figure 1.** From the study repositories to the static catalogue and the service. The website and the catalogue share one folder; the service is run locally or with Docker Compose.](../docs/assets/figures/fig1_flow.webp)
 
@@ -52,7 +52,7 @@ At the last service check ({{svc_checked}}), pygeoapi {{svc_pygeoapi}} served {{
 
 {{collections_table}}
 
-Four of the studies lie in southwest Nigeria and Benin; the others cover two Nigerian river basins, the Lake Chad basin and Mozambique (Figure 2). Most items come from one study, the rainfall, evapotranspiration and water-surplus grids of the Ouémé and Ogun recharge study, while most of the data volume is in the two rasters of the Lekki–Epe sealing study (Figure 3).
+Most of the studies lie in southwest Nigeria and Benin; the others cover two Nigerian river basins, the Lake Chad basin and Mozambique (Figure 2). Most items come from one study, the rainfall, evapotranspiration and water-surplus grids of the Ouémé and Ogun recharge study, while most of the data volume is in the rasters of the Lekki–Epe sealing study (Figure 3).
 
 ![**Figure 2.** Where the items lie. Each item is drawn with the geometry recorded in its STAC item; for rasters, this is the extent of the grid.](../docs/assets/figures/fig2_footprints.webp)
 
