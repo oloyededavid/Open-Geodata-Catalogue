@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light">
+    <title>Open geodata catalogue</title>
+    <link rel="canonical" href="https://oloyededavid.github.io/Open-Geodata-Catalogue/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Open geodata catalogue">
+    <meta property="og:description" content="Spatial outputs of 7 open studies as a static STAC catalogue, with an OGC API Features service.">
+    <meta property="og:url" content="https://oloyededavid.github.io/Open-Geodata-Catalogue/">
+    <meta name="description" content="Spatial outputs of 7 open studies as a static STAC catalogue, with an OGC API Features service.">
+    <meta name="author" content="David Oloyede">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%231f5fae'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&amp;display=swap">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@500,700&amp;display=swap">
+    <link rel="stylesheet" href="vendor/leaflet-1.9.4/leaflet.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/catalogue.css">
+</head>
+<body data-base="">
+<!-- study-bar:start --><style>
+.sn-bar{font:400 14px/1.4 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;border-bottom:1px solid #e5e5e1;color:#141412;position:relative;z-index:1000}
+.sn-bar .sn-in{max-width:1240px;margin:0 auto;padding:4px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sn-bar a{color:#141412;text-decoration:none;display:inline-flex;align-items:center;min-height:32px}.sn-bar a:hover{text-decoration:underline;text-underline-offset:4px}
+.sn-home{font-weight:700}.sn-pos{color:#6a6963;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:.04em}
+.sn-pn{display:flex;gap:18px}.sn-pn a{color:#55544e}
+.sn-next{font:400 16px/1.5 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;color:#141412;background:#fff;border-top:1px solid #ececea;margin-top:64px}
+.sn-next .sn-in{max-width:1080px;margin:0 auto;padding:40px 24px 48px}
+.sn-k{font-size:15px;color:#6a6963;margin:0 0 14px}
+.sn-card{display:flex;align-items:center;gap:20px;text-decoration:none;color:inherit;background:#fafafa;border:1px solid #ececea;border-radius:22px;padding:14px 18px 14px 14px;transition:border-color .25s,background .25s}
+.sn-card:hover{border-color:#d5d5d1;background:#f6f6f5}
+.sn-media{flex:none;width:112px;height:84px;border-radius:14px;overflow:hidden;background:#eee}
+.sn-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-media img{transform:scale(1.05)}
+.sn-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sn-t b{font-weight:500;font-size:clamp(17px,1.8vw,21px);line-height:1.25;letter-spacing:-.005em}
+.sn-t span{font-size:15px;color:#62625d}
+.sn-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid #e4e4e0;background:#fff;display:grid;place-items:center;font-size:20px;color:#3a3a37;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-arrow{transform:translateX(3px)}
+.sn-back{display:flex;justify-content:center;gap:10px;margin-top:28px;font-size:15px;color:#62625d;text-decoration:none}
+.sn-back:hover{color:#141412}
+@media (max-width:620px){.sn-media{width:72px;height:72px}.sn-t span{display:none}.sn-pos{display:none}}
+@media (prefers-reduced-motion:reduce){.sn-media img,.sn-arrow{transition:none}}
+</style><nav class="sn-bar" aria-label="Portfolio"><div class="sn-in"><a class="sn-home" href="https://oloyededavid.github.io/geospatial-rs-portfolio/">← David Oloyede</a><span class="sn-pos">Data catalogue</span><span class="sn-pn"><a href="https://oloyededavid.github.io/geospatial-rs-portfolio/#studies">All studies</a><a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/" title="Hydrological extremes where the gauges are missing: floods, droughts and design rainfall in Nigeria, 1950–2070">First study →</a></span></div></nav><!-- study-bar:end -->
+<nav class="skipnav" aria-label="Skip link"><a class="skip" href="#main">Skip to the content</a></nav>
+<header class="site-header">
+    <div class="site-inner">
+        <a class="site-id" href="index.html">Open geodata catalogue</a>
+        <nav class="toc" aria-label="Sections">
+            <a href="#collections">Collections</a>
+            <a href="#search">Search</a>
+            <a href="#use">Use the data</a>
+            <a href="#api">API</a>
+            <a href="about.html">Design</a>
+        </nav>
+    </div>
+    <nav class="toc-phone" aria-label="Sections on phone">
+        <a href="#collections">Collections</a>
+        <a href="#search">Search</a>
+        <a href="#use">Use the data</a>
+        <a href="#api">API</a>
+        <a href="about.html">Design</a>
+    </nav>
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<main class="article" id="main">
+<header class="title">
+    <h1>Open geodata catalogue</h1>
+    <p class="subtitle">Spatial outputs of <span data-stat="n_collections">7</span> open studies by David Oloyede, as a static STAC catalogue and as an OGC API Features service you can run yourself.</p>
+    <p class="sig"><span>David Oloyede</span><span>Built <span data-stat="built">2026-11-19</span></span></p>
+</header>
+
+<section id="overview" aria-labelledby="h-overview">
+    <h2 class="sr-only" id="h-overview">Overview</h2>
+    <p class="cat-intro">Each study publishes its maps and tables on its own page. This catalogue lists the spatial layers behind them in one place, in open formats with checksums, so they can be found, downloaded and loaded into GIS software or code without reading each repository. The layers are the studies' own outputs and keep their limits; the study pages explain what each one can and cannot show.</p>
+    <dl class="cat-figures">
+        <div><dt>Collections</dt><dd><span data-stat="n_collections">7</span></dd></div>
+        <div><dt>Items</dt><dd><span data-stat="n_items">32</span></dd></div>
+        <div><dt>Data files</dt><dd><span data-stat="n_data_files">64</span></dd></div>
+        <div><dt>Size</dt><dd><span data-stat="mb_data_files">10.8</span><small>MB</small></dd></div>
+        <div><dt>Vector features</dt><dd><span data-stat="n_features">4,162</span></dd></div>
+    </dl>
+</section>
+
+<section id="collections" aria-labelledby="h-collections" class="wide">
+    <h2 class="cat-h" id="h-collections">Collections</h2>
+    <p class="cat-lead">One collection per study. The small maps show each collection's extent (dashed) and its items, on country outlines.</p>
+    <ul class="cat-cards" role="list">
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="observational-hydrology-extremes" data-bbox="[3.7417, 5.75, 9.5, 16.25]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/observational-hydrology-extremes.html">Floods, droughts and design rainfall in two data-sparse Nigerian basins</a></h3>
+        <p class="cat-desc">Study areas and per-cell design rainfall from a study of floods, drought and extreme rainfall in the Lower Niger-Benue reach and the Sokoto-Rima basin, Nigeria, using satellite and reanalysis data where gauges are missing.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:observational-hydrology-extremes:items">2</span> items: <span data-stat="c:observational-hydrology-extremes:vector">2</span> vector</span><span><span data-stat="c:observational-hydrology-extremes:years">1981–2070</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/">Study page</a><a href="https://github.com/oloyededavid/Observational-Hydrology-Extremes">Repository</a><a href="stac/observational-hydrology-extremes/collection.json">STAC collection</a></p>
+    </div>
+</li>
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="ogun-catchment-coast-observatory" data-bbox="[2.6833, 6.45, 4.1542, 8.9542]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/ogun-catchment-coast-observatory.html">Ogun River catchment-to-coast environmental observatory</a></h3>
+        <p class="cat-desc">Sub-basin units of the Ogun River catchment and Lagos Lagoon with summary indicators (rainfall, NDVI, turbidity index, Sentinel-1 inundation, soil moisture) from Earth observation, 2019–2024.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:ogun-catchment-coast-observatory:items">1</span> item: <span data-stat="c:ogun-catchment-coast-observatory:vector">1</span> vector</span><span><span data-stat="c:ogun-catchment-coast-observatory:years">2019–2024</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Study page</a><a href="https://github.com/oloyededavid/Ogun-Catchment-Coast-Observatory">Repository</a><a href="stac/ogun-catchment-coast-observatory/collection.json">STAC collection</a></p>
+    </div>
+</li>
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="oueme-ogun-groundwater-recharge" data-bbox="[1.4, 7.1396, 4.251, 10.3]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/oueme-ogun-groundwater-recharge.html">Testing a satellite water balance for groundwater recharge: Upper Ouémé and Upper Ogun</a></h3>
+        <p class="cat-desc">Basin outlines and gridded water-balance maps (CHIRPS rainfall, WaPOR evapotranspiration and their difference) for the Upper Ouémé (Benin) and Upper Ogun (Nigeria), 2018–2024. The surplus is rainfall minus evapotranspiration from satellite products; it is not measured recharge.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:oueme-ogun-groundwater-recharge:items">21</span> items: <span data-stat="c:oueme-ogun-groundwater-recharge:vector">1</span> vector, <span data-stat="c:oueme-ogun-groundwater-recharge:raster">20</span> raster</span><span><span data-stat="c:oueme-ogun-groundwater-recharge:years">2018–2024</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/">Study page</a><a href="https://github.com/oloyededavid/Oueme-Ogun-Groundwater-Recharge">Repository</a><a href="stac/oueme-ogun-groundwater-recharge/collection.json">STAC collection</a></p>
+    </div>
+</li>
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="groundwater-storage-gravimetry" data-bbox="[4.0, 2.0, 27.0, 19.0]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/groundwater-storage-gravimetry.html">Water storage in the Lake Chad basin from GRACE and GRACE-FO</a></h3>
+        <p class="cat-desc">Study areas and the per-cell trend in total water storage from the GRACE and GRACE-FO gravity missions over the Lake Chad basin. The gravity record measures all stored water; groundwater is not separated from surface water, and there is no well-based validation.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:groundwater-storage-gravimetry:items">2</span> items: <span data-stat="c:groundwater-storage-gravimetry:vector">2</span> vector</span><span><span data-stat="c:groundwater-storage-gravimetry:years">2002–2026</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Study page</a><a href="https://github.com/oloyededavid/Groundwater-Storage-Gravimetry">Repository</a><a href="stac/groundwater-storage-gravimetry/collection.json">STAC collection</a></p>
+    </div>
+</li>
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="lagos-urban-heat-analytics" data-bbox="[2.7061, 6.3712, 4.3478, 6.7081]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/lagos-urban-heat-analytics.html">Surface urban heat island and distance to vegetation in Lagos State</a></h3>
+        <p class="cat-desc">Local government area (LGA) boundaries of Lagos State with land surface temperature, vegetation, population and hot-spot attributes from the study&#x27;s earlier Earth Engine export. The current paper&#x27;s heat-gap results are computed on 60 m rasters that are not stored in the repository.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:lagos-urban-heat-analytics:items">1</span> item: <span data-stat="c:lagos-urban-heat-analytics:vector">1</span> vector</span><span><span data-stat="c:lagos-urban-heat-analytics:years">2022–2024</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Study page</a><a href="https://github.com/oloyededavid/Lagos-Urban-Heat-Analytics">Repository</a><a href="stac/lagos-urban-heat-analytics/collection.json">STAC collection</a></p>
+    </div>
+</li>
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="coastal-hydrogeology-modeling" data-bbox="[3.4496, 6.399, 4.0507, 6.6512]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/coastal-hydrogeology-modeling.html">Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos</a></h3>
+        <p class="cat-desc">Recharge-potential index maps of the Lekki–Epe barrier for a 1986–1996 baseline (Landsat 5) and for 2023–2024 (Sentinel-2), from the study&#x27;s re-analysis. The index is a relative score, not recharge, and the study reports that the size of its decline is not robust.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:coastal-hydrogeology-modeling:items">2</span> items: <span data-stat="c:coastal-hydrogeology-modeling:raster">2</span> raster</span><span><span data-stat="c:coastal-hydrogeology-modeling:years">1986–2024</span></span><span>Data not stated separately</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Study page</a><a href="https://github.com/oloyededavid/Coastal-Hydrogeology-Modeling">Repository</a><a href="stac/coastal-hydrogeology-modeling/collection.json">STAC collection</a></p>
+    </div>
+</li>
+<li class="cat-card">
+    <div class="cat-thumb" data-thumb="mozambique-health-access" data-bbox="[30.2123, -26.867, 40.8403, -10.4737]" aria-hidden="true"></div>
+    <div class="cat-card-body">
+        <h3><a href="collections/mozambique-health-access.html">Travel time to health facilities in Mozambique</a></h3>
+        <p class="cat-desc">District outlines of Mozambique with modelled travel time to the nearest public-sector health facility, and the facility lists used. Travel times are model estimates from friction surfaces and modelled population, not observed journeys; the study shows how much they change with the facility list, mode of travel and population layer.</p>
+        <p class="cat-meta-line"><span><span data-stat="c:mozambique-health-access:items">3</span> items: <span data-stat="c:mozambique-health-access:vector">3</span> vector</span><span><span data-stat="c:mozambique-health-access:years">2019–2026</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-links"><a href="https://oloyededavid.github.io/Mozambique-Health-Access/">Study page</a><a href="https://github.com/oloyededavid/Mozambique-Health-Access">Repository</a><a href="stac/mozambique-health-access/collection.json">STAC collection</a></p>
+    </div>
+</li>
+    </ul>
+    <p class="cat-pending"><span data-stat="n_pending">1</span> more studies are listed in <code>catalogue/sources.yaml</code> but were not added at the last build: <a href="https://github.com/oloyededavid/Mau-Forest-Land-Cover">Mau-Forest-Land-Cover</a> (no GeoJSON or GeoTIFF outputs found). Each is added by rebuilding once its repository has outputs, a study period and a licence statement.</p>
+</section>
+
+<section id="search" aria-labelledby="h-search">
+    <h2 class="cat-h" id="h-search">Search the items</h2>
+    <p class="cat-lead">Filter the <span data-stat="n_items">32</span> items by words in their title, description or keywords, by type and by study. The search runs in your browser.</p>
+    <div class="cat-search" role="search">
+        <label for="q">Search words</label><input id="q" type="search" placeholder="for example: rainfall, Lagos, 2020" autocomplete="off">
+        <label for="kind">Type</label><select id="kind"><option value="">All types</option><option value="vector">Vector</option><option value="raster">Raster</option></select>
+        <label for="coll">Study</label><select id="coll"><option value="">All studies</option>
+<option value="observational-hydrology-extremes">Floods, droughts and design rainfall in two data-sparse Nigerian basins</option>
+<option value="ogun-catchment-coast-observatory">Ogun River catchment-to-coast environmental observatory</option>
+<option value="oueme-ogun-groundwater-recharge">Testing a satellite water balance for groundwater recharge: Upper Ouémé and Upper Ogun</option>
+<option value="groundwater-storage-gravimetry">Water storage in the Lake Chad basin from GRACE and GRACE-FO</option>
+<option value="lagos-urban-heat-analytics">Surface urban heat island and distance to vegetation in Lagos State</option>
+<option value="coastal-hydrogeology-modeling">Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos</option>
+<option value="mozambique-health-access">Travel time to health facilities in Mozambique</option>
+        </select>
+    </div>
+    <p id="search-status" class="cat-status" role="status">Turn on JavaScript to search; every item is also listed on its collection page.</p>
+    <ul id="results" class="cat-results"></ul>
+</section>
+
+<section id="use" aria-labelledby="h-use">
+    <h2 class="cat-h" id="h-use">Use the data</h2>
+    <p>The catalogue root is <a href="stac/catalog.json"><code>stac/catalog.json</code></a>. All links inside it are relative, so it can be copied or mirrored as a folder. Vector layers come as GeoParquet and GeoJSON in longitude–latitude (EPSG:4326); rasters as Cloud-Optimised GeoTIFFs in their original grid, with a PNG quick-look. Each file has its size and SHA-256 checksum in the STAC item (<code>file:size</code>, <code>file:checksum</code>).</p>
+    <pre class="cat-code"><code>import pystac, geopandas as gpd
+cat = pystac.Catalog.from_file("https://oloyededavid.github.io/Open-Geodata-Catalogue/stac/catalog.json")
+item = cat.get_child("observational-hydrology-extremes").get_item("study-areas")
+gdf = gpd.read_parquet(item.assets["geoparquet"].get_absolute_href())</code></pre>
+    <p>A Cloud-Optimised GeoTIFF can be read over HTTP without downloading it first, for example in QGIS (Add Raster Layer, protocol HTTP) or with GDAL: <code>gdalinfo /vsicurl/https://oloyededavid.github.io/Open-Geodata-Catalogue/stac/…/item.tif</code>.</p>
+</section>
+
+<section id="api" aria-labelledby="h-api">
+    <h2 class="cat-h" id="h-api">OGC API Features</h2>
+    <p>The <span data-stat="n_vector_items">10</span> vector layers can also be served as OGC API Features collections from PostGIS with pygeoapi, so that GIS clients can query them by bounding box and page through features. This website is static and cannot run that service. To run it, clone the repository and start it with Docker Compose, or locally with PostgreSQL, PostGIS and pygeoapi installed (see the README):</p>
+    <pre class="cat-code"><code>docker compose up
+curl "http://localhost:5000/collections"
+curl "http://localhost:5000/collections/observational_hydrology_extremes_study_areas/items?limit=5&amp;bbox=3,5,10,17"</code></pre>
+    <p>At the last local check (<span data-stat="svc:checked">2026-11-19</span>), the service served <span data-stat="svc:n_collections">10</span> collections with <span data-stat="svc:n_features">4,162</span> features from PostGIS <span data-stat="svc:postgis_version">3.4.2</span> with pygeoapi <span data-stat="svc:pygeoapi_version">0.24.0</span>, and every check passed: paging with <code>limit</code>, single features, bounding-box filtering and the core, GeoJSON and OpenAPI conformance classes. pygeoapi declares <span data-stat="svc:conformance_classes">18</span> conformance classes in all; the others were not tested here, and no formal OGC test suite was run.</p>
+    <p>How the catalogue and the service are built, and what was and was not checked, is described on the <a href="about.html">design page</a>.</p>
+</section>
+
+<section id="limits" aria-labelledby="h-limits">
+    <h2 class="cat-h" id="h-limits">Limits</h2>
+    <ul>
+        <li>The layers are copies of the studies' outputs at the commits recorded in each collection. If a study changes, the catalogue is out of date until it is rebuilt.</li>
+        <li>Most layers are satellite or model estimates (rainfall, evapotranspiration, gravity, land surface temperature), not ground measurements. Their uncertainty and validation are described in the studies, not here.</li>
+        <li>Only outputs already stored in the study repositories are included. Large intermediate rasters that the studies rebuild from public archives are not.</li>
+    </ul>
+</section>
+</main>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<!-- study-nav:start --><section class="sn-next" aria-label="First study"><div class="sn-in"><p class="sn-k">Start with the first study</p><a class="sn-card" href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/"><span class="sn-media"><img src="assets/next-study.webp" width="720" height="540" loading="lazy" decoding="async" alt=""></span><span class="sn-t"><b>Hydrological extremes where the gauges are missing</b><span>Floods, drought and future extreme rainfall in two Nigerian basins with few rain gauges.</span></span><span class="sn-arrow" aria-hidden="true">→</span></a><a class="sn-back" href="https://oloyededavid.github.io/geospatial-rs-portfolio/#studies"><span aria-hidden="true">←</span> Back to all studies</a></div></section><!-- study-nav:end -->
+<footer>
+    <div class="inner">
+        <p class="sig"><span>David Oloyede</span><span><a href="https://github.com/oloyededavid">github.com/oloyededavid</a></span><span><a href="https://github.com/oloyededavid/Open-Geodata-Catalogue">Repository</a></span></p>
+        <p>Catalogue code MIT. Each collection keeps the data licence its study states (mostly CC BY 4.0); the source datasets behind the studies keep their own terms. Map outlines: Natural Earth (public domain).</p>
+        <!-- study-others:start --><p class="others">Studies in this catalogue: <a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/">Nigeria floods, drought and design rainfall</a> · <a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Ogun surface water</a> · <a href="https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/">Ouémé–Ogun recharge</a> · <a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Lake Chad water storage</a> · <a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Lagos urban heat</a> · <a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Lekki–Epe groundwater</a> · <a href="https://oloyededavid.github.io/Mozambique-Health-Access/">Mozambique health access</a></p><!-- study-others:end -->
+    </div>
+</footer>
+<script src="vendor/leaflet-1.9.4/leaflet.js"></script>
+<script src="assets/catalogue.js"></script>
+<script src="assets/study.js"></script>
+</body>
+</html>

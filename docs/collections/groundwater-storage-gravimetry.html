@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light">
+    <title>Water storage in the Lake Chad basin from GRACE and GRACE-FO – Open geodata catalogue</title>
+    <link rel="canonical" href="https://oloyededavid.github.io/Open-Geodata-Catalogue/collections/groundwater-storage-gravimetry.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Water storage in the Lake Chad basin from GRACE and GRACE-FO – Open geodata catalogue">
+    <meta property="og:description" content="Study areas and the per-cell trend in total water storage from the GRACE and GRACE-FO gravity missions over the Lake Chad basin. The gravity record measures all stored water; groundwater is not separated from surface water, and there is no well-based validation.">
+    <meta property="og:url" content="https://oloyededavid.github.io/Open-Geodata-Catalogue/collections/groundwater-storage-gravimetry.html">
+    <meta name="description" content="Study areas and the per-cell trend in total water storage from the GRACE and GRACE-FO gravity missions over the Lake Chad basin. The gravity record measures all stored water; groundwater is not separated from surface water, and there is no well-based validation.">
+    <meta name="author" content="David Oloyede">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%231f5fae'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&amp;display=swap">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@500,700&amp;display=swap">
+    <link rel="stylesheet" href="../vendor/leaflet-1.9.4/leaflet.css">
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/catalogue.css">
+</head>
+<body data-base="../">
+<!-- study-bar:start --><style>
+.sn-bar{font:400 14px/1.4 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;border-bottom:1px solid #e5e5e1;color:#141412;position:relative;z-index:1000}
+.sn-bar .sn-in{max-width:1240px;margin:0 auto;padding:4px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sn-bar a{color:#141412;text-decoration:none;display:inline-flex;align-items:center;min-height:32px}.sn-bar a:hover{text-decoration:underline;text-underline-offset:4px}
+.sn-home{font-weight:700}.sn-pos{color:#6a6963;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:.04em}
+.sn-pn{display:flex;gap:18px}.sn-pn a{color:#55544e}
+.sn-next{font:400 16px/1.5 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;color:#141412;background:#fff;border-top:1px solid #ececea;margin-top:64px}
+.sn-next .sn-in{max-width:1080px;margin:0 auto;padding:40px 24px 48px}
+.sn-k{font-size:15px;color:#6a6963;margin:0 0 14px}
+.sn-card{display:flex;align-items:center;gap:20px;text-decoration:none;color:inherit;background:#fafafa;border:1px solid #ececea;border-radius:22px;padding:14px 18px 14px 14px;transition:border-color .25s,background .25s}
+.sn-card:hover{border-color:#d5d5d1;background:#f6f6f5}
+.sn-media{flex:none;width:112px;height:84px;border-radius:14px;overflow:hidden;background:#eee}
+.sn-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-media img{transform:scale(1.05)}
+.sn-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sn-t b{font-weight:500;font-size:clamp(17px,1.8vw,21px);line-height:1.25;letter-spacing:-.005em}
+.sn-t span{font-size:15px;color:#62625d}
+.sn-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid #e4e4e0;background:#fff;display:grid;place-items:center;font-size:20px;color:#3a3a37;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-arrow{transform:translateX(3px)}
+.sn-back{display:flex;justify-content:center;gap:10px;margin-top:28px;font-size:15px;color:#62625d;text-decoration:none}
+.sn-back:hover{color:#141412}
+@media (max-width:620px){.sn-media{width:72px;height:72px}.sn-t span{display:none}.sn-pos{display:none}}
+@media (prefers-reduced-motion:reduce){.sn-media img,.sn-arrow{transition:none}}
+</style><nav class="sn-bar" aria-label="Portfolio"><div class="sn-in"><a class="sn-home" href="https://oloyededavid.github.io/geospatial-rs-portfolio/">← David Oloyede</a><span class="sn-pos">Data catalogue</span><span class="sn-pn"><a href="https://oloyededavid.github.io/geospatial-rs-portfolio/#studies">All studies</a><a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/" title="Hydrological extremes where the gauges are missing: floods, droughts and design rainfall in Nigeria, 1950–2070">First study →</a></span></div></nav><!-- study-bar:end -->
+<nav class="skipnav" aria-label="Skip link"><a class="skip" href="#main">Skip to the content</a></nav>
+<header class="site-header">
+    <div class="site-inner">
+        <a class="site-id" href="../index.html">Open geodata catalogue</a>
+        <nav class="toc" aria-label="Sections">
+            <a href="../index.html#collections">Catalogue</a>
+            <a href="#details">About</a>
+            <a href="#items">Items</a>
+            <a href="../about.html">Design</a>
+        </nav>
+    </div>
+    <nav class="toc-phone" aria-label="Sections on phone">
+        <a href="../index.html#collections">Catalogue</a>
+        <a href="#details">About</a>
+        <a href="#items">Items</a>
+        <a href="../about.html">Design</a>
+    </nav>
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<main class="article" id="main">
+<header class="title">
+    <p class="cat-crumbs"><a href="../index.html#collections">Catalogue</a> / Collection</p>
+    <h1>Water storage in the Lake Chad basin from GRACE and GRACE-FO</h1>
+    <p class="subtitle">Study areas and the per-cell trend in total water storage from the GRACE and GRACE-FO gravity missions over the Lake Chad basin. The gravity record measures all stored water; groundwater is not separated from surface water, and there is no well-based validation.</p>
+</header>
+<section id="map-sec" aria-labelledby="h-map">
+    <h2 class="sr-only" id="h-map">Map</h2>
+    <div id="collection-map" class="cat-map" data-collection="groundwater-storage-gravimetry" role="img" aria-label="Map of the item footprints of this collection"></div>
+    <p class="cat-note">Item footprints on country outlines (Natural Earth 1:50m, shown only at small scales because they are too coarse for city scale). Raster footprints are the edges of their grids.</p>
+</section>
+<section id="details" aria-labelledby="h-details">
+    <h2 class="cat-h" id="h-details">About this collection</h2>
+    <dl class="cat-dl">
+        <dt>Study</dt><dd><a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Study page</a> · <a href="https://github.com/oloyededavid/Groundwater-Storage-Gravimetry">Repository</a></dd>
+        <dt>Items</dt><dd><span data-stat="c:groundwater-storage-gravimetry:items">2</span></dd>
+        <dt>Period</dt><dd>2002-04-01 to 2026-07-31</dd>
+        <dt>Extent</dt><dd>4.000, 2.000, 27.000, 19.000 (west, south, east, north; degrees)</dd>
+        <dt>Data licence</dt><dd>CC BY 4.0 (<a href="https://github.com/oloyededavid/Groundwater-Storage-Gravimetry/blob/main/README.md">Licence statement (README.md)</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>)</dd>
+        <dt>Code licence</dt><dd>MIT</dd>
+        <dt>Keywords</dt><dd>Lake Chad, GRACE, GRACE-FO, total water storage, groundwater, HydroBASINS</dd>
+        <dt>Source version</dt><dd>Commit <code>ab5ff88</code> of 2026-11-18 (branch text-fixes)</dd>
+        <dt>Metadata</dt><dd><a href="../stac/groundwater-storage-gravimetry/collection.json">STAC collection JSON</a></dd>
+    </dl>
+</section>
+<section id="items" aria-labelledby="h-items">
+    <h2 class="cat-h" id="h-items">Items</h2>
+    <div class="cat-table"><table><thead><tr><th scope="col">Item</th><th scope="col">Type</th><th scope="col">Period</th><th scope="col">Size of data</th><th scope="col">Files</th></tr></thead>
+    <tbody><tr><th scope="row"><a href="../items/groundwater-storage-gravimetry/study-areas.html">Study areas</a></th><td>vector</td><td>2002–2026</td><td>2 features</td><td>120 KB</td></tr><tr><th scope="row"><a href="../items/groundwater-storage-gravimetry/storage-trend-cells.html">Total water storage trend per 1-degree cell</a></th><td>vector</td><td>2002–2026</td><td>375 features</td><td>106 KB</td></tr></tbody></table></div>
+</section>
+</main>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<footer>
+    <div class="inner">
+        <p class="sig"><span>David Oloyede</span><span><a href="https://github.com/oloyededavid">github.com/oloyededavid</a></span><span><a href="https://github.com/oloyededavid/Open-Geodata-Catalogue">Repository</a></span></p>
+        <p>Catalogue code MIT. Each collection keeps the data licence its study states (mostly CC BY 4.0); the source datasets behind the studies keep their own terms. Map outlines: Natural Earth (public domain).</p>
+        <!-- study-others:start --><p class="others">Studies in this catalogue: <a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/">Nigeria floods, drought and design rainfall</a> · <a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Ogun surface water</a> · <a href="https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/">Ouémé–Ogun recharge</a> · <a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Lake Chad water storage</a> · <a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Lagos urban heat</a> · <a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Lekki–Epe groundwater</a> · <a href="https://oloyededavid.github.io/Mozambique-Health-Access/">Mozambique health access</a></p><!-- study-others:end -->
+    </div>
+</footer>
+<script src="../vendor/leaflet-1.9.4/leaflet.js"></script>
+<script src="../assets/catalogue.js"></script>
+<script src="../assets/study.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light">
+    <title>CHIRPS design rainfall per 0.25-degree cell, 1985–2014 – Open geodata catalogue</title>
+    <link rel="canonical" href="https://oloyededavid.github.io/Open-Geodata-Catalogue/items/observational-hydrology-extremes/chirps-rx1day-return-levels.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CHIRPS design rainfall per 0.25-degree cell, 1985–2014 – Open geodata catalogue">
+    <meta property="og:description" content="Return levels of annual maximum daily rainfall (Rx1day, mm) for 2, 10, 25, 50 and 100 years, from a GEV fit by L-moments to CHIRPS 1985–2014, for each 0.25-degree cell of the two study areas. Satellite rainfall estimates, not gauge measurements.">
+    <meta property="og:url" content="https://oloyededavid.github.io/Open-Geodata-Catalogue/items/observational-hydrology-extremes/chirps-rx1day-return-levels.html">
+    <meta name="description" content="Return levels of annual maximum daily rainfall (Rx1day, mm) for 2, 10, 25, 50 and 100 years, from a GEV fit by L-moments to CHIRPS 1985–2014, for each 0.25-degree cell of the two study areas. Satellite rainfall estimates, not gauge measurements.">
+    <meta name="author" content="David Oloyede">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%231f5fae'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&amp;display=swap">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@500,700&amp;display=swap">
+    <link rel="stylesheet" href="../../vendor/leaflet-1.9.4/leaflet.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/catalogue.css">
+</head>
+<body data-base="../../">
+<!-- study-bar:start --><style>
+.sn-bar{font:400 14px/1.4 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;border-bottom:1px solid #e5e5e1;color:#141412;position:relative;z-index:1000}
+.sn-bar .sn-in{max-width:1240px;margin:0 auto;padding:4px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sn-bar a{color:#141412;text-decoration:none;display:inline-flex;align-items:center;min-height:32px}.sn-bar a:hover{text-decoration:underline;text-underline-offset:4px}
+.sn-home{font-weight:700}.sn-pos{color:#6a6963;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:.04em}
+.sn-pn{display:flex;gap:18px}.sn-pn a{color:#55544e}
+.sn-next{font:400 16px/1.5 'Range Dash','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;color:#141412;background:#fff;border-top:1px solid #ececea;margin-top:64px}
+.sn-next .sn-in{max-width:1080px;margin:0 auto;padding:40px 24px 48px}
+.sn-k{font-size:15px;color:#6a6963;margin:0 0 14px}
+.sn-card{display:flex;align-items:center;gap:20px;text-decoration:none;color:inherit;background:#fafafa;border:1px solid #ececea;border-radius:22px;padding:14px 18px 14px 14px;transition:border-color .25s,background .25s}
+.sn-card:hover{border-color:#d5d5d1;background:#f6f6f5}
+.sn-media{flex:none;width:112px;height:84px;border-radius:14px;overflow:hidden;background:#eee}
+.sn-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-media img{transform:scale(1.05)}
+.sn-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sn-t b{font-weight:500;font-size:clamp(17px,1.8vw,21px);line-height:1.25;letter-spacing:-.005em}
+.sn-t span{font-size:15px;color:#62625d}
+.sn-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid #e4e4e0;background:#fff;display:grid;place-items:center;font-size:20px;color:#3a3a37;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.sn-card:hover .sn-arrow{transform:translateX(3px)}
+.sn-back{display:flex;justify-content:center;gap:10px;margin-top:28px;font-size:15px;color:#62625d;text-decoration:none}
+.sn-back:hover{color:#141412}
+@media (max-width:620px){.sn-media{width:72px;height:72px}.sn-t span{display:none}.sn-pos{display:none}}
+@media (prefers-reduced-motion:reduce){.sn-media img,.sn-arrow{transition:none}}
+</style><nav class="sn-bar" aria-label="Portfolio"><div class="sn-in"><a class="sn-home" href="https://oloyededavid.github.io/geospatial-rs-portfolio/">← David Oloyede</a><span class="sn-pos">Data catalogue</span><span class="sn-pn"><a href="https://oloyededavid.github.io/geospatial-rs-portfolio/#studies">All studies</a><a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/" title="Hydrological extremes where the gauges are missing: floods, droughts and design rainfall in Nigeria, 1950–2070">First study →</a></span></div></nav><!-- study-bar:end -->
+<nav class="skipnav" aria-label="Skip link"><a class="skip" href="#main">Skip to the content</a></nav>
+<header class="site-header">
+    <div class="site-inner">
+        <a class="site-id" href="../../index.html">Open geodata catalogue</a>
+        <nav class="toc" aria-label="Sections">
+            <a href="../../index.html#collections">Catalogue</a>
+            <a href="../../collections/observational-hydrology-extremes.html">Collection</a>
+            <a href="#files">Files</a>
+            <a href="../../about.html">Design</a>
+        </nav>
+    </div>
+    <nav class="toc-phone" aria-label="Sections on phone">
+        <a href="../../index.html#collections">Catalogue</a>
+        <a href="../../collections/observational-hydrology-extremes.html">Collection</a>
+        <a href="#files">Files</a>
+        <a href="../../about.html">Design</a>
+    </nav>
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<main class="article" id="main">
+<header class="title">
+    <p class="cat-crumbs"><a href="../../index.html#collections">Catalogue</a> / <a href="../../collections/observational-hydrology-extremes.html">Collection</a> / Item</p>
+    <h1>CHIRPS design rainfall per 0.25-degree cell, 1985–2014</h1>
+    <p class="subtitle">Return levels of annual maximum daily rainfall (Rx1day, mm) for 2, 10, 25, 50 and 100 years, from a GEV fit by L-moments to CHIRPS 1985–2014, for each 0.25-degree cell of the two study areas. Satellite rainfall estimates, not gauge measurements.</p>
+</header>
+<section id="map-sec" aria-labelledby="h-map">
+    <h2 class="sr-only" id="h-map">Map</h2>
+    <div id="item-map" class="cat-map" data-bbox="[3.75, 5.75, 9.5, 16.25]" data-geojson="../../stac/observational-hydrology-extremes/chirps-rx1day-return-levels/chirps-rx1day-return-levels.geojson" data-keys="[&quot;area&quot;, &quot;cell_lon&quot;, &quot;cell_lat&quot;, &quot;rl_2yr_mm&quot;, &quot;rl_10yr_mm&quot;, &quot;rl_25yr_mm&quot;]" role="img" aria-label="Map of the layer"></div><p class="cat-note">Hover over a shape to see its first attributes.</p>
+</section>
+<section id="details" aria-labelledby="h-details">
+    <h2 class="cat-h" id="h-details">Details</h2>
+    <dl class="cat-dl">
+        <dt>Collection</dt><dd><a href="../../collections/observational-hydrology-extremes.html">Floods, droughts and design rainfall in two data-sparse Nigerian basins</a></dd>
+        <dt>Period</dt><dd>1985-01-01 to 2014-12-31</dd>
+        <dt>Bounding box</dt><dd>3.7500, 5.7500, 9.5000, 16.2500 (west, south, east, north; degrees)</dd>
+        <dt>Type</dt><dd>Vector, longitude–latitude (EPSG:4326)</dd>
+        <dt>Features</dt><dd>272</dd>
+        <dt>Attributes</dt><dd>area, cell_lon, cell_lat, rl_2yr_mm, rl_10yr_mm, rl_25yr_mm, rl_50yr_mm, rl_100yr_mm</dd>
+        <dt>OGC API collection</dt><dd><code>observational_hydrology_extremes_chirps_rx1day_return_levels</code> (when the service is running)</dd>
+        <dt>Source</dt><dd><a href="https://github.com/oloyededavid/Observational-Hydrology-Extremes/blob/0d49ff84c6522a7eecde412f209d7d822b8bb69e/docs/data/cells.json">docs/data/cells.json</a> at commit <code>0d49ff8</code></dd>
+        <dt>Metadata</dt><dd><a href="../../stac/observational-hydrology-extremes/chirps-rx1day-return-levels/chirps-rx1day-return-levels.json">STAC item JSON</a></dd>
+    </dl>
+</section>
+<section id="files" aria-labelledby="h-files">
+    <h2 class="cat-h" id="h-files">Files</h2>
+    <div class="cat-table"><table><thead><tr><th scope="col">File</th><th scope="col">Media type</th><th scope="col">Size</th><th scope="col">SHA-256 (start)</th><th scope="col"></th></tr></thead><tbody><tr><th scope="row">GeoParquet</th><td>application/vnd.apache.parquet</td><td>23 KB</td><td><code title="1220b703376727aa58aee085f15efc257d342b7aee385fdc3f7e2bae5fdd7d257cfe">b703376727aa…</code></td><td><a href="../../stac/observational-hydrology-extremes/chirps-rx1day-return-levels/chirps-rx1day-return-levels.parquet" download>Download</a></td></tr><tr><th scope="row">GeoJSON</th><td>application/geo+json</td><td>85 KB</td><td><code title="1220eff3dd5e23699fbe409c1e41807b79fa4f46481aa2bd398b56290010f94574e8">eff3dd5e2369…</code></td><td><a href="../../stac/observational-hydrology-extremes/chirps-rx1day-return-levels/chirps-rx1day-return-levels.geojson" download>Download</a></td></tr></tbody></table></div>
+    <p class="cat-note">Data licence: CC BY 4.0. Cite the study when you use these data; the study page explains the methods and limits.</p>
+</section>
+</main>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<footer>
+    <div class="inner">
+        <p class="sig"><span>David Oloyede</span><span><a href="https://github.com/oloyededavid">github.com/oloyededavid</a></span><span><a href="https://github.com/oloyededavid/Open-Geodata-Catalogue">Repository</a></span></p>
+        <p>Catalogue code MIT. Each collection keeps the data licence its study states (mostly CC BY 4.0); the source datasets behind the studies keep their own terms. Map outlines: Natural Earth (public domain).</p>
+        <!-- study-others:start --><p class="others">Studies in this catalogue: <a href="https://oloyededavid.github.io/Observational-Hydrology-Extremes/">Nigeria floods, drought and design rainfall</a> · <a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Ogun surface water</a> · <a href="https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/">Ouémé–Ogun recharge</a> · <a href="https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/">Lake Chad water storage</a> · <a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Lagos urban heat</a> · <a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Lekki–Epe groundwater</a> · <a href="https://oloyededavid.github.io/Mozambique-Health-Access/">Mozambique health access</a></p><!-- study-others:end -->
+    </div>
+</footer>
+<script src="../../vendor/leaflet-1.9.4/leaflet.js"></script>
+<script src="../../assets/catalogue.js"></script>
+<script src="../../assets/study.js"></script>
+</body>
+</html>
