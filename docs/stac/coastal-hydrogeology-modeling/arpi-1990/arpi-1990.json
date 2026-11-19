@@ -1,0 +1,351 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "arpi-1990",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          4.050163,
+          6.399001
+        ],
+        [
+          4.05022,
+          6.426919
+        ],
+        [
+          4.050277,
+          6.454837
+        ],
+        [
+          4.050335,
+          6.482755
+        ],
+        [
+          4.050393,
+          6.510672
+        ],
+        [
+          4.050451,
+          6.53859
+        ],
+        [
+          4.050509,
+          6.566508
+        ],
+        [
+          4.050568,
+          6.594425
+        ],
+        [
+          4.050627,
+          6.622343
+        ],
+        [
+          4.050686,
+          6.650261
+        ],
+        [
+          4.020645,
+          6.650323
+        ],
+        [
+          3.990604,
+          6.650385
+        ],
+        [
+          3.960563,
+          6.650444
+        ],
+        [
+          3.930521,
+          6.650501
+        ],
+        [
+          3.900479,
+          6.650557
+        ],
+        [
+          3.870437,
+          6.650611
+        ],
+        [
+          3.840394,
+          6.650662
+        ],
+        [
+          3.810352,
+          6.650713
+        ],
+        [
+          3.780309,
+          6.650761
+        ],
+        [
+          3.750266,
+          6.650807
+        ],
+        [
+          3.720222,
+          6.650852
+        ],
+        [
+          3.690179,
+          6.650895
+        ],
+        [
+          3.660135,
+          6.650936
+        ],
+        [
+          3.630091,
+          6.650975
+        ],
+        [
+          3.600047,
+          6.651012
+        ],
+        [
+          3.570003,
+          6.651048
+        ],
+        [
+          3.539958,
+          6.651082
+        ],
+        [
+          3.509914,
+          6.651113
+        ],
+        [
+          3.479869,
+          6.651144
+        ],
+        [
+          3.449824,
+          6.651172
+        ],
+        [
+          3.449799,
+          6.62325
+        ],
+        [
+          3.449773,
+          6.595329
+        ],
+        [
+          3.449748,
+          6.567407
+        ],
+        [
+          3.449723,
+          6.539486
+        ],
+        [
+          3.449698,
+          6.511564
+        ],
+        [
+          3.449674,
+          6.483643
+        ],
+        [
+          3.449649,
+          6.455721
+        ],
+        [
+          3.449624,
+          6.427799
+        ],
+        [
+          3.4496,
+          6.399878
+        ],
+        [
+          3.47963,
+          6.399851
+        ],
+        [
+          3.50966,
+          6.399822
+        ],
+        [
+          3.539689,
+          6.399791
+        ],
+        [
+          3.569719,
+          6.399759
+        ],
+        [
+          3.599748,
+          6.399724
+        ],
+        [
+          3.629777,
+          6.399689
+        ],
+        [
+          3.659806,
+          6.399651
+        ],
+        [
+          3.689835,
+          6.399611
+        ],
+        [
+          3.719863,
+          6.39957
+        ],
+        [
+          3.749892,
+          6.399527
+        ],
+        [
+          3.77992,
+          6.399483
+        ],
+        [
+          3.809948,
+          6.399436
+        ],
+        [
+          3.839976,
+          6.399388
+        ],
+        [
+          3.870003,
+          6.399338
+        ],
+        [
+          3.90003,
+          6.399286
+        ],
+        [
+          3.930057,
+          6.399233
+        ],
+        [
+          3.960084,
+          6.399178
+        ],
+        [
+          3.990111,
+          6.399121
+        ],
+        [
+          4.020137,
+          6.399062
+        ],
+        [
+          4.050163,
+          6.399001
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    3.449599838844883,
+    6.399001298527305,
+    4.0506861735819335,
+    6.651171758659716
+  ],
+  "properties": {
+    "title": "Recharge-potential index, 1986\u20131996 imagery",
+    "description": "Recharge-potential index on a 30 m grid (UTM 31N) from Landsat 5 TM November\u2013March composites of 1986\u20131996, with the study's sensor and rainfall corrections. A relative score between 0 and 1.",
+    "start_datetime": "1986-01-01T00:00:00Z",
+    "end_datetime": "1996-12-31T23:59:59Z",
+    "proj:code": "EPSG:32631",
+    "proj:shape": [
+      926,
+      2214
+    ],
+    "proj:transform": [
+      30.0,
+      0.0,
+      549720.0,
+      0.0,
+      -30.0,
+      735210.0
+    ],
+    "proj:bbox": [
+      549720.0,
+      707430.0,
+      616140.0,
+      735210.0
+    ],
+    "geocat:kind": "raster",
+    "geocat:band_description": "",
+    "geocat:data_type": "float32",
+    "geocat:nodata": -9999.0,
+    "geocat:nodata_is_nan": false,
+    "geocat:preview_range": [
+      0.3219,
+      0.7966
+    ],
+    "geocat:preview_colormap": "viridis",
+    "geocat:source_file": "outputs/arpi_1990.tif",
+    "geocat:source_commit": "0fff30c23761f8982fcac26cba9b7acd1f14bd3c",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Coastal-Hydrogeology-Modeling/blob/0fff30c23761f8982fcac26cba9b7acd1f14bd3c/outputs/arpi_1990.tif",
+      "type": "text/html",
+      "title": "Source file in Coastal-Hydrogeology-Modeling at commit 0fff30c"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Urban sealing and the shallow water table of the Lekki\u2013Epe barrier, Lagos"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Urban sealing and the shallow water table of the Lekki\u2013Epe barrier, Lagos"
+    }
+  ],
+  "assets": {
+    "cog": {
+      "href": "./arpi-1990.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Cloud-Optimised GeoTIFF",
+      "file:size": 3452667,
+      "file:checksum": "1220778888b1589dafa24ab93a35fe7ea90e5c53d7368d81d595c41694de9f8f0c1e",
+      "roles": [
+        "data"
+      ]
+    },
+    "preview": {
+      "href": "./arpi-1990.preview.png",
+      "type": "image/png",
+      "title": "Quick-look (EPSG:4326)",
+      "file:size": 131113,
+      "file:checksum": "122055fd86e95d2f3252ce9673d1afefd9b0bb90a6aa65fc87316442317ca811f850",
+      "roles": [
+        "overview"
+      ]
+    }
+  },
+  "collection": "coastal-hydrogeology-modeling"
+}

@@ -1,0 +1,114 @@
+{
+  "type": "Collection",
+  "id": "mozambique-health-access",
+  "stac_version": "1.1.0",
+  "description": "District outlines of Mozambique with modelled travel time to the nearest public-sector health facility, and the facility lists used. Travel times are model estimates from friction surfaces and modelled population, not observed journeys; the study shows how much they change with the facility list, mode of travel and population layer.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Mozambique-Health-Access/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Mozambique-Health-Access",
+      "type": "text/html",
+      "title": "Study repository"
+    },
+    {
+      "rel": "license",
+      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/main/LICENSE-DATA.md",
+      "type": "text/html",
+      "title": "Licence statement (LICENSE-DATA.md)"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC-BY-4.0"
+    },
+    {
+      "rel": "item",
+      "href": "./district-access-public-list/district-access-public-list.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./facilities-public-and-herams/facilities-public-and-herams.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./facilities-openstreetmap/facilities-openstreetmap.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    }
+  ],
+  "geocat:code_licence": "MIT",
+  "geocat:licence_note": "Facility data derived from OpenStreetMap are under the ODbL 1.0; that layer carries its own licence.",
+  "geocat:source_commit": "8257e5d91c657a18234a8fc8241084f2272141ce",
+  "geocat:source_branch": "main",
+  "geocat:source_commit_date": "2026-11-19",
+  "geocat:source_commit_on_remote": false,
+  "title": "Travel time to health facilities in Mozambique",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          30.2123,
+          -26.867,
+          40.8403,
+          -10.4737
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2026-11-19T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Mozambique",
+    "health facilities",
+    "travel time",
+    "accessibility",
+    "friction surface",
+    "WorldPop",
+    "districts"
+  ],
+  "providers": [
+    {
+      "name": "David Oloyede",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://github.com/oloyededavid/Mozambique-Health-Access"
+    },
+    {
+      "name": "GitHub Pages",
+      "roles": [
+        "host"
+      ],
+      "url": "https://oloyededavid.github.io/Open-Geodata-Catalogue/"
+    }
+  ]
+}

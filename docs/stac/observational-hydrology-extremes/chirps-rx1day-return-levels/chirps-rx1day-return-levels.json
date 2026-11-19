@@ -1,0 +1,605 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "chirps-rx1day-return-levels",
+  "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+      [
+        [
+          [
+            4.0,
+            11.75
+          ],
+          [
+            4.0,
+            12.0
+          ],
+          [
+            3.75,
+            12.0
+          ],
+          [
+            3.75,
+            12.25
+          ],
+          [
+            3.75,
+            12.5
+          ],
+          [
+            3.75,
+            12.75
+          ],
+          [
+            4.0,
+            12.75
+          ],
+          [
+            4.0,
+            13.0
+          ],
+          [
+            4.25,
+            13.0
+          ],
+          [
+            4.5,
+            13.0
+          ],
+          [
+            4.75,
+            13.0
+          ],
+          [
+            4.75,
+            13.25
+          ],
+          [
+            5.0,
+            13.25
+          ],
+          [
+            5.0,
+            13.5
+          ],
+          [
+            5.25,
+            13.5
+          ],
+          [
+            5.25,
+            13.75
+          ],
+          [
+            5.25,
+            14.0
+          ],
+          [
+            5.5,
+            14.0
+          ],
+          [
+            5.5,
+            14.25
+          ],
+          [
+            5.75,
+            14.25
+          ],
+          [
+            5.75,
+            14.5
+          ],
+          [
+            6.0,
+            14.5
+          ],
+          [
+            6.0,
+            14.75
+          ],
+          [
+            6.25,
+            14.75
+          ],
+          [
+            6.25,
+            15.0
+          ],
+          [
+            6.5,
+            15.0
+          ],
+          [
+            6.5,
+            15.25
+          ],
+          [
+            6.5,
+            15.5
+          ],
+          [
+            6.5,
+            15.75
+          ],
+          [
+            6.75,
+            15.75
+          ],
+          [
+            7.0,
+            15.75
+          ],
+          [
+            7.25,
+            15.75
+          ],
+          [
+            7.5,
+            15.75
+          ],
+          [
+            7.5,
+            16.0
+          ],
+          [
+            7.75,
+            16.0
+          ],
+          [
+            8.0,
+            16.0
+          ],
+          [
+            8.0,
+            16.25
+          ],
+          [
+            8.25,
+            16.25
+          ],
+          [
+            8.25,
+            16.0
+          ],
+          [
+            8.25,
+            15.75
+          ],
+          [
+            8.5,
+            15.75
+          ],
+          [
+            8.5,
+            16.0
+          ],
+          [
+            8.75,
+            16.0
+          ],
+          [
+            9.0,
+            16.0
+          ],
+          [
+            9.0,
+            15.75
+          ],
+          [
+            9.0,
+            15.5
+          ],
+          [
+            9.0,
+            15.25
+          ],
+          [
+            9.0,
+            15.0
+          ],
+          [
+            9.25,
+            15.0
+          ],
+          [
+            9.25,
+            14.75
+          ],
+          [
+            9.25,
+            14.5
+          ],
+          [
+            9.5,
+            14.5
+          ],
+          [
+            9.5,
+            14.25
+          ],
+          [
+            9.25,
+            14.25
+          ],
+          [
+            9.0,
+            14.25
+          ],
+          [
+            9.0,
+            14.0
+          ],
+          [
+            8.75,
+            14.0
+          ],
+          [
+            8.75,
+            13.75
+          ],
+          [
+            8.5,
+            13.75
+          ],
+          [
+            8.25,
+            13.75
+          ],
+          [
+            8.25,
+            13.5
+          ],
+          [
+            8.25,
+            13.25
+          ],
+          [
+            8.5,
+            13.25
+          ],
+          [
+            8.5,
+            13.0
+          ],
+          [
+            8.25,
+            13.0
+          ],
+          [
+            8.25,
+            12.75
+          ],
+          [
+            8.25,
+            12.5
+          ],
+          [
+            8.0,
+            12.5
+          ],
+          [
+            8.0,
+            12.25
+          ],
+          [
+            8.0,
+            12.0
+          ],
+          [
+            7.75,
+            12.0
+          ],
+          [
+            7.75,
+            11.75
+          ],
+          [
+            7.5,
+            11.75
+          ],
+          [
+            7.5,
+            11.5
+          ],
+          [
+            7.25,
+            11.5
+          ],
+          [
+            7.0,
+            11.5
+          ],
+          [
+            6.75,
+            11.5
+          ],
+          [
+            6.5,
+            11.5
+          ],
+          [
+            6.5,
+            11.25
+          ],
+          [
+            6.25,
+            11.25
+          ],
+          [
+            6.0,
+            11.25
+          ],
+          [
+            5.75,
+            11.25
+          ],
+          [
+            5.5,
+            11.25
+          ],
+          [
+            5.5,
+            11.5
+          ],
+          [
+            5.25,
+            11.5
+          ],
+          [
+            5.25,
+            11.75
+          ],
+          [
+            5.0,
+            11.75
+          ],
+          [
+            5.0,
+            11.5
+          ],
+          [
+            4.75,
+            11.5
+          ],
+          [
+            4.5,
+            11.5
+          ],
+          [
+            4.25,
+            11.5
+          ],
+          [
+            4.0,
+            11.5
+          ],
+          [
+            4.0,
+            11.75
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            6.5,
+            6.25
+          ],
+          [
+            6.5,
+            6.5
+          ],
+          [
+            6.5,
+            6.75
+          ],
+          [
+            6.5,
+            7.0
+          ],
+          [
+            6.5,
+            7.25
+          ],
+          [
+            6.5,
+            7.5
+          ],
+          [
+            6.5,
+            7.75
+          ],
+          [
+            6.5,
+            8.0
+          ],
+          [
+            6.75,
+            8.0
+          ],
+          [
+            7.0,
+            8.0
+          ],
+          [
+            7.25,
+            8.0
+          ],
+          [
+            7.25,
+            7.75
+          ],
+          [
+            7.25,
+            7.5
+          ],
+          [
+            7.25,
+            7.25
+          ],
+          [
+            7.25,
+            7.0
+          ],
+          [
+            7.25,
+            6.75
+          ],
+          [
+            7.25,
+            6.5
+          ],
+          [
+            7.25,
+            6.25
+          ],
+          [
+            7.25,
+            6.0
+          ],
+          [
+            7.25,
+            5.75
+          ],
+          [
+            7.0,
+            5.75
+          ],
+          [
+            6.75,
+            5.75
+          ],
+          [
+            6.5,
+            5.75
+          ],
+          [
+            6.5,
+            6.0
+          ],
+          [
+            6.5,
+            6.25
+          ]
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    3.75,
+    5.75,
+    9.5,
+    16.25
+  ],
+  "properties": {
+    "title": "CHIRPS design rainfall per 0.25-degree cell, 1985\u20132014",
+    "description": "Return levels of annual maximum daily rainfall (Rx1day, mm) for 2, 10, 25, 50 and 100 years, from a GEV fit by L-moments to CHIRPS 1985\u20132014, for each 0.25-degree cell of the two study areas. Satellite rainfall estimates, not gauge measurements.",
+    "start_datetime": "1985-01-01T00:00:00Z",
+    "end_datetime": "2014-12-31T23:59:59Z",
+    "table:row_count": 272,
+    "table:columns": [
+      {
+        "name": "area",
+        "type": "object"
+      },
+      {
+        "name": "cell_lon",
+        "type": "float64"
+      },
+      {
+        "name": "cell_lat",
+        "type": "float64"
+      },
+      {
+        "name": "rl_2yr_mm",
+        "type": "float64"
+      },
+      {
+        "name": "rl_10yr_mm",
+        "type": "float64"
+      },
+      {
+        "name": "rl_25yr_mm",
+        "type": "float64"
+      },
+      {
+        "name": "rl_50yr_mm",
+        "type": "float64"
+      },
+      {
+        "name": "rl_100yr_mm",
+        "type": "float64"
+      },
+      {
+        "name": "geometry",
+        "type": "geometry"
+      }
+    ],
+    "geocat:kind": "vector",
+    "geocat:invalid_geometries_repaired": 0,
+    "geocat:source_file": "docs/data/cells.json",
+    "geocat:source_commit": "0d49ff84c6522a7eecde412f209d7d822b8bb69e",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Observational-Hydrology-Extremes/blob/0d49ff84c6522a7eecde412f209d7d822b8bb69e/docs/data/cells.json",
+      "type": "text/html",
+      "title": "Source file in Observational-Hydrology-Extremes at commit 0d49ff8"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Observational-Hydrology-Extremes/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Floods, droughts and design rainfall in two data-sparse Nigerian basins"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Floods, droughts and design rainfall in two data-sparse Nigerian basins"
+    }
+  ],
+  "assets": {
+    "geoparquet": {
+      "href": "./chirps-rx1day-return-levels.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GeoParquet",
+      "file:size": 23411,
+      "file:checksum": "1220b703376727aa58aee085f15efc257d342b7aee385fdc3f7e2bae5fdd7d257cfe",
+      "roles": [
+        "data"
+      ]
+    },
+    "geojson": {
+      "href": "./chirps-rx1day-return-levels.geojson",
+      "type": "application/geo+json",
+      "title": "GeoJSON",
+      "file:size": 87211,
+      "file:checksum": "1220eff3dd5e23699fbe409c1e41807b79fa4f46481aa2bd398b56290010f94574e8",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "observational-hydrology-extremes"
+}

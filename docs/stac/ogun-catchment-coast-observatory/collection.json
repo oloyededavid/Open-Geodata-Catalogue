@@ -1,0 +1,103 @@
+{
+  "type": "Collection",
+  "id": "ogun-catchment-coast-observatory",
+  "stac_version": "1.1.0",
+  "description": "Sub-basin units of the Ogun River catchment and Lagos Lagoon with summary indicators (rainfall, NDVI, turbidity index, Sentinel-1 inundation, soil moisture) from Earth observation, 2019\u20132024.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Ogun-Catchment-Coast-Observatory",
+      "type": "text/html",
+      "title": "Study repository"
+    },
+    {
+      "rel": "license",
+      "href": "https://github.com/oloyededavid/Ogun-Catchment-Coast-Observatory/blob/main/LICENSE-DATA.md",
+      "type": "text/html",
+      "title": "Licence statement (LICENSE-DATA.md)"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC-BY-4.0"
+    },
+    {
+      "rel": "item",
+      "href": "./sub-basins/sub-basins.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    }
+  ],
+  "geocat:code_licence": "MIT",
+  "geocat:source_commit": "1a70f99fb169456a1160e7f217a9c152a84cf3a5",
+  "geocat:source_branch": "text-fixes",
+  "geocat:source_commit_date": "2026-11-18",
+  "geocat:source_commit_on_remote": true,
+  "title": "Ogun River catchment-to-coast environmental observatory",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.6833354202515127,
+          6.4499999900609755,
+          4.154165395920106,
+          8.954164787517401
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Ogun River",
+    "Lagos Lagoon",
+    "Sentinel-1",
+    "Sentinel-2",
+    "CHIRPS",
+    "ERA5-Land",
+    "sub-basins"
+  ],
+  "providers": [
+    {
+      "name": "David Oloyede",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://github.com/oloyededavid/Ogun-Catchment-Coast-Observatory"
+    },
+    {
+      "name": "GitHub Pages",
+      "roles": [
+        "host"
+      ],
+      "url": "https://oloyededavid.github.io/Open-Geodata-Catalogue/"
+    }
+  ]
+}

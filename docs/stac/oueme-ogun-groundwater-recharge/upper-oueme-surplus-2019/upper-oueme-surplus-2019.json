@@ -1,0 +1,135 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "upper-oueme-surplus-2019",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          2.9000027254223824,
+          9.04999938979745
+        ],
+        [
+          2.9000027254223824,
+          10.2999994084239
+        ],
+        [
+          1.4000027030706406,
+          10.2999994084239
+        ],
+        [
+          1.4000027030706406,
+          9.04999938979745
+        ],
+        [
+          2.9000027254223824,
+          9.04999938979745
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    1.4000027030706406,
+    9.04999938979745,
+    2.9000027254223824,
+    10.2999994084239
+  ],
+  "properties": {
+    "title": "Upper Ou\u00e9m\u00e9 water surplus, 2019",
+    "description": "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree.",
+    "start_datetime": "2019-01-01T00:00:00Z",
+    "end_datetime": "2019-12-31T23:59:59Z",
+    "proj:code": "EPSG:4326",
+    "proj:shape": [
+      25,
+      30
+    ],
+    "proj:transform": [
+      0.05000000074505806,
+      0.0,
+      1.4000027030706406,
+      0.0,
+      -0.05000000074505806,
+      10.2999994084239
+    ],
+    "proj:bbox": [
+      1.4000027030706406,
+      9.04999938979745,
+      2.9000027254223824,
+      10.2999994084239
+    ],
+    "geocat:kind": "raster",
+    "geocat:band_description": "CHIRPS v2.0 minus WaPOR ET 2019, mm/year, 0.05 degree",
+    "geocat:data_type": "float32",
+    "geocat:nodata": null,
+    "geocat:nodata_is_nan": true,
+    "geocat:preview_range": [
+      34.157,
+      495.4794
+    ],
+    "geocat:preview_colormap": "viridis",
+    "geocat:source_file": "outputs/maps/upper_oueme_surplus_2019.tif",
+    "geocat:source_commit": "77cbec0557200eb525af8f27bb8d2c97fb245c45",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Oueme-Ogun-Groundwater-Recharge/blob/77cbec0557200eb525af8f27bb8d2c97fb245c45/outputs/maps/upper_oueme_surplus_2019.tif",
+      "type": "text/html",
+      "title": "Source file in Oueme-Ogun-Groundwater-Recharge at commit 77cbec0"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Testing a satellite water balance for groundwater recharge: Upper Ou\u00e9m\u00e9 and Upper Ogun"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Testing a satellite water balance for groundwater recharge: Upper Ou\u00e9m\u00e9 and Upper Ogun"
+    }
+  ],
+  "assets": {
+    "cog": {
+      "href": "./upper-oueme-surplus-2019.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Cloud-Optimised GeoTIFF",
+      "file:size": 3555,
+      "file:checksum": "1220de9d8efa797ba8ad6e6b137e78c0843bac860643553dde13ac2a99378c0d23a8",
+      "roles": [
+        "data"
+      ]
+    },
+    "preview": {
+      "href": "./upper-oueme-surplus-2019.preview.png",
+      "type": "image/png",
+      "title": "Quick-look (EPSG:4326)",
+      "file:size": 1651,
+      "file:checksum": "12201500363e40a52dfde320ca1d13705ded7fc4a8139401aa8e052e55d2d6118011",
+      "roles": [
+        "overview"
+      ]
+    }
+  },
+  "collection": "oueme-ogun-groundwater-recharge"
+}

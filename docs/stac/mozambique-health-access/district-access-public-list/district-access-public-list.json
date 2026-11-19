@@ -1,0 +1,267 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "district-access-public-list",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          32.7253,
+          -26.867
+        ],
+        [
+          32.1838,
+          -26.8626
+        ],
+        [
+          32.151,
+          -26.8541
+        ],
+        [
+          32.1352,
+          -26.8405
+        ],
+        [
+          31.9309,
+          -25.8401
+        ],
+        [
+          31.3059,
+          -22.4184
+        ],
+        [
+          30.2127,
+          -15.0715
+        ],
+        [
+          30.2123,
+          -15.0571
+        ],
+        [
+          30.2169,
+          -15.0017
+        ],
+        [
+          34.6376,
+          -11.577
+        ],
+        [
+          40.4501,
+          -10.4737
+        ],
+        [
+          40.5113,
+          -10.4823
+        ],
+        [
+          40.529,
+          -10.4855
+        ],
+        [
+          40.6405,
+          -10.6944
+        ],
+        [
+          40.6842,
+          -10.8545
+        ],
+        [
+          40.7175,
+          -11.0102
+        ],
+        [
+          40.8403,
+          -14.5461
+        ],
+        [
+          40.8367,
+          -14.7817
+        ],
+        [
+          40.835,
+          -14.8059
+        ],
+        [
+          40.8326,
+          -14.8398
+        ],
+        [
+          40.8303,
+          -14.8539
+        ],
+        [
+          40.7906,
+          -15.0503
+        ],
+        [
+          40.771,
+          -15.0912
+        ],
+        [
+          40.5745,
+          -15.4811
+        ],
+        [
+          40.5662,
+          -15.4964
+        ],
+        [
+          35.4676,
+          -24.1718
+        ],
+        [
+          35.4219,
+          -24.2344
+        ],
+        [
+          35.2018,
+          -24.5252
+        ],
+        [
+          35.15,
+          -24.5813
+        ],
+        [
+          32.8926,
+          -26.8568
+        ],
+        [
+          32.8591,
+          -26.8631
+        ],
+        [
+          32.7253,
+          -26.867
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    30.2123,
+    -26.867,
+    40.8403,
+    -10.4737
+  ],
+  "properties": {
+    "title": "District travel time to public-sector facilities, 2020",
+    "description": "The 159 districts with WorldPop 2020 population and, for the public-sector facility list of Maina et al. (2019) (list A), the share of residents over 60 and 120 minutes from a facility and the median travel time in minutes, by motorized and walking travel (Malaria Atlas Project friction surfaces, 2020). `compared` marks the districts used in the study's comparisons. Outlines simplified by the study.",
+    "start_datetime": "2020-01-01T00:00:00Z",
+    "end_datetime": "2020-12-31T23:59:59Z",
+    "table:row_count": 159,
+    "table:columns": [
+      {
+        "name": "id",
+        "type": "int32"
+      },
+      {
+        "name": "name",
+        "type": "object"
+      },
+      {
+        "name": "province",
+        "type": "object"
+      },
+      {
+        "name": "geometry",
+        "type": "geometry"
+      },
+      {
+        "name": "population",
+        "type": "int64"
+      },
+      {
+        "name": "compared",
+        "type": "bool"
+      },
+      {
+        "name": "A_motorized_share_over_60",
+        "type": "float64"
+      },
+      {
+        "name": "A_motorized_share_over_120",
+        "type": "float64"
+      },
+      {
+        "name": "A_motorized_median_min",
+        "type": "float64"
+      },
+      {
+        "name": "A_walking_share_over_60",
+        "type": "float64"
+      },
+      {
+        "name": "A_walking_share_over_120",
+        "type": "float64"
+      },
+      {
+        "name": "A_walking_median_min",
+        "type": "float64"
+      }
+    ],
+    "geocat:kind": "vector",
+    "geocat:invalid_geometries_repaired": 0,
+    "geocat:source_file": "docs/data/districts.geojson",
+    "geocat:source_commit": "8257e5d91c657a18234a8fc8241084f2272141ce",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/main/docs/data/districts.geojson",
+      "type": "text/html",
+      "title": "Source file in Mozambique-Health-Access at commit 8257e5d"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Mozambique-Health-Access/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Travel time to health facilities in Mozambique"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Travel time to health facilities in Mozambique"
+    }
+  ],
+  "assets": {
+    "geoparquet": {
+      "href": "./district-access-public-list.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GeoParquet",
+      "file:size": 252505,
+      "file:checksum": "1220e3241080f6d4399dda23494918fe24b2f6411395b4d848e5fa153d371c652601",
+      "roles": [
+        "data"
+      ]
+    },
+    "geojson": {
+      "href": "./district-access-public-list.geojson",
+      "type": "application/geo+json",
+      "title": "GeoJSON",
+      "file:size": 451135,
+      "file:checksum": "12205c3998fd8e52c0a79a7dcf9cd0488a0ce12438cc9aca198f4f46507872b0fbfd",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "mozambique-health-access"
+}

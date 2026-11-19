@@ -1,0 +1,63 @@
+{
+  "type": "Catalog",
+  "id": "open-geodata-catalogue",
+  "stac_version": "1.1.0",
+  "description": "Spatial outputs of David Oloyede's open studies (hydrology, groundwater, urban heat, coastal sealing), as one STAC collection per study. Data keep the licence and limits stated by each study.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Open-Geodata-Catalogue/",
+      "type": "text/html",
+      "title": "Catalogue website"
+    },
+    {
+      "rel": "child",
+      "href": "./observational-hydrology-extremes/collection.json",
+      "type": "application/json",
+      "title": "Floods, droughts and design rainfall in two data-sparse Nigerian basins"
+    },
+    {
+      "rel": "child",
+      "href": "./ogun-catchment-coast-observatory/collection.json",
+      "type": "application/json",
+      "title": "Ogun River catchment-to-coast environmental observatory"
+    },
+    {
+      "rel": "child",
+      "href": "./oueme-ogun-groundwater-recharge/collection.json",
+      "type": "application/json",
+      "title": "Testing a satellite water balance for groundwater recharge: Upper Ou\u00e9m\u00e9 and Upper Ogun"
+    },
+    {
+      "rel": "child",
+      "href": "./groundwater-storage-gravimetry/collection.json",
+      "type": "application/json",
+      "title": "Water storage in the Lake Chad basin from GRACE and GRACE-FO"
+    },
+    {
+      "rel": "child",
+      "href": "./lagos-urban-heat-analytics/collection.json",
+      "type": "application/json",
+      "title": "Surface urban heat island and distance to vegetation in Lagos State"
+    },
+    {
+      "rel": "child",
+      "href": "./coastal-hydrogeology-modeling/collection.json",
+      "type": "application/json",
+      "title": "Urban sealing and the shallow water table of the Lekki\u2013Epe barrier, Lagos"
+    },
+    {
+      "rel": "child",
+      "href": "./mozambique-health-access/collection.json",
+      "type": "application/json",
+      "title": "Travel time to health facilities in Mozambique"
+    }
+  ],
+  "title": "Open geodata catalogue"
+}

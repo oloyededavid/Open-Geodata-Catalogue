@@ -1,0 +1,443 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "storage-trend-cells",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          4.0,
+          9.0
+        ],
+        [
+          4.0,
+          10.0
+        ],
+        [
+          4.0,
+          11.0
+        ],
+        [
+          4.0,
+          12.0
+        ],
+        [
+          4.0,
+          13.0
+        ],
+        [
+          4.0,
+          14.0
+        ],
+        [
+          4.0,
+          15.0
+        ],
+        [
+          4.0,
+          16.0
+        ],
+        [
+          4.0,
+          17.0
+        ],
+        [
+          4.0,
+          18.0
+        ],
+        [
+          4.0,
+          19.0
+        ],
+        [
+          5.0,
+          19.0
+        ],
+        [
+          6.0,
+          19.0
+        ],
+        [
+          7.0,
+          19.0
+        ],
+        [
+          8.0,
+          19.0
+        ],
+        [
+          9.0,
+          19.0
+        ],
+        [
+          10.0,
+          19.0
+        ],
+        [
+          11.0,
+          19.0
+        ],
+        [
+          12.0,
+          19.0
+        ],
+        [
+          13.0,
+          19.0
+        ],
+        [
+          14.0,
+          19.0
+        ],
+        [
+          15.0,
+          19.0
+        ],
+        [
+          16.0,
+          19.0
+        ],
+        [
+          17.0,
+          19.0
+        ],
+        [
+          18.0,
+          19.0
+        ],
+        [
+          19.0,
+          19.0
+        ],
+        [
+          20.0,
+          19.0
+        ],
+        [
+          21.0,
+          19.0
+        ],
+        [
+          22.0,
+          19.0
+        ],
+        [
+          23.0,
+          19.0
+        ],
+        [
+          24.0,
+          19.0
+        ],
+        [
+          25.0,
+          19.0
+        ],
+        [
+          26.0,
+          19.0
+        ],
+        [
+          27.0,
+          19.0
+        ],
+        [
+          27.0,
+          18.0
+        ],
+        [
+          27.0,
+          17.0
+        ],
+        [
+          27.0,
+          16.0
+        ],
+        [
+          27.0,
+          15.0
+        ],
+        [
+          27.0,
+          14.0
+        ],
+        [
+          27.0,
+          13.0
+        ],
+        [
+          27.0,
+          12.0
+        ],
+        [
+          27.0,
+          11.0
+        ],
+        [
+          27.0,
+          10.0
+        ],
+        [
+          27.0,
+          9.0
+        ],
+        [
+          27.0,
+          8.0
+        ],
+        [
+          27.0,
+          7.0
+        ],
+        [
+          27.0,
+          6.0
+        ],
+        [
+          27.0,
+          5.0
+        ],
+        [
+          27.0,
+          4.0
+        ],
+        [
+          27.0,
+          3.0
+        ],
+        [
+          27.0,
+          2.0
+        ],
+        [
+          26.0,
+          2.0
+        ],
+        [
+          25.0,
+          2.0
+        ],
+        [
+          24.0,
+          2.0
+        ],
+        [
+          23.0,
+          2.0
+        ],
+        [
+          22.0,
+          2.0
+        ],
+        [
+          21.0,
+          2.0
+        ],
+        [
+          20.0,
+          2.0
+        ],
+        [
+          19.0,
+          2.0
+        ],
+        [
+          18.0,
+          2.0
+        ],
+        [
+          17.0,
+          2.0
+        ],
+        [
+          16.0,
+          2.0
+        ],
+        [
+          15.0,
+          2.0
+        ],
+        [
+          14.0,
+          2.0
+        ],
+        [
+          13.0,
+          2.0
+        ],
+        [
+          12.0,
+          2.0
+        ],
+        [
+          11.0,
+          2.0
+        ],
+        [
+          10.0,
+          2.0
+        ],
+        [
+          10.0,
+          3.0
+        ],
+        [
+          10.0,
+          4.0
+        ],
+        [
+          9.0,
+          4.0
+        ],
+        [
+          9.0,
+          5.0
+        ],
+        [
+          8.0,
+          5.0
+        ],
+        [
+          8.0,
+          4.0
+        ],
+        [
+          7.0,
+          4.0
+        ],
+        [
+          6.0,
+          4.0
+        ],
+        [
+          6.0,
+          5.0
+        ],
+        [
+          5.0,
+          5.0
+        ],
+        [
+          5.0,
+          6.0
+        ],
+        [
+          4.0,
+          6.0
+        ],
+        [
+          4.0,
+          7.0
+        ],
+        [
+          4.0,
+          8.0
+        ],
+        [
+          4.0,
+          9.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    4.0,
+    2.0,
+    27.0,
+    19.0
+  ],
+  "properties": {
+    "title": "Total water storage trend per 1-degree cell",
+    "description": "Straight-line trend of total water storage (mm per year) in each 1-degree GRACE/GRACE-FO cell (COST-G solution). A trend over the whole record; the study reports that the record changes little until about 2018 and then rises, so one straight line is a simplification.",
+    "start_datetime": "2002-04-01T00:00:00Z",
+    "end_datetime": "2026-07-31T23:59:59Z",
+    "table:row_count": 375,
+    "table:columns": [
+      {
+        "name": "cell_lat",
+        "type": "float64"
+      },
+      {
+        "name": "cell_lon",
+        "type": "float64"
+      },
+      {
+        "name": "trend_mm_per_yr",
+        "type": "float64"
+      },
+      {
+        "name": "in_main_area",
+        "type": "bool"
+      },
+      {
+        "name": "geometry",
+        "type": "geometry"
+      }
+    ],
+    "geocat:kind": "vector",
+    "geocat:invalid_geometries_repaired": 0,
+    "geocat:source_file": "docs/data/grace_cells.json",
+    "geocat:source_commit": "ab5ff88fd147bb7ba1a4e48800e14e9a1380411f",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Groundwater-Storage-Gravimetry/blob/ab5ff88fd147bb7ba1a4e48800e14e9a1380411f/docs/data/grace_cells.json",
+      "type": "text/html",
+      "title": "Source file in Groundwater-Storage-Gravimetry at commit ab5ff88"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Groundwater-Storage-Gravimetry/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Water storage in the Lake Chad basin from GRACE and GRACE-FO"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Water storage in the Lake Chad basin from GRACE and GRACE-FO"
+    }
+  ],
+  "assets": {
+    "geoparquet": {
+      "href": "./storage-trend-cells.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GeoParquet",
+      "file:size": 18751,
+      "file:checksum": "1220cb8c78e7cdc9856cc22d3b4ff1ac66608f772dfdb63ad79aa5cdd636c6b26492",
+      "roles": [
+        "data"
+      ]
+    },
+    "geojson": {
+      "href": "./storage-trend-cells.geojson",
+      "type": "application/geo+json",
+      "title": "GeoJSON",
+      "file:size": 89378,
+      "file:checksum": "1220ba10d425c139904a59be4db6c8392556f25673934b583e447f89c7c6c9057a63",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "groundwater-storage-gravimetry"
+}

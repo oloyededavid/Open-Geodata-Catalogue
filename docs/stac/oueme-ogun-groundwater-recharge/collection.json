@@ -1,0 +1,204 @@
+{
+  "type": "Collection",
+  "id": "oueme-ogun-groundwater-recharge",
+  "stac_version": "1.1.0",
+  "description": "Basin outlines and gridded water-balance maps (CHIRPS rainfall, WaPOR evapotranspiration and their difference) for the Upper Ou\u00e9m\u00e9 (Benin) and Upper Ogun (Nigeria), 2018\u20132024. The surplus is rainfall minus evapotranspiration from satellite products; it is not measured recharge.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Oueme-Ogun-Groundwater-Recharge",
+      "type": "text/html",
+      "title": "Study repository"
+    },
+    {
+      "rel": "license",
+      "href": "https://github.com/oloyededavid/Oueme-Ogun-Groundwater-Recharge/blob/main/LICENSE-DATA.md",
+      "type": "text/html",
+      "title": "Licence statement (LICENSE-DATA.md)"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC-BY-4.0"
+    },
+    {
+      "rel": "item",
+      "href": "./basins/basins.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-p-chirps2-mean/upper-oueme-p-chirps2-mean.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-p-chirps2-mean/upper-ogun-p-chirps2-mean.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-et-mean/upper-oueme-et-mean.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-et-mean/upper-ogun-et-mean.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-mean/upper-oueme-surplus-mean.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-mean/upper-ogun-surplus-mean.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2018/upper-oueme-surplus-2018.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2019/upper-oueme-surplus-2019.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2020/upper-oueme-surplus-2020.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2021/upper-oueme-surplus-2021.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2022/upper-oueme-surplus-2022.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2023/upper-oueme-surplus-2023.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-oueme-surplus-2024/upper-oueme-surplus-2024.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2018/upper-ogun-surplus-2018.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2019/upper-ogun-surplus-2019.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2020/upper-ogun-surplus-2020.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2021/upper-ogun-surplus-2021.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2022/upper-ogun-surplus-2022.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2023/upper-ogun-surplus-2023.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./upper-ogun-surplus-2024/upper-ogun-surplus-2024.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    }
+  ],
+  "geocat:code_licence": "MIT",
+  "geocat:source_commit": "77cbec0557200eb525af8f27bb8d2c97fb245c45",
+  "geocat:source_branch": "text-fixes",
+  "geocat:source_commit_date": "2026-11-18",
+  "geocat:source_commit_on_remote": true,
+  "title": "Testing a satellite water balance for groundwater recharge: Upper Ou\u00e9m\u00e9 and Upper Ogun",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          1.4000027030706406,
+          7.1396484375,
+          4.2509765625,
+          10.2999994084239
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Ou\u00e9m\u00e9",
+    "Ogun",
+    "Benin",
+    "Nigeria",
+    "groundwater recharge",
+    "WaPOR",
+    "CHIRPS",
+    "water balance"
+  ],
+  "providers": [
+    {
+      "name": "David Oloyede",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://github.com/oloyededavid/Oueme-Ogun-Groundwater-Recharge"
+    },
+    {
+      "name": "GitHub Pages",
+      "roles": [
+        "host"
+      ],
+      "url": "https://oloyededavid.github.io/Open-Geodata-Catalogue/"
+    }
+  ]
+}

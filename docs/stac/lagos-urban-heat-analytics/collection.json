@@ -1,0 +1,103 @@
+{
+  "type": "Collection",
+  "id": "lagos-urban-heat-analytics",
+  "stac_version": "1.1.0",
+  "description": "Local government area (LGA) boundaries of Lagos State with land surface temperature, vegetation, population and hot-spot attributes from the study's earlier Earth Engine export. The current paper's heat-gap results are computed on 60 m rasters that are not stored in the repository.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Lagos-Urban-Heat-Analytics",
+      "type": "text/html",
+      "title": "Study repository"
+    },
+    {
+      "rel": "license",
+      "href": "https://github.com/oloyededavid/Lagos-Urban-Heat-Analytics/blob/main/LICENSE-DATA.md",
+      "type": "text/html",
+      "title": "Licence statement (LICENSE-DATA.md)"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC-BY-4.0"
+    },
+    {
+      "rel": "item",
+      "href": "./lga-attributes/lga-attributes.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    }
+  ],
+  "geocat:code_licence": "MIT",
+  "geocat:source_commit": "995598e9fdbae251d82ceebaddc58bb6fcb26150",
+  "geocat:source_branch": "text-fixes",
+  "geocat:source_commit_date": "2026-11-18",
+  "geocat:source_commit_on_remote": true,
+  "title": "Surface urban heat island and distance to vegetation in Lagos State",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.706135674546005,
+          6.371208992407141,
+          4.34778308951771,
+          6.708072407529204
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-12-01T00:00:00Z",
+          "2024-04-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Lagos",
+    "urban heat island",
+    "land surface temperature",
+    "Landsat",
+    "MODIS",
+    "LGA",
+    "Getis-Ord"
+  ],
+  "providers": [
+    {
+      "name": "David Oloyede",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://github.com/oloyededavid/Lagos-Urban-Heat-Analytics"
+    },
+    {
+      "name": "GitHub Pages",
+      "roles": [
+        "host"
+      ],
+      "url": "https://oloyededavid.github.io/Open-Geodata-Catalogue/"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "facilities-public-and-herams",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          32.2852,
+          -26.84
+        ],
+        [
+          32.1783,
+          -26.6733
+        ],
+        [
+          32.0133,
+          -25.9911
+        ],
+        [
+          31.33,
+          -22.4572
+        ],
+        [
+          30.4394,
+          -15.6147
+        ],
+        [
+          30.86088,
+          -13.68816
+        ],
+        [
+          34.9613,
+          -11.6156
+        ],
+        [
+          40.5078,
+          -10.5928
+        ],
+        [
+          40.5894,
+          -10.8569
+        ],
+        [
+          40.7867,
+          -14.5225
+        ],
+        [
+          40.7675,
+          -14.8633
+        ],
+        [
+          40.7579,
+          -14.9979
+        ],
+        [
+          35.32191,
+          -24.2424
+        ],
+        [
+          35.0164,
+          -24.59
+        ],
+        [
+          32.8839,
+          -26.8372
+        ],
+        [
+          32.2852,
+          -26.84
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    30.4394,
+    -26.84,
+    40.7867,
+    -10.5928
+  ],
+  "properties": {
+    "title": "Health facilities, public-sector list and WHO HeRAMS",
+    "description": "Facility points of list A (public-sector facilities, Maina et al., 2019) and list H (WHO HeRAMS 2022\u20132024 for Cabo Delgado, Nampula and Zamb\u00e9zia, with reported functioning and quarter), with the study's flags for position checks and use.",
+    "start_datetime": "2019-01-01T00:00:00Z",
+    "end_datetime": "2024-12-31T23:59:59Z",
+    "table:row_count": 2116,
+    "table:columns": [
+      {
+        "name": "list",
+        "type": "object"
+      },
+      {
+        "name": "name",
+        "type": "object"
+      },
+      {
+        "name": "type",
+        "type": "object"
+      },
+      {
+        "name": "class",
+        "type": "object"
+      },
+      {
+        "name": "lon",
+        "type": "float64"
+      },
+      {
+        "name": "lat",
+        "type": "float64"
+      },
+      {
+        "name": "province_loc",
+        "type": "object"
+      },
+      {
+        "name": "inside_moz",
+        "type": "bool"
+      },
+      {
+        "name": "in_sea",
+        "type": "bool"
+      },
+      {
+        "name": "in_inland_water",
+        "type": "bool"
+      },
+      {
+        "name": "use",
+        "type": "bool"
+      },
+      {
+        "name": "status",
+        "type": "object"
+      },
+      {
+        "name": "quarter",
+        "type": "object"
+      },
+      {
+        "name": "district",
+        "type": "object"
+      },
+      {
+        "name": "geometry",
+        "type": "geometry"
+      }
+    ],
+    "geocat:kind": "vector",
+    "geocat:invalid_geometries_repaired": 0,
+    "geocat:source_file": "docs/data/facilities.csv",
+    "geocat:source_commit": "8257e5d91c657a18234a8fc8241084f2272141ce",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Mozambique-Health-Access/blob/main/docs/data/facilities.csv",
+      "type": "text/html",
+      "title": "Source file in Mozambique-Health-Access at commit 8257e5d"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Mozambique-Health-Access/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Travel time to health facilities in Mozambique"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Travel time to health facilities in Mozambique"
+    }
+  ],
+  "assets": {
+    "geoparquet": {
+      "href": "./facilities-public-and-herams.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GeoParquet",
+      "file:size": 108544,
+      "file:checksum": "12203a75e934b730dfb3b7aefbe6333ab4849bc819ff403056309453f36ffd8be579",
+      "roles": [
+        "data"
+      ]
+    },
+    "geojson": {
+      "href": "./facilities-public-and-herams.geojson",
+      "type": "application/geo+json",
+      "title": "GeoJSON",
+      "file:size": 879587,
+      "file:checksum": "1220e8bc3d79edf685dfb1a26f780c4649bdfbe445f346dfdd4c0be292c99eaf7793",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "mozambique-health-access"
+}

@@ -1,0 +1,109 @@
+{
+  "type": "Collection",
+  "id": "observational-hydrology-extremes",
+  "stac_version": "1.1.0",
+  "description": "Study areas and per-cell design rainfall from a study of floods, drought and extreme rainfall in the Lower Niger-Benue reach and the Sokoto-Rima basin, Nigeria, using satellite and reanalysis data where gauges are missing.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Observational-Hydrology-Extremes/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Observational-Hydrology-Extremes",
+      "type": "text/html",
+      "title": "Study repository"
+    },
+    {
+      "rel": "license",
+      "href": "https://github.com/oloyededavid/Observational-Hydrology-Extremes/blob/main/README.md",
+      "type": "text/html",
+      "title": "Licence statement (README.md)"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC-BY-4.0"
+    },
+    {
+      "rel": "item",
+      "href": "./study-areas/study-areas.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./chirps-rx1day-return-levels/chirps-rx1day-return-levels.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    }
+  ],
+  "geocat:code_licence": "MIT",
+  "geocat:source_commit": "0d49ff84c6522a7eecde412f209d7d822b8bb69e",
+  "geocat:source_branch": "text-fixes",
+  "geocat:source_commit_date": "2026-11-18",
+  "geocat:source_commit_on_remote": true,
+  "title": "Floods, droughts and design rainfall in two data-sparse Nigerian basins",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          3.7416666666666965,
+          5.75,
+          9.5,
+          16.25
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1981-01-01T00:00:00Z",
+          "2070-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Nigeria",
+    "Niger",
+    "Benue",
+    "Sokoto-Rima",
+    "CHIRPS",
+    "design rainfall",
+    "return level",
+    "HydroBASINS"
+  ],
+  "providers": [
+    {
+      "name": "David Oloyede",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://github.com/oloyededavid/Observational-Hydrology-Extremes"
+    },
+    {
+      "name": "GitHub Pages",
+      "roles": [
+        "host"
+      ],
+      "url": "https://oloyededavid.github.io/Open-Geodata-Catalogue/"
+    }
+  ]
+}

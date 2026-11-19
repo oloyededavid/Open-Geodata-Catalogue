@@ -1,0 +1,135 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "upper-ogun-surplus-2021",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          4.200002744793892,
+          7.149999361485243
+        ],
+        [
+          4.200002744793892,
+          9.04999938979745
+        ],
+        [
+          3.2000027298927307,
+          9.04999938979745
+        ],
+        [
+          3.2000027298927307,
+          7.149999361485243
+        ],
+        [
+          4.200002744793892,
+          7.149999361485243
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    3.2000027298927307,
+    7.149999361485243,
+    4.200002744793892,
+    9.04999938979745
+  ],
+  "properties": {
+    "title": "Upper Ogun water surplus, 2021",
+    "description": "CHIRPS v2.0 minus WaPOR ET for one year (mm/year), 0.05 degree.",
+    "start_datetime": "2021-01-01T00:00:00Z",
+    "end_datetime": "2021-12-31T23:59:59Z",
+    "proj:code": "EPSG:4326",
+    "proj:shape": [
+      38,
+      20
+    ],
+    "proj:transform": [
+      0.05000000074505806,
+      0.0,
+      3.2000027298927307,
+      0.0,
+      -0.05000000074505806,
+      9.04999938979745
+    ],
+    "proj:bbox": [
+      3.2000027298927307,
+      7.149999361485243,
+      4.200002744793892,
+      9.04999938979745
+    ],
+    "geocat:kind": "raster",
+    "geocat:band_description": "CHIRPS v2.0 minus WaPOR ET 2021, mm/year, 0.05 degree",
+    "geocat:data_type": "float32",
+    "geocat:nodata": null,
+    "geocat:nodata_is_nan": true,
+    "geocat:preview_range": [
+      106.2798,
+      691.0789
+    ],
+    "geocat:preview_colormap": "viridis",
+    "geocat:source_file": "outputs/maps/upper_ogun_surplus_2021.tif",
+    "geocat:source_commit": "77cbec0557200eb525af8f27bb8d2c97fb245c45",
+    "datetime": null
+  },
+  "links": [
+    {
+      "rel": "via",
+      "href": "https://github.com/oloyededavid/Oueme-Ogun-Groundwater-Recharge/blob/77cbec0557200eb525af8f27bb8d2c97fb245c45/outputs/maps/upper_ogun_surplus_2021.tif",
+      "type": "text/html",
+      "title": "Source file in Oueme-Ogun-Groundwater-Recharge at commit 77cbec0"
+    },
+    {
+      "rel": "about",
+      "href": "https://oloyededavid.github.io/Oueme-Ogun-Groundwater-Recharge/",
+      "type": "text/html",
+      "title": "Study page"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open geodata catalogue"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Testing a satellite water balance for groundwater recharge: Upper Ou\u00e9m\u00e9 and Upper Ogun"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Testing a satellite water balance for groundwater recharge: Upper Ou\u00e9m\u00e9 and Upper Ogun"
+    }
+  ],
+  "assets": {
+    "cog": {
+      "href": "./upper-ogun-surplus-2021.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Cloud-Optimised GeoTIFF",
+      "file:size": 3727,
+      "file:checksum": "1220bffcfdc579f951658381b8300c48195dd0de435b06abf5bfcab2dfee07741742",
+      "roles": [
+        "data"
+      ]
+    },
+    "preview": {
+      "href": "./upper-ogun-surplus-2021.preview.png",
+      "type": "image/png",
+      "title": "Quick-look (EPSG:4326)",
+      "file:size": 1774,
+      "file:checksum": "12206f5343916f62063ee16b6b635f9114931af0f39a637a45d8368f5cefe34a4ec7",
+      "roles": [
+        "overview"
+      ]
+    }
+  },
+  "collection": "oueme-ogun-groundwater-recharge"
+}
