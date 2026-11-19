@@ -80,6 +80,11 @@ def page(*, title, description, body, base, path, toc, scripts=("leaflet",), end
     <meta property="og:title" content="{E(title)}">
     <meta property="og:description" content="{E(description)}">
     <meta property="og:url" content="{SITE_URL}{path}">
+    <meta property="og:image" content="{SITE_URL}assets/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Open geodata catalogue: spatial outputs of open studies as a static STAC catalogue and an OGC API Features service">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description" content="{E(description)}">
     <meta name="author" content="David Oloyede">
     <link rel="icon" href="{ICON}">
