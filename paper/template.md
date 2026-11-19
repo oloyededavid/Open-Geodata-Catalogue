@@ -18,7 +18,7 @@ Two standard ways of publishing such data were used. STAC describes files and th
 
 ## 2.1 One configuration file
 
-`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. {{n_sources_configured}} studies are configured; {{n_pending}} were skipped at the last build.
+`catalogue/sources.yaml` lists the studies. Each entry gives the repository, a title and description, the licences the study states and the file that states them, and the layers to include with a title, a description and a time range. A time range can also be read from a field of the layer or from a JSON results file of the study, so it is not typed twice. If an entry lists no layers, every GeoJSON and GeoTIFF file in the study's `docs/data` and `outputs` folders is taken. If the repository, its outputs, a study period or a licence statement is missing, the entry is skipped and reported on the website. {{n_sources_configured}} studies are configured; {{skipped_sentence}}.
 
 ## 2.2 Formats, checksums and size limits
 
@@ -26,11 +26,11 @@ Vector layers are written as GeoParquet 1.1 (GeoParquet, n.d.) and GeoJSON, in l
 
 Every file carries its size and SHA-256 checksum (STAC file extension), raster items carry their grid (projection extension) and vector items their columns and feature count (table extension). A converted file larger than {{max_file_mb}} MB would not be copied: its asset would point to the source file in the study repository instead. {{linked_sentence}} The build also stops if the website folder would exceed {{max_docs_mb}} MB.
 
-Each collection records the study page, the repository, the data licence (CC BY 4.0 for {{n_ccby}} of the {{n_collections}} studies) and the commit of the study repository the files were taken from. {{licence_other_sentence}} {{item_licence_sentence}}
+Each collection records the study page, the repository, the data licence (CC BY 4.0 for {{n_ccby}} of the {{n_collections}} studies, with exceptions noted below) and the commit of the study repository the files were taken from. {{licence_other_sentence}} {{item_licence_sentence}} {{licence_notes_sentence}}
 
 ## 2.3 A static catalogue on GitHub Pages
 
-The catalogue is saved as a self-contained STAC catalogue: links between the root catalogue, collections and items are relative, and there are no `self` links, so the folder works wherever it is copied. The website is built from the same files. The index page lists the collections with small extent maps drawn with a copy of Leaflet on country outlines from Natural Earth, without a tile server, and a search box filters the items in the browser. Each collection and item has its own page with a map, the metadata and the files.
+The catalogue is saved as a self-contained STAC catalogue: links between the root catalogue, collections and items are relative, and there are no `self` links, so the folder works wherever it is copied. The website is built from the same files. The index page lists the collections with small extent maps drawn with a copy of Leaflet on country outlines from Natural Earth, without a tile server, and a search box filters the items in the browser. Each collection and item has its own page with a map, the metadata and the files. The pages load their fonts from api.fontshare.com and, on the published site only, a reaction and page-view counter from abacus.jasoncameron.dev; Leaflet and the map outlines are served from the site itself, and nothing else is requested from a third party.
 
 ## 2.4 OGC API Features with PostGIS and pygeoapi
 

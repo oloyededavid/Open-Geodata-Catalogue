@@ -67,8 +67,10 @@ make test       # all tests
 make browser    # browser check (CHANNEL=chrome if Playwright's own Chromium is not installed)
 ```
 
-The local paths in `catalogue/sources.yaml` point to checkouts of the study repositories; edit them for your
-machine. Without them the committed catalogue can still be tested and served, but not rebuilt.
+The local paths in `catalogue/sources.yaml` point to checkouts of the study repositories. Edit them, use `~` or
+`${VAR}` in them, or set `OGC_SOURCES_ROOT` to a folder holding the checkouts (looked up by the last part of each
+`path`). The build stops if a file it reads differs from git HEAD of its study repository, and records
+`source_commit_on_remote` as true only when a remote-tracking branch contains that commit. Without them the committed catalogue can still be tested and served, but not rebuilt.
 
 ### The OGC API Features service
 
@@ -90,6 +92,11 @@ Without Docker, with PostgreSQL 16 and PostGIS 3 installed (binaries in `/usr/li
 
 The pygeoapi configuration declares the storage coordinate system as CRS84 (longitude first). Declaring
 EPSG:4326 made pygeoapi swap the coordinates of every returned feature; a test guards against this.
+
+## Publishing
+
+The website is the `docs/` folder. In the GitHub repository settings, Pages: Source "Deploy from a branch", branch
+`main`, folder `/docs`. `docs/.nojekyll` is already there.
 
 ## Tests
 
@@ -116,7 +123,9 @@ container.
 - Only outputs stored in the study repositories are included; large intermediate rasters the studies rebuild from
   public archives are not. A converted file over 20 MB would be linked to its source repository, not copied.
 - Coastal-Hydrogeology-Modeling states an MIT licence and no separate data licence, so its collection is marked
-  `other`. One Mozambique item derived from OpenStreetMap is under the ODbL 1.0 and says so in its own metadata.
+  `other`. The Mozambique collection is marked `various`: one item derived from OpenStreetMap is under the ODbL 1.0 and every item states its own licence. The Lagos boundaries (FAO GAUL, non-commercial use) and the Ogun SAR flood fields (MERIT Hydro mask, CC BY-NC or ODbL) carry a licence note in the collection.
+- Sizes are in SI megabytes (1 MB = 1,000,000 bytes) everywhere.
+- The pages load fonts from api.fontshare.com and, on the published site only, a reaction and page-view counter from abacus.jasoncameron.dev. Nothing else is requested from a third party.
 - The service is a local demonstration. It has not been deployed, load-tested or secured. Its tests check the core,
   GeoJSON and OpenAPI behaviour by queries; no formal OGC conformance test suite was run.
 - The website's map outlines are Natural Earth 1:50m African country outlines (`scripts/make_basemap.py`), too coarse for city scale, so they are

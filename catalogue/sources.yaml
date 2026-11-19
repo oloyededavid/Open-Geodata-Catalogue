@@ -12,7 +12,8 @@
 # Fields
 #   id           collection id (lower case, hyphens)
 #   repo         GitHub repository name under github.com/oloyededavid (also gives the study page URL)
-#   path         local checkout of the repository
+#   path         local checkout of the repository. May use ~ and ${VAR}. If the environment variable
+#                OGC_SOURCES_ROOT is set, the checkout is taken from <OGC_SOURCES_ROOT>/<last part of path> instead.
 #   title, description, keywords
 #   period       start and end (YYYY-MM-DD) of the study period, used for the collection extent
 #   licence      code and data licences as the study states them, and the file that states them
@@ -52,7 +53,8 @@ sources:
         title: Study areas
         description: >-
           Outline of the Sokoto-Rima basin (HydroBASINS, simplified to about 1 km) and the Lower Niger-Benue
-          analysis box.
+          analysis box. The time range of this item is the union of the study's data years and projection years;
+          an outline has no date of its own.
         file: docs/data/domains.geojson
         kind: vector
         start: "1981-01-01"
@@ -78,7 +80,8 @@ sources:
       turbidity index, Sentinel-1 inundation, soil moisture) from Earth observation, 2019–2024.
     keywords: [Ogun River, Lagos Lagoon, Sentinel-1, Sentinel-2, CHIRPS, ERA5-Land, sub-basins]
     period: {start: "2019-01-01", end: "2024-12-31"}
-    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md,
+              note: "The SAR flood fields (sar_flood_km2, sar_flood_max_km2, dw_flood_km2, sar_inundation_km2) use a MERIT Hydro height-above-drainage mask, which is dual-licensed CC BY-NC 4.0 or ODbL 1.0; if you reuse these fields commercially, check MERIT Hydro's terms (see LICENSE-DATA.md of the study)."}
     layers:
       - id: sub-basins
         title: Sub-basin units with summary indicators
@@ -174,7 +177,8 @@ sources:
       heat-gap results are computed on 60 m rasters that are not stored in the repository.
     keywords: [Lagos, urban heat island, land surface temperature, Landsat, MODIS, LGA, Getis-Ord]
     period: {start: "2020-01-01", end: "2024-12-31"}
-    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md}
+    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md,
+              note: "LGA boundaries are FAO GAUL 2015 (non-commercial use only); see LICENSE-DATA.md of the study."}
     layers:
       - id: lga-attributes
         title: LGA boundaries with heat and vegetation attributes
@@ -240,8 +244,8 @@ sources:
       population layer.
     keywords: [Mozambique, health facilities, travel time, accessibility, friction surface, WorldPop, districts]
     period: {start: "2019-01-01", end: "2024-12-31"}
-    licence: {code: MIT, data: CC-BY-4.0, stated_in: LICENSE-DATA.md,
-              note: "Facility data derived from OpenStreetMap are under the ODbL 1.0; that layer carries its own licence."}
+    licence: {code: MIT, data: various, stated_in: LICENSE-DATA.md,
+              note: "Most layers are CC BY 4.0; the facility layer derived from OpenStreetMap is under the ODbL 1.0. Every item states its own licence."}
     layers:
       - id: district-access-public-list
         title: District travel time to public-sector facilities, 2020
@@ -255,6 +259,8 @@ sources:
         converter: moz_district_access
         start: "2020-01-01"
         end: "2020-12-31"
+        licence: CC-BY-4.0
+        licence_url: https://creativecommons.org/licenses/by/4.0/
       - id: facilities-public-and-herams
         title: Health facilities, public-sector list and WHO HeRAMS
         description: >-
@@ -267,6 +273,8 @@ sources:
         converter_args: {lists: [A, H]}
         start: "2019-01-01"
         end: "2024-12-31"
+        licence: CC-BY-4.0
+        licence_url: https://creativecommons.org/licenses/by/4.0/
       - id: facilities-openstreetmap
         title: Health facilities from OpenStreetMap
         description: >-
@@ -277,7 +285,7 @@ sources:
         kind: vector
         converter: moz_facilities
         converter_args: {lists: [B]}
-        start: "json:docs/data/sources.json#osm/health_facilities.parquet.accessed"
-        end: "json:docs/data/sources.json#osm/health_facilities.parquet.accessed"
+        start: "2019-01-01"   # the study period; the download date is stated in the description, not used as a time range
+        end: "2024-12-31"
         licence: ODbL-1.0
         licence_url: https://opendatacommons.org/licenses/odbl/1-0/
