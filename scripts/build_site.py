@@ -157,7 +157,7 @@ def index_page(cat, S, svc):
     <div class="cat-card-body">
         <h3><a href="collections/{cid}.html">{E(c['title'])}</a></h3>
         <p class="cat-desc">{E(coll.description)}</p>
-        <p class="cat-meta-line"><span>{stat(k + ':items', c['items'])} item{'s' if c['items'] != 1 else ''}: {', '.join(kinds)}</span><span>{stat(k + ':years', years(c['start'], c['end']))}</span><span>Data {E(licence_text(c['licence_data']))}</span></p>
+        <p class="cat-meta-line"><span>{stat(k + ':items', c['items'])} item{'s' if c['items'] != 1 else ''}: {', '.join(kinds)}</span><span>{stat(k + ':years', years(c['start'], c['end']))}</span><span>Data {E(licence_text(c['licence_data']))}{' (one layer restricted, see collection)' if c.get('licence_note') and c['licence_data'] != 'various' else ''}</span></p>
         <p class="cat-links"><a href="{E(c['page'])}">Study page</a><a href="{E(c['github'])}">Repository</a><a href="stac/{cid}/collection.json">STAC collection</a></p>
     </div>
 </li>""")
@@ -239,6 +239,7 @@ gdf = gpd.read_parquet(item.assets["geoparquet"].get_absolute_href())</code></pr
 curl "http://localhost:5000/collections"
 curl "http://localhost:5000/collections/{table_name(first, 'study-areas')}/items?limit=5&amp;bbox=3,5,10,17"</code></pre>
     {svc_html}
+    <p class="cat-note">The checks above used a local PostGIS cluster; the Docker Compose route was not run in these checks.</p>
     <p>How the catalogue and the service are built, and what was and was not checked, is described on the <a href="about.html">design page</a>.</p>
 </section>
 

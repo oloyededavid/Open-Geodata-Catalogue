@@ -77,7 +77,7 @@ The local paths in `catalogue/sources.yaml` point to checkouts of the study repo
 
 The website is static: it cannot run the API. Run it yourself in one of two ways.
 
-With Docker:
+With Docker (the Compose route was not run in the checks recorded here; the tested route is the local one below):
 
 ```bash
 docker compose up --build

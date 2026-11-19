@@ -105,7 +105,7 @@
     <div class="cat-card-body">
         <h3><a href="collections/ogun-catchment-coast-observatory.html">Ogun River catchment-to-coast environmental observatory</a></h3>
         <p class="cat-desc">Sub-basin units of the Ogun River catchment and Lagos Lagoon with summary indicators (rainfall, NDVI, turbidity index, Sentinel-1 inundation, soil moisture) from Earth observation, 2019–2024.</p>
-        <p class="cat-meta-line"><span><span data-stat="c:ogun-catchment-coast-observatory:items">1</span> item: <span data-stat="c:ogun-catchment-coast-observatory:vector">1</span> vector</span><span><span data-stat="c:ogun-catchment-coast-observatory:years">2019–2024</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-meta-line"><span><span data-stat="c:ogun-catchment-coast-observatory:items">1</span> item: <span data-stat="c:ogun-catchment-coast-observatory:vector">1</span> vector</span><span><span data-stat="c:ogun-catchment-coast-observatory:years">2019–2024</span></span><span>Data CC BY 4.0 (one layer restricted, see collection)</span></p>
         <p class="cat-links"><a href="https://oloyededavid.github.io/Ogun-Catchment-Coast-Observatory/">Study page</a><a href="https://github.com/oloyededavid/Ogun-Catchment-Coast-Observatory">Repository</a><a href="stac/ogun-catchment-coast-observatory/collection.json">STAC collection</a></p>
     </div>
 </li>
@@ -132,7 +132,7 @@
     <div class="cat-card-body">
         <h3><a href="collections/lagos-urban-heat-analytics.html">Surface urban heat island and distance to vegetation in Lagos State</a></h3>
         <p class="cat-desc">Local government area (LGA) boundaries of Lagos State with land surface temperature, vegetation, population and hot-spot attributes from the study&#x27;s earlier Earth Engine export. The current paper&#x27;s heat-gap results are computed on 60 m rasters that are not stored in the repository.</p>
-        <p class="cat-meta-line"><span><span data-stat="c:lagos-urban-heat-analytics:items">1</span> item: <span data-stat="c:lagos-urban-heat-analytics:vector">1</span> vector</span><span><span data-stat="c:lagos-urban-heat-analytics:years">2022–2024</span></span><span>Data CC BY 4.0</span></p>
+        <p class="cat-meta-line"><span><span data-stat="c:lagos-urban-heat-analytics:items">1</span> item: <span data-stat="c:lagos-urban-heat-analytics:vector">1</span> vector</span><span><span data-stat="c:lagos-urban-heat-analytics:years">2022–2024</span></span><span>Data CC BY 4.0 (one layer restricted, see collection)</span></p>
         <p class="cat-links"><a href="https://oloyededavid.github.io/Lagos-Urban-Heat-Analytics/">Study page</a><a href="https://github.com/oloyededavid/Lagos-Urban-Heat-Analytics">Repository</a><a href="stac/lagos-urban-heat-analytics/collection.json">STAC collection</a></p>
     </div>
 </li>
@@ -141,7 +141,7 @@
     <div class="cat-card-body">
         <h3><a href="collections/coastal-hydrogeology-modeling.html">Urban sealing and the shallow water table of the Lekki–Epe barrier, Lagos</a></h3>
         <p class="cat-desc">Recharge-potential index maps of the Lekki–Epe barrier for a 1986–1996 baseline (Landsat 5) and for 2023–2024 (Sentinel-2), from the study&#x27;s re-analysis. The index is a relative score, not recharge, and the study reports that the size of its decline is not robust.</p>
-        <p class="cat-meta-line"><span><span data-stat="c:coastal-hydrogeology-modeling:items">2</span> items: <span data-stat="c:coastal-hydrogeology-modeling:raster">2</span> raster</span><span><span data-stat="c:coastal-hydrogeology-modeling:years">1986–2024</span></span><span>Data not stated separately</span></p>
+        <p class="cat-meta-line"><span><span data-stat="c:coastal-hydrogeology-modeling:items">2</span> items: <span data-stat="c:coastal-hydrogeology-modeling:raster">2</span> raster</span><span><span data-stat="c:coastal-hydrogeology-modeling:years">1986–2024</span></span><span>Data not stated separately (one layer restricted, see collection)</span></p>
         <p class="cat-links"><a href="https://oloyededavid.github.io/Coastal-Hydrogeology-Modeling/">Study page</a><a href="https://github.com/oloyededavid/Coastal-Hydrogeology-Modeling">Repository</a><a href="stac/coastal-hydrogeology-modeling/collection.json">STAC collection</a></p>
     </div>
 </li>
@@ -195,6 +195,7 @@ gdf = gpd.read_parquet(item.assets["geoparquet"].get_absolute_href())</code></pr
 curl "http://localhost:5000/collections"
 curl "http://localhost:5000/collections/observational_hydrology_extremes_study_areas/items?limit=5&amp;bbox=3,5,10,17"</code></pre>
     <p>At the last local check (<span data-stat="svc:checked">2026-11-19</span>), the service served <span data-stat="svc:n_collections">10</span> collections with <span data-stat="svc:n_features">4,162</span> features from PostGIS <span data-stat="svc:postgis_version">3.4.2</span> with pygeoapi <span data-stat="svc:pygeoapi_version">0.24.0</span>, and every check passed: paging with <code>limit</code>, single features, bounding-box filtering and the core, GeoJSON and OpenAPI conformance classes. pygeoapi declares <span data-stat="svc:conformance_classes">18</span> conformance classes in all; the others were not tested here, and no formal OGC test suite was run.</p>
+    <p class="cat-note">The checks above used a local PostGIS cluster; the Docker Compose route was not run in these checks.</p>
     <p>How the catalogue and the service are built, and what was and was not checked, is described on the <a href="about.html">design page</a>.</p>
 </section>
 
