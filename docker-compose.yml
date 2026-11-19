@@ -1,0 +1,43 @@
+# PostGIS + a one-off loader + pygeoapi. Start with `docker compose up --build`, then open
+# http://localhost:5000/collections . Data come from docs/stac (GeoParquet assets), so build the catalogue first
+# or use the committed one.
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: geodata
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d geodata"]
+      interval: 3s
+      retries: 20
+    ports:
+      - "5432:5432"
+
+  loader:
+    build:
+      context: .
+      dockerfile: service/Dockerfile.loader
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/geodata
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    image: geopython/pygeoapi:0.24.0
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: geodata
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PYGEOAPI_SERVER_URL: http://localhost:5000
+    volumes:
+      - ./service/pygeoapi-config.yml:/pygeoapi/local.config.yml:ro
+    ports:
+      - "5000:80"
+    depends_on:
+      loader:
+        condition: service_completed_successfully
