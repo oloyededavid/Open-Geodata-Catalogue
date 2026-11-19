@@ -338,7 +338,7 @@ def item_page(coll, item):
         keys = cols[:6]
         mapdiv = (f'<div id="item-map" class="cat-map" data-bbox="{E(json.dumps(item.bbox))}" '
                   f'data-geojson="{base_href}{item.id}.geojson" data-keys="{E(json.dumps(keys))}" role="img" '
-                  f'aria-label="Map of the layer"></div><p class="cat-note">Hover over a shape to see its first attributes.</p>')
+                  f'aria-label="Map of the layer"></div><p class="cat-note">Hover over or tap a shape to see its first attributes.</p>')
     else:
         lo, hi = p["geocat:preview_range"]
         nod = "NaN" if p.get("geocat:nodata_is_nan") else p.get("geocat:nodata")
